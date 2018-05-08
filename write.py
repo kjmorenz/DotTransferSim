@@ -32,16 +32,16 @@ def addafterpulse(photons, darks, deadtime, afterpulse):
                 while photons[i+index] < apphoton:
                     index = index + 1
                 index = index - 1
-                if apphoton - photons[index] > deadtime: #so long as the second detector wasn't already turned off by another photon arrival 
+                if apphoton - photons[index] > deadtime: #so long as the second detector wasn't already turned off by another photon arrival
                     photons.insert(index-1, apphoton)
             else:#add it to dark counts instead so it'll get added in next round
                 darks = insert(darks, apphoton)
     return photons, darks
-            
-            
+
+
 
 def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines, maxlines, endtime,
-            temp, concentration, dabsXsec, labsXsec,k_demission, 
+            temp, concentration, dabsXsec, labsXsec,k_demission,
             k_fiss, k_trans, k_sem, k_tem, emwavelength, r,
             eta, n, reprate,wavelength, laserpwr, pulselength, foclen,
             NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, timestep, channels, seq, mL1):
@@ -50,7 +50,7 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines,
         calc = mLcalc
     else:
         calc = calc1
-        
+
 
     h = 6.62607004*10**(-34) # m^2 kg / s (Planck's const)
     c = 299792458 # m/s (Speed of light)
@@ -74,7 +74,7 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines,
     energyperpulse = laserpwr/(reprate * 1000000000) #J
     phperpulse = energyperpulse/energyperphoton
     phpers = laserpwr/(energyperphoton*1000)
-    
+
 
     #make rounds average timestep emissions per round:
     if pulsed == 1:
@@ -89,7 +89,7 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines,
         timestep = timestep/experps #ps per round
         if timestep < taurep:
             timestep = taurep
-        
+
     #CW version:
     else:
         k_dexcitation = 10**12/(phpers*dabsXsec)#*AvgEms) #ps/excitation
@@ -116,11 +116,11 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines,
 
     ##Phys Chem by Atkins pg 771 - prob of being a distance x from origin after time t is
     ##P = sqrt(2tau/pi t)*e^(-x^2 tau/(2t lambda^2) where tau is the time it takes to go a distance lambda
-    ##Diffusion coeff D = lambda^2/2tau = uRT/zF = uK_BT where u is the mobility or the ratio of the 
+    ##Diffusion coeff D = lambda^2/2tau = uRT/zF = uK_BT where u is the mobility or the ratio of the
     ##terminal drift velocity to an applied force
     ##lambda = zuF, also u = 1/ 6 pi eta r Stokes Einstein
     ##
-    ##Better: Wikipedia, (also in Atkins) Einstein relation: 
+    ##Better: Wikipedia, (also in Atkins) Einstein relation:
     ## D = k_B T/(6 pi eta r), eta is the viscosity, r is the radius of the spherical particle
     ##
     ##or pg 770, mean distanced travelled by particles of radius r in solvent of viscosity eta is
@@ -131,7 +131,7 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines,
     # combination of Atkins and Wikipedia gives:
     # mean free path lambda = (root(2)*conc*collision cross sectional area)
     # --> (using equations about D above) Mean free time = 3 eta / 2 conc ^2 pi r^3 Kb T where conc is only acc dependent
-    # and r is the sum of the two diameters 
+    # and r is the sum of the two diameters
 
 
     deltat = 0
@@ -149,21 +149,21 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines,
 
     testdummy =0
 
-    
+
 
     numEms = round(AvgEms) #start with the average number of emitters in the focal volume
     if numEms <= 0: #always start with at least one emitter in the focal volume
         numEms = 1
     print("NumEms = " + str(numEms))
     print("AvgEms = " + str(AvgEms))
-    
+
 
 
     lastphoton =[]
     for i in range(numEms):
         lastphoton.append(0)
-    
-    nextdex = numpy.random.geometric(p=1- (1-dabsXsec)**phperpulse)*taurep 
+
+    nextdex = numpy.random.geometric(p=1- (1-dabsXsec)**phperpulse)*taurep
 
     lastdiff = 0 # for calculating actual avg ems
     tnumEms = 0
@@ -172,7 +172,7 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines,
         nextOut = d.diffuse(diffouttime, numEms)#the number which have a chance to diffuse out are the number in
         nextIn = d.diffuse(diffouttime, AvgEms)#the number which have a chance to diffuse in are the average number
         nextdiff = min(nextIn, nextOut)
-        
+
     elif diffuse == 0:
         nextdiff = float('inf')
         nextOut = float('inf')
@@ -195,9 +195,9 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines,
         if line > maxlines:
             break
         photons = []
-        
-                    
-            
+
+
+
         if dcpointer == dclen:
             darks = calc.darkcounts(avtime, dclen, darks[dcpointer-1], deadtime)
             dcpointer = 0
@@ -207,13 +207,13 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines,
             print("AvgEms = " + str(AvgEms))
             print("Rounded = " + str(round(AvgEms)))
             please = crash
-        
-        
+
+
         if len(lastphoton) != numEms :
             print("numEms:" + str(numEms))
             print("lastphoton:" +str(lastphoton))
             print("write line 206")
-        
+
         if wrotediff != [nextIn, nextOut] and nextIn < nextOut:
             difffile.write(str(nextIn) + ","+ str(numEms + 1)+"\n")
             wrotediff = [nextIn, nextOut]
@@ -225,13 +225,13 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines,
         #print("New Round")
         #print("sensitivity is " + str(sensitivity))
         dataphotons, lastphoton, numEms, nextIn, nextOut, diffsIn, diffsOut, ndiffsOut, nextdex = calc.nextphotonss(lastphoton, sensitivity, nligands,
-                                                                        k_demission, k_fiss, k_trans, k_sem, k_tem, k_dexcitation, k_lexcitation, 
+                                                                        k_demission, k_fiss, k_trans, k_sem, k_tem, k_dexcitation, k_lexcitation,
                                                                         diffouttime, numEms, nextOut, nextIn, endround,
                                                                         antibunch, pulsed, taurep,
-                                                                        dabsXsec, labsXsec, phperpulse, AvgEms, diffsIn, 
+                                                                        dabsXsec, labsXsec, phperpulse, AvgEms, diffsIn,
                                                                         diffsOut, ndiffsOut, testdummy, nextdex,seq)
         #if not dataphotons == []:
-        #print(dataphotons)                     
+        #print(dataphotons)
         endround = endround + timestep
         if len(lastphoton) == 1 and endround < lastphoton[0]:
             endround = lastphoton[0]
@@ -239,26 +239,26 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines,
     ##            print(dataphotons)
 
 
-        if not dataphotons == []: 
+        if not dataphotons == []:
             sigcts += len(dataphotons)
-            
+
             datapointer = 0
-                        
+
             while datapointer < len(dataphotons):
                 if dcpointer == dclen:
                     darks = calc.darkcounts(avtime, dclen, darks[dcpointer-1], deadtime)
                     dcpointer = 0
-                        
+
                 if darks[dcpointer] < dataphotons[datapointer]:
     ##                        print(0)
-                    if darks[dcpointer] - lastwritten > deadtime or (darks[dcpointer] - lastlastwritten > deadtime and numpy.random.rand()>0.5): 
+                    if darks[dcpointer] - lastwritten > deadtime or (darks[dcpointer] - lastlastwritten > deadtime and numpy.random.rand()>0.5):
                         photons.append(darks[dcpointer])
                         lastlastwritten = lastwritten
                         lastwritten = darks[dcpointer]
     ##                            print("wrote a dc - 3")
 
                     dcpointer = dcpointer + 1
-                    
+
 
                 else:
     ##                            if datapointer >= len(dataphotons) or photons == []:
@@ -273,7 +273,7 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines,
                         lastlastwritten = lastwritten
                         lastwritten = dataphotons[datapointer]
     ##                            print("wrote data - 1")
-                        
+
                     datapointer = datapointer + 1
     ##                        print(datapointer)
 
@@ -286,7 +286,7 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines,
             print("Delta t for one round: " + str(deltat))
             print(timestep)
             #print(photons)
-        
+
         if not deltat == 0:
             testdummy = testdummy  + 1
         if not photons == []:
@@ -354,14 +354,14 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines,
                         print(fullfilename + ": " + str(line*100/numlines) + "% - " + str(photons[j]/10**9) + " ms")
                     elif deltat > 1 and line%(numlines/100)==0:#if it's slow print more often
                         print(str(line*100/numlines) + "% - " + str(photons[j]/10**9) + " ms")
-            
+
             #print("Lines written: " + str(line))
 
-        
-            
-        
-        
-            
+
+
+
+
+
     print("Last photon time = " + str(int(max(lastphoton))/(10**12)) + " s")
     print("Signal counts = " + str(sigcts))
     print("Diffusion-in events = " + str(diffsIn))
@@ -409,9 +409,8 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines,
     file.write("Diffusing as t = -diffouttime*numpy.log(1-numpy.random.rand()) #poissonian with average time diffouttime \n")
     file.write("\n")
     file.write("Main file + definitive input parameters:")
-    mf = open("C:/Users/Karen/Dropbox (WilsonLab)/WilsonLab Team Folder/Data/Karen/DotTransferSim/main.py", 'r')
-    for line in mf.readlines():
-        file.write(line)
-    mf.close()
+    # mf = open("C:/Users/Karen/Dropbox (WilsonLab)/WilsonLab Team Folder/Data/Karen/DotTransferSim/main.py", 'r')
+    # for line in mf.readlines():
+    #     file.write(line)
+    # mf.close()
     file.close()
-    

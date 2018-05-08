@@ -10,7 +10,7 @@ antibunch = 1
 pulsed = 1
 
 #General saving folder parameters
-filepath = "C:/Users/Karen/Dropbox (WilsonLab)/WilsonLab Team Folder/Data/Karen/DotTransferSim/"
+filepath = "/tmp/Karen/DotTransferSim/"
 filedir = "May8TEST/"
 filenames = ["TESTProfile2"]
 
@@ -32,7 +32,7 @@ r = 20 #nm - hydrodynamic radius of particles
 eta = 8.9 * 10**(-13) # kg/nm s - dynamic viscosity of solvent (water)
 n = 1.3 # index of refraction - sample in water
 
-concentration = 2*10**(-8) 
+concentration = 2*10**(-8)
 nligands = 100
 
 dabsXsec = 7.180616773321853*10**(-9)# per emitter numabs'd = phperpulse*absXsec*numEms - this is reasonable based on absXsec for CdSe is 550000*r^3/cm (from Bawendi paper Ruvim sent me)
@@ -55,7 +55,7 @@ NA = 1.4
 
 #Detector parameters
 darkcounts = 100 #s^-1
-sensitivity = 0.1 
+sensitivity = 0.1
 deadtime = 70#70000 #70 ns in ps
 afterpulse = 0.0001 #percent of time a photon is emitted a deadtime after one is detected
 
@@ -76,14 +76,14 @@ i = 0
 f = filenames[0]
 
 sim.simulate(filepath, filedir, f, write, analyze, makefig, diffuse, antibunch,
-                                            pulsed, numlines, maxlines, endtime,temp, concentration, 
+                                            pulsed, numlines, maxlines, endtime,temp, concentration,
                                             dabsXsec, labsXsec, k_demission, k_sem,
-                                            emwavelength, r,eta, n, k_tem, k_fiss, k_trans, 
+                                            emwavelength, r,eta, n, k_tem, k_fiss, k_trans,
                                             reprate, wavelength, laserpwr, pulselength, foclen,
-                                            NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, order, 
+                                            NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, order,
                                             mode, gnpwr, numbins, pulsebins, channels, seq)
-            
-'''            
+
+'''
 for laserpwr in [0.005,0.0005,0.5]:
     for concentration in [2*10**(-8),2*10**(-6),2*10**(-10)]:
         i = i + 1
@@ -91,33 +91,33 @@ for laserpwr in [0.005,0.0005,0.5]:
             for k_demission in [1400000,15]:
                 for nligands in [100,1,10000]:
                     for diffuse in range(2):
-                    
+
                         f = filenames[0]
-                        
-                    
+
+
                         if i == 2:
                             f = f + "conc"
                         elif i == 3:
                             f = f + "dilute"
-                        
+
                         if k_demission == 15:
                             f = f + "CdSe"
                         else:
                             f = f + "PbS"
-                        
+
                         f = f + str(nligands) + "ligs"
 
                         if diffuse == 1:
                             f = f + "DIFF"
 
                         sim.simulate(filepath, filedir, f, write, analyze, makefig, diffuse, antibunch,
-                                            pulsed, numlines, maxlines, endtime,temp, concentration, 
+                                            pulsed, numlines, maxlines, endtime,temp, concentration,
                                             dabsXsec, labsXsec, k_demission, k_sem,
-                                            emwavelength, r,eta, n, k_tem, k_fiss, k_trans, 
+                                            emwavelength, r,eta, n, k_tem, k_fiss, k_trans,
                                             reprate, wavelength, laserpwr, pulselength, foclen,
-                                            NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, order, 
+                                            NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, order,
                                             mode, gnpwr, numbins, pulsebins, channels, seq)
-      '''      
+      '''
 '''
 for mL1 in range(2):
     for seq in range(2):
@@ -132,53 +132,53 @@ for mL1 in range(2):
                     f = f + "-mL1"
                 if diffuse == 1:
                     f = f + "DIFF"
-                
-                
+
+
                 sim.simulate(filepath, filedir, f, write, analyze, makefig, diffuse, antibunch,
-                                        pulsed, numlines, maxlines, endtime,temp, concentration, 
+                                        pulsed, numlines, maxlines, endtime,temp, concentration,
                                         dabsXsec, labsXsec, k_demission, k_sem,
-                                        emwavelength, r,eta, n, k_tem, k_fiss, k_trans, 
+                                        emwavelength, r,eta, n, k_tem, k_fiss, k_trans,
                                         reprate, wavelength, laserpwr, pulselength, foclen,
-                                        NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, order, 
+                                        NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, order,
                                         mode, gnpwr, numbins, pulsebins, channels, seq, mL1)
 
 
 f = filenames[0]
 sim.simulate(filepath, filedir, f, write, analyze, makefig, diffuse, antibunch,
-                                    pulsed, numlines, maxlines, endtime,temp, concentration, 
+                                    pulsed, numlines, maxlines, endtime,temp, concentration,
                                     dabsXsec, labsXsec, k_demission, k_sem,
-                                    emwavelength, r,eta, n, k_tem, k_fiss, k_trans, 
+                                    emwavelength, r,eta, n, k_tem, k_fiss, k_trans,
                                     reprate, wavelength, laserpwr, pulselength, foclen,
-                                    NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, order, 
+                                    NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, order,
                                     mode, gnpwr, numbins, pulsebins, channels, seq)
 
 for seq in range(1):
     nligands = 100
     f = filenames[0] + "-seq-" + str(seq) + "-" + str(nligands)+"lig"
     sim.simulate(filepath, filedir, f, write, analyze, makefig, diffuse, antibunch,
-                                pulsed, numlines, maxlines, endtime,temp, concentration, 
+                                pulsed, numlines, maxlines, endtime,temp, concentration,
                                 dabsXsec, labsXsec, k_demission, k_sem,
-                                emwavelength, r,eta, n, k_tem, k_fiss, k_trans, 
+                                emwavelength, r,eta, n, k_tem, k_fiss, k_trans,
                                 reprate, wavelength, laserpwr, pulselength, foclen,
-                                NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, order, 
+                                NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, order,
                                 mode, gnpwr, numbins, pulsebins, channels, seq)
 
     nligands = 1
     f = filenames[0] + "-seq-" + str(seq) + "mL-1lig"
     sim.simulate(filepath, filedir, f, write, analyze, makefig, diffuse, antibunch,
-                                    pulsed, numlines, maxlines, endtime,temp, concentration, 
+                                    pulsed, numlines, maxlines, endtime,temp, concentration,
                                     dabsXsec, labsXsec, k_demission, k_sem,
-                                    emwavelength, r,eta, n, k_tem, k_fiss, k_trans, 
+                                    emwavelength, r,eta, n, k_tem, k_fiss, k_trans,
                                     reprate, wavelength, laserpwr, pulselength, foclen,
-                                    NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, order, 
+                                    NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, order,
                                     mode, gnpwr, numbins, pulsebins, channels, seq, mL1 = 1)
 
 sim.simulate(filepath, filedir, "2018-03-27-shortish-seq-1-100ligshortg2", 0, analyze, makefig, diffuse, antibunch,
-                                    pulsed, numlines, maxlines, endtime,temp, concentration, 
+                                    pulsed, numlines, maxlines, endtime,temp, concentration,
                                     dabsXsec, labsXsec, k_demission, k_sem,
-                                    emwavelength, r,eta, n, k_tem, k_fiss, k_trans, 
+                                    emwavelength, r,eta, n, k_tem, k_fiss, k_trans,
                                     reprate, wavelength, laserpwr, pulselength, foclen,
-                                    NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, order, 
+                                    NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, order,
                                     mode, gnpwr, numbins, pulsebins, channels, seq, mL1 = 1)
 
 for i in range(3):
@@ -188,7 +188,7 @@ for i in range(3):
         sensitivity = sensitivity*8
         for k in range(3):
             k_demission = k_demissioni*10**(k-1)
-            
+
             filename = "sens-" + str(int(100*sensitivity)) + "-lp-"+str(int(1000*laserpwr)) + "uW-tauDotEm-"+str(int(k_demission/1000)) +"ns"
 
             '''
