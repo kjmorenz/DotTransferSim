@@ -1,0 +1,14 @@
+[package]
+name = "rust_fastforward"
+version = "0.0.1"
+authors = ["Greg Morenz <morenzg@gmail.com>"]
+
+[lib]
+name = "rust_fastforward"
+crate-type = ["cdylib"]
+
+[dependencies]
+cpython = "0.1"
+ndarray = "0.10"
+rand = "0.4.2"
+numpy = "0.2.1"
