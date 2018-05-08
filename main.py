@@ -16,8 +16,8 @@ filenames = ["TESTProfile2"]
 
 #file length - goes to the max of these two
 numlines = 10**4
-maxlines = 10**4
-endtime = 10*10**12 #ps #10**15 = 16.6 min
+maxlines = 10**5
+endtime = 10*10**13 #ps #10**15 = 16.6 min
 
 #Sample parameters
 temp = 298 #K
