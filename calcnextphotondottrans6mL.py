@@ -70,11 +70,12 @@ def ffs(val, biggerval, otherval, lifetime, factor):
         return biggerval + scipy.random.exponential(lifetime)
     return float("inf")
 
-def fastforward(transtime, nextem, temtime, k_trans, factor, f):
-    for i in range(len(transtime)):
-        for j in range(2):
-            transtime[i][j] = f(transtime[i][j], nextem, temtime[i][j], k_trans, factor)
-    return transtime
+# def fastforward(transtime, nextem, temtime, k_trans, factor, f):
+#     for i in range(len(transtime)):
+#         for j in range(2):
+#             transtime[i][j] = f(transtime[i][j], nextem, temtime[i][j], k_trans, factor)
+#     return transtime
+from rust_fastforward import fastforward
 
 def alltransgttemtime(transtime, temtime):
     for i in range(len(transtime)):
