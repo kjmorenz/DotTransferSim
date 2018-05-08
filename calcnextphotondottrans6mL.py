@@ -10,7 +10,7 @@ def newcphoton(antibunch, k_emission):
     #    add = scipy.random.exponential(k_emission+k_excitation)
     else:
         add = - (k_emission*numpy.log(1-numpy.random.rand())) #poisson
-        
+
     return add
 
 def quicksort(array):
@@ -51,7 +51,7 @@ def insert(array, val):
     return array
 
 def excitepulsed(k_ex, probex, nextem, taurep):
-    return int(nextem/taurep)*taurep + numpy.random.geometric(p=probex)*taurep      
+    return int(nextem/taurep)*taurep + numpy.random.geometric(p=probex)*taurep
 
 def excitects(k_ex, probex, nextem, taurep):
     return nextem + scipy.random.exponential(k_ex)
@@ -95,7 +95,7 @@ def deltransgttem(transtime,temtime):
 def allsemltallfiss(fisstime,semtime):
     for i in range(len(fisstime)):
         if fisstime[i] < semtime[i]:
-            return 0               
+            return 0
     return 1
 
 def findmin(array):
@@ -123,18 +123,18 @@ def findmax(array):
     return index, minval
 
 def nextphotonss(lastphoton, sensitivity, nligands,
-               k_demission, k_fiss, k_trans, k_sem, k_tem, k_dexcitation, k_lexcitation, 
+               k_demission, k_fiss, k_trans, k_sem, k_tem, k_dexcitation, k_lexcitation,
                diffouttime, numEms, nextOut, nextIn, endround,
                antibunch, pulsed, taurep,
-               dabsXsec, labsXsec, photonsperpulse, AvgEms, diffsIn, 
+               dabsXsec, labsXsec, photonsperpulse, AvgEms, diffsIn,
                diffsOut, ndiffsOut, testdummy, nextdex, seq):
 
-    #Note that as it stands, this only works for: 
-    # 1) PULSED - could be fixed by allowing the dot to be re-excited after emitting 
+    #Note that as it stands, this only works for:
+    # 1) PULSED - could be fixed by allowing the dot to be re-excited after emitting
     # before another triplet transfer. We would also have to consider new ligand excitations.
-  
+
     nextphoton = []
-    
+
     newphoton = newcphoton
     if pulsed == 1:
         excite = excitepulsed
@@ -154,7 +154,7 @@ def nextphotonss(lastphoton, sensitivity, nligands,
         #print("1")
         diffOut = numpy.random.randint(numEms)#index identity of emitter which diffused out
         nextem = lastphoton[diffOut] #lastphoton is an array of length numEms holding the time of last photon emitted for each emitter
-        
+
 
         while nextem < nextOut:
             #print("2")
@@ -187,28 +187,28 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                         nextsemtime = nextlex + scipy.random.exponential(k_sem)
                     fisstime[i] = (nextfisstime)
                     semtime[i] = (nextsemtime)
-                    
+
                     transtime[i] = [fisstime[i] + scipy.random.exponential(k_trans),fisstime[i] + scipy.random.exponential(k_trans)]
                     temtime[i] = [fisstime[i] + scipy.random.exponential(k_tem),fisstime[i] + scipy.random.exponential(k_tem)]
 
-            
+
             while not transtime == []:
                 '''if lastnextem == nextem and lastnextdex == nextdex:
                     print("minval = " + str(minval))
                     print("nextem = " + str(nextem))
                     print("nextOut = " + str(nextOut))
                     print("nextdex = " + str(nextdex))
-                    for i in range(len(transtime)):   
+                    for i in range(len(transtime)):
                         print("transtime i = ")
                         print(transtime[i])
                         print("temtime i = ")
                         print(temtime[i])'''
-                
+
                 index, minval = findmin(transtime)
                 if nextdex < nextem:
                     #re-excite the dot and find it's emission time
                     nextdex = excite(k_dexcitation, probdex, nextem, taurep)
-                    
+
                 if nextdex < minval: #usually nextdex is waaayyy later
                     nextem = nextdex + scipy.random.exponential(k_demission)
                     if nextdex > nextOut:
@@ -220,12 +220,12 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                         transtime = []
                         break
                     nextdex = excite(k_dexcitation, probdex, nextem, taurep)
-                    transtime = fastforward(transtime, nextem, temtime, k_trans, 5, f)
+                    fastforward(transtime, nextem, temtime, k_trans, 5, f)
                     transtime, temtime = deltransgttem(transtime,temtime)
                     if transtime == []:
                         break
                     index, minval = findmin(transtime)
-                
+
 
                 if minval > nextem:
                     nextem = minval + scipy.random.exponential(k_demission)#excitation transfers to dot and emits
@@ -238,15 +238,15 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                         transtime = []
                         break
                     transtime[index[0]][index[1]] = float("inf")
-                
-                transtime = fastforward(transtime, nextem, temtime, k_trans, 5, f)
+
+                fastforward(transtime, nextem, temtime, k_trans, 5, f)
                 transtime, temtime = deltransgttem(transtime,temtime)
             lastnextem = nextem
             lastnextdex = nextdex
             #print(nextem)
             #print(nextOut)
             #print(nextdex)
-                
+
 
         numEms = numEms - 1
         del lastphoton[diffOut]
@@ -254,7 +254,7 @@ def nextphotonss(lastphoton, sensitivity, nligands,
         nextOut = nextOut + d.diffuse(diffouttime, numEms)
         if numEms == 0:
             break #we'll want to start a new round
-        
+
     while nextIn < endround:
         lastphoton.append(nextIn)
         diffsIn = diffsIn + 1
@@ -266,7 +266,7 @@ def nextphotonss(lastphoton, sensitivity, nligands,
 
 
 
-  
+
     for j in range(numEms):
         nextem = lastphoton[j]
         #print(3)
@@ -301,11 +301,11 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                         nextsemtime = nextlex + scipy.random.exponential(k_sem)
                     fisstime[i] = (nextfisstime)
                     semtime[i] = (nextsemtime)
-                    
+
                     transtime[i] = [fisstime[i] + scipy.random.exponential(k_trans),fisstime[i] + scipy.random.exponential(k_trans)]
                     temtime[i] = [fisstime[i] + scipy.random.exponential(k_tem),fisstime[i] + scipy.random.exponential(k_tem)]
 
-            
+
             while not transtime == []:
                 #print("10")
                 #print("transtime isn't empty")
@@ -320,29 +320,29 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                     if numpy.random.rand() < sensitivity: # if we didn't miss it due to sensitivity
                         nextphoton = insert(nextphoton, nextem)
                     nextdex = excite(k_dexcitation, probdex, nextem, taurep)
-                    transtime = fastforward(transtime, nextem, temtime, k_trans, 5, f)
+                    fastforward(transtime, nextem, temtime, k_trans, 5, f)
                     transtime, temtime = deltransgttem(transtime,temtime)
                     if transtime == []:
                         break
                     index, minval = findmin(transtime)
-                
+
 
                 if minval > nextem:
                     nextem = minval + scipy.random.exponential(k_demission)#excitation transfers to dot and emits
                     if numpy.random.rand() < sensitivity: # if we didn't miss it due to sensitivity
                         nextphoton = insert(nextphoton, nextem)
-                
+
                     transtime[index[0]][index[1]] = float("inf")
-                
-                transtime = fastforward(transtime, nextem, temtime, k_trans, 5, f)
+
+                fastforward(transtime, nextem, temtime, k_trans, 5, f)
                 transtime, temtime = deltransgttem(transtime,temtime)
             #print(nextem)#nextem is shrinking?
 
 
 
         lastphoton[j] = nextem
-        
-    
+
+
     if numEms == 0:
         numEms = 1
         while nextOut<nextIn:
