@@ -87,9 +87,10 @@ def deltransgttem(transtime,temtime):
     d = 0
     for i in range(len(transtime)):
         if transtime[i-d][0] > temtime[i-d][0] and transtime[i-d][1] > temtime[i-d][1]:
-                del transtime[i-d]
-                del temtime[i-d]
-                d = d + 1
+            # TODO: It would be a lot better to delete everything at once...
+            transtime = numpy.delete(transtime, i - d, 0)
+            del temtime[i-d]
+            d = d + 1
     return transtime, temtime
 
 
@@ -100,16 +101,9 @@ def allsemltallfiss(fisstime,semtime):
     return 1
 
 def findmin(array):
-    minval = array[0][0]
-    index = [0,0]
-    for i in range(len(array)):
-        if array[i][0] < minval:
-            minval = array[i][0]
-            index = [i,0]
-        if array[i][1] < minval:
-            minval = array[i][1]
-            index = [i,1]
-    return index, minval
+    index_flat = numpy.argmin(array)
+    index = numpy.unravel_index(index_flat, array.shape)
+    return index, array[index]
 
 def findmax(array):
     minval = array[0][0]
@@ -159,7 +153,7 @@ def nextphotonss(lastphoton, sensitivity, nligands,
 
         while nextem < nextOut:
             #print("2")
-            transtime = []
+            transtime = numpy.zeros((nligands, 2))
             temtime = []
             fisstime = []
             semtime = []
@@ -174,7 +168,7 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                     nextsemtime = nextlex + scipy.random.exponential(k_sem)
                 fisstime.append(nextfisstime)
                 semtime.append(nextsemtime)
-                transtime.append([fisstime[i] + scipy.random.exponential(k_trans),fisstime[i] + scipy.random.exponential(k_trans)])
+                transtime[i] = [fisstime[i] + scipy.random.exponential(k_trans), fisstime[i] + scipy.random.exponential(k_trans)]
                 temtime.append([fisstime[i] + scipy.random.exponential(k_tem),fisstime[i] + scipy.random.exponential(k_tem)])
                 while transtime[i][0] > temtime[i][0] and transtime[i][1] > temtime[i][1]: #almost never happens
                     #print("4")
@@ -193,7 +187,7 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                     temtime[i] = [fisstime[i] + scipy.random.exponential(k_tem),fisstime[i] + scipy.random.exponential(k_tem)]
 
 
-            while not transtime == []:
+            while transtime.shape[0] != 0:
                 '''if lastnextem == nextem and lastnextdex == nextdex:
                     print("minval = " + str(minval))
                     print("nextem = " + str(nextem))
@@ -213,17 +207,17 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                 if nextdex < minval: #usually nextdex is waaayyy later
                     nextem = nextdex + scipy.random.exponential(k_demission)
                     if nextdex > nextOut:
-                        transtime = []
+                        transtime = None
                         break
                     if numpy.random.rand() < sensitivity and nextem < nextOut: # if we didn't miss it due to sensitivity
                         nextphoton = insert(nextphoton, nextem)
                     elif nextem > nextOut:
-                        transtime = []
+                        transtime = None
                         break
                     nextdex = excite(k_dexcitation, probdex, nextem, taurep)
                     fastforward(transtime, nextem, temtime, k_trans, 5, f)
                     transtime, temtime = deltransgttem(transtime,temtime)
-                    if transtime == []:
+                    if transtime.shape[0] == 0:
                         break
                     index, minval = findmin(transtime)
 
@@ -231,14 +225,14 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                 if minval > nextem:
                     nextem = minval + scipy.random.exponential(k_demission)#excitation transfers to dot and emits
                     if minval > nextOut:
-                        transtime = []
+                        transtime = None
                         break
                     if numpy.random.rand() < sensitivity and nextem < nextOut: # if we didn't miss it due to sensitivity
                         nextphoton = insert(nextphoton, nextem)
                     elif nextem > nextOut:
-                        transtime = []
+                        transtime = None
                         break
-                    transtime[index[0]][index[1]] = float("inf")
+                    transtime[index] = float("inf")
 
                 fastforward(transtime, nextem, temtime, k_trans, 5, f)
                 transtime, temtime = deltransgttem(transtime,temtime)
@@ -273,7 +267,7 @@ def nextphotonss(lastphoton, sensitivity, nligands,
         #print(3)
         while nextem < endround: #continue adding photons until end of round, on average 10 emissions
             #print("6")
-            transtime = []
+            transtime = numpy.zeros((nligands, 2))
             temtime = []
             fisstime = []
             semtime = []
@@ -288,7 +282,7 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                     nextsemtime = nextlex + scipy.random.exponential(k_sem)
                 fisstime.append(nextfisstime)
                 semtime.append(nextsemtime)
-                transtime.append([fisstime[i] + scipy.random.exponential(k_trans),fisstime[i] + scipy.random.exponential(k_trans)])
+                transtime[i] = [fisstime[i] + scipy.random.exponential(k_trans),fisstime[i] + scipy.random.exponential(k_trans)]
                 temtime.append([fisstime[i] + scipy.random.exponential(k_tem),fisstime[i] + scipy.random.exponential(k_tem)])
                 while transtime[i][0] > temtime[i][0] and transtime[i][1] > temtime[i][1]: #almost never happens
                     #print("8")
@@ -307,7 +301,7 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                     temtime[i] = [fisstime[i] + scipy.random.exponential(k_tem),fisstime[i] + scipy.random.exponential(k_tem)]
 
 
-            while not transtime == []:
+            while transtime.shape[0] != 0:
                 #print("10")
                 #print("transtime isn't empty")
                 #print(transtime)
@@ -323,7 +317,7 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                     nextdex = excite(k_dexcitation, probdex, nextem, taurep)
                     fastforward(transtime, nextem, temtime, k_trans, 5, f)
                     transtime, temtime = deltransgttem(transtime,temtime)
-                    if transtime == []:
+                    if transtime.shape[0] == 0:
                         break
                     index, minval = findmin(transtime)
 
@@ -333,7 +327,7 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                     if numpy.random.rand() < sensitivity: # if we didn't miss it due to sensitivity
                         nextphoton = insert(nextphoton, nextem)
 
-                    transtime[index[0]][index[1]] = float("inf")
+                    transtime[index] = float("inf")
 
                 fastforward(transtime, nextem, temtime, k_trans, 5, f)
                 transtime, temtime = deltransgttem(transtime,temtime)
