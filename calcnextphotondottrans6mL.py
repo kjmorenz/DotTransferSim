@@ -1,5 +1,6 @@
 import scipy
 import numpy
+import numpy as np
 
 import diffuse as d
 
@@ -84,15 +85,13 @@ def alltransgttemtime(transtime, temtime):
     return 1
 
 def deltransgttem(transtime,temtime):
-    d = 0
-    for i in range(len(transtime)):
-        if transtime[i-d][0] > temtime[i-d][0] and transtime[i-d][1] > temtime[i-d][1]:
-            # TODO: It would be a lot better to delete everything at once...
-            transtime = numpy.delete(transtime, i - d, 0)
-            del temtime[i-d]
-            d = d + 1
-    return transtime, temtime
+    greater_map = transtime > temtime
+    deletions = np.logical_and(greater_map[:,0], greater_map[:,1])
+    idx = np.where(deletions)[0]
+    transtime = np.delete(transtime, idx, 0)
+    temtime = np.delete(temtime, idx, 0)
 
+    return transtime, temtime
 
 def allsemltallfiss(fisstime,semtime):
     for i in range(len(fisstime)):
@@ -116,6 +115,50 @@ def findmax(array):
             minval = array[i][1]
             index = [i,1]
     return index, minval
+
+def make_transtime_temtime(k_lexcitation, problex, nextem, taurep, nligands, k_fiss, k_sem, k_trans, k_tem, excite):
+    # Temporary variables
+    nextlex = np.array([excite(k_lexcitation, problex, nextem, taurep) for _ in range(nligands)])
+    nextfisstime = nextlex + scipy.random.exponential(k_fiss, nligands)
+    nextsemtime = nextlex + scipy.random.exponential(k_sem, nligands)
+    for i in range(nligands):
+        if nextsemtime[i] < nextfisstime[i]:
+            nextlex[i] = excite(k_lexcitation, problex, nextem + nextsemtime[i], taurep)
+            nextfisstime[i] = nextlex[i] + scipy.random.exponential(k_fiss)
+            nextsemtime[i] = nextlex[i] + scipy.random.exponential(k_sem)
+
+    fisstime = nextfisstime
+    semtime = nextsemtime
+    transtime = scipy.random.exponential(k_trans, (nligands, 2))
+    transtime[:,0] += fisstime
+    transtime[:,1] += fisstime
+    temtime = scipy.random.exponential(k_tem, (nligands, 2))
+    temtime[:,0] += fisstime
+    temtime[:,1] += fisstime
+
+    while True:
+        greater_map = transtime > temtime
+        problems = np.logical_and(greater_map[:,0], greater_map[:,1])
+        idx = np.where(problems)[0]
+
+        if len(idx) == 0:
+            break
+
+        for i in idx:
+            nextlex = excite(k_lexcitation, problex, nextem + np.max(temtime[i]), taurep)
+            nextfisstime = nextlex + scipy.random.exponential(k_fiss)
+            nextsemtime = nextlex + scipy.random.exponential(k_sem)
+            while nextsemtime < nextfisstime:
+                #print("5")
+                nextlex = excite(k_lexcitation, problex, nextem + np.max(temtime[i]) + nextsemtime, taurep)
+                nextfisstime = nextlex + scipy.random.exponential(k_fiss)
+                nextsemtime = nextlex + scipy.random.exponential(k_sem)
+            fisstime[i] = (nextfisstime)
+            semtime[i] = (nextsemtime)
+
+            transtime[i] = [fisstime[i] + scipy.random.exponential(k_trans),fisstime[i] + scipy.random.exponential(k_trans)]
+            temtime[i] = [fisstime[i] + scipy.random.exponential(k_tem),fisstime[i] + scipy.random.exponential(k_tem)]
+    return transtime, temtime
 
 def nextphotonss(lastphoton, sensitivity, nligands,
                k_demission, k_fiss, k_trans, k_sem, k_tem, k_dexcitation, k_lexcitation,
@@ -152,40 +195,7 @@ def nextphotonss(lastphoton, sensitivity, nligands,
 
 
         while nextem < nextOut:
-            #print("2")
-            transtime = numpy.zeros((nligands, 2))
-            temtime = []
-            fisstime = []
-            semtime = []
-            for i in range(nligands):
-                nextlex = excite(k_lexcitation, problex, nextem, taurep)
-                nextfisstime = nextlex + scipy.random.exponential(k_fiss)
-                nextsemtime = nextlex + scipy.random.exponential(k_sem)
-                while nextsemtime < nextfisstime:
-                    #print("3")
-                    nextlex = excite(k_lexcitation, problex, nextem + nextsemtime, taurep)
-                    nextfisstime = nextlex + scipy.random.exponential(k_fiss)
-                    nextsemtime = nextlex + scipy.random.exponential(k_sem)
-                fisstime.append(nextfisstime)
-                semtime.append(nextsemtime)
-                transtime[i] = [fisstime[i] + scipy.random.exponential(k_trans), fisstime[i] + scipy.random.exponential(k_trans)]
-                temtime.append([fisstime[i] + scipy.random.exponential(k_tem),fisstime[i] + scipy.random.exponential(k_tem)])
-                while transtime[i][0] > temtime[i][0] and transtime[i][1] > temtime[i][1]: #almost never happens
-                    #print("4")
-                    nextlex = excite(k_lexcitation, problex, nextem + max(temtime[i]), taurep)
-                    nextfisstime = nextlex + scipy.random.exponential(k_fiss)
-                    nextsemtime = nextlex + scipy.random.exponential(k_sem)
-                    while nextsemtime < nextfisstime:
-                        #print("5")
-                        nextlex = excite(k_lexcitation, problex, nextem + max(temtime[i]) + nextsemtime, taurep)
-                        nextfisstime = nextlex + scipy.random.exponential(k_fiss)
-                        nextsemtime = nextlex + scipy.random.exponential(k_sem)
-                    fisstime[i] = (nextfisstime)
-                    semtime[i] = (nextsemtime)
-
-                    transtime[i] = [fisstime[i] + scipy.random.exponential(k_trans),fisstime[i] + scipy.random.exponential(k_trans)]
-                    temtime[i] = [fisstime[i] + scipy.random.exponential(k_tem),fisstime[i] + scipy.random.exponential(k_tem)]
-
+            transtime, temtime = make_transtime_temtime(k_lexcitation, problex, nextem, taurep, nligands, k_fiss, k_sem, k_trans, k_tem, excite)
 
             while transtime.shape[0] != 0:
                 '''if lastnextem == nextem and lastnextdex == nextdex:
@@ -266,40 +276,7 @@ def nextphotonss(lastphoton, sensitivity, nligands,
         nextem = lastphoton[j]
         #print(3)
         while nextem < endround: #continue adding photons until end of round, on average 10 emissions
-            #print("6")
-            transtime = numpy.zeros((nligands, 2))
-            temtime = []
-            fisstime = []
-            semtime = []
-            for i in range(nligands):
-                nextlex = excite(k_lexcitation, problex, nextem, taurep)
-                nextfisstime = nextlex + scipy.random.exponential(k_fiss)
-                nextsemtime = nextlex + scipy.random.exponential(k_sem)
-                while nextsemtime < nextfisstime:
-                    #print("7")
-                    nextlex = excite(k_lexcitation, problex, nextem + nextsemtime, taurep)
-                    nextfisstime = nextlex + scipy.random.exponential(k_fiss)
-                    nextsemtime = nextlex + scipy.random.exponential(k_sem)
-                fisstime.append(nextfisstime)
-                semtime.append(nextsemtime)
-                transtime[i] = [fisstime[i] + scipy.random.exponential(k_trans),fisstime[i] + scipy.random.exponential(k_trans)]
-                temtime.append([fisstime[i] + scipy.random.exponential(k_tem),fisstime[i] + scipy.random.exponential(k_tem)])
-                while transtime[i][0] > temtime[i][0] and transtime[i][1] > temtime[i][1]: #almost never happens
-                    #print("8")
-                    nextlex = excite(k_lexcitation, problex, nextem + max(temtime[i]), taurep)
-                    nextfisstime = nextlex + scipy.random.exponential(k_fiss)
-                    nextsemtime = nextlex + scipy.random.exponential(k_sem)
-                    while nextsemtime < nextfisstime:
-                        #print("9")
-                        nextlex = excite(k_lexcitation, problex, nextem + max(temtime[i]) + nextsemtime, taurep)
-                        nextfisstime = nextlex + scipy.random.exponential(k_fiss)
-                        nextsemtime = nextlex + scipy.random.exponential(k_sem)
-                    fisstime[i] = (nextfisstime)
-                    semtime[i] = (nextsemtime)
-
-                    transtime[i] = [fisstime[i] + scipy.random.exponential(k_trans),fisstime[i] + scipy.random.exponential(k_trans)]
-                    temtime[i] = [fisstime[i] + scipy.random.exponential(k_tem),fisstime[i] + scipy.random.exponential(k_tem)]
-
+            transtime, temtime = make_transtime_temtime(k_lexcitation, problex, nextem, taurep, nligands, k_fiss, k_sem, k_trans, k_tem, excite)
 
             while transtime.shape[0] != 0:
                 #print("10")

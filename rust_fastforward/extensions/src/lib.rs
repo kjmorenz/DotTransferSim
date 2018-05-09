@@ -7,14 +7,10 @@ extern crate rand;
 use std::f64::INFINITY;
 
 use numpy::*;
-use ndarray::*;
-use cpython::{PyResult, Python, PyObject, PyList};
-use rand::{Rng, XorShiftRng};
+use cpython::{PyResult, Python, PyObject};
+use rand::{XorShiftRng};
 use rand::distributions::exponential::Exp;
 use rand::distributions::IndependentSample;
-use cpython::ObjectProtocol;
-use cpython::ToPyObject;
-use cpython::PythonObject;
 
 
 fn ffs(val: f64, biggerval: f64, otherval: f64, lifetime: f64, _factor: f64, rng: &mut XorShiftRng) -> f64 {
@@ -26,16 +22,17 @@ fn ffs(val: f64, biggerval: f64, otherval: f64, lifetime: f64, _factor: f64, rng
     }
 }
 
-fn fastforward_py(py: Python, transtime: PyArray, nextem: f64, temtime: PyList, k_trans: f64, factor: f64, _f: PyObject) -> PyResult<PyObject> {
+fn fastforward_py(py: Python, transtime: PyArray, nextem: f64, temtime: PyArray, k_trans: f64, factor: f64, _f: PyObject) -> PyResult<PyObject> {
     let mut rng = rand::weak_rng();
     let mut transtime = transtime.as_array_mut().unwrap();
+    let temtime = temtime.as_array().unwrap();
 
     for i in 0.. transtime.shape()[0] {
         for j in 0.. 2usize {
             transtime[[i, j]] = ffs(
                 transtime[[i, j]],
                 nextem,
-                temtime.get_item(py, i).get_item(py, j)?.extract(py)?,
+                temtime[[i, j]],
                 k_trans,
                 factor,
                 &mut rng
@@ -54,7 +51,7 @@ py_module_initializer!(_rust_fastforward, init_rust_fastforward, PyInit__rust_fa
         fastforward_py (
             transtime: PyArray,
             nextem: f64,
-            temtime: PyList,
+            temtime: PyArray,
             k_trans: f64,
             factor: f64,
             _f: PyObject
