@@ -7,9 +7,8 @@ extern crate rand;
 use std::f64::INFINITY;
 
 // use numpy::*;
-use ndarray::*;
 use cpython::{PyResult, Python, PyObject, PyList};
-use rand::{Rng, XorShiftRng};
+use rand::XorShiftRng;
 use rand::distributions::exponential::Exp;
 use rand::distributions::IndependentSample;
 use cpython::ObjectProtocol;
