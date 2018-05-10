@@ -85,13 +85,17 @@ def alltransgttemtime(transtime, temtime):
     return 1
 
 def deltransgttem(transtime,temtime):
-    greater_map = transtime > temtime
-    deletions = np.logical_and(greater_map[:,0], greater_map[:,1])
-    idx = np.where(deletions)[0]
-    transtime = np.delete(transtime, idx, 0)
-    temtime = np.delete(temtime, idx, 0)
+    i = 0
+    length = len(transtime)
+    while i < length:
+        if transtime[i, 0] > temtime[i, 0] and transtime[i, 1] > temtime[i, 1]:
+            transtime[i] = transtime[length - 1]
+            temtime[i] = temtime[length - 1]
+            length -= 1
+        else:
+            i += 1
 
-    return transtime, temtime
+    return transtime[:length], temtime[:length]
 
 def allsemltallfiss(fisstime,semtime):
     for i in range(len(fisstime)):
