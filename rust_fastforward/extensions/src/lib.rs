@@ -7,6 +7,7 @@ extern crate rand;
 use std::f64::INFINITY;
 
 use numpy::*;
+use ndarray::prelude::*;
 use cpython::{PyResult, Python, PyObject};
 use rand::{XorShiftRng};
 use rand::distributions::exponential::Exp;
@@ -43,6 +44,29 @@ fn fastforward_py(py: Python, transtime: PyArray, nextem: f64, temtime: PyArray,
     Ok(py.None())
 }
 
+fn deltransgttem_helper_py(py: Python, transtime: PyArray, temtime: PyArray) -> PyResult<usize> {
+    let mut transtime: ArrayViewMutD<f64> = transtime.as_array_mut().unwrap();
+    let mut temtime: ArrayViewMutD<f64> = temtime.as_array_mut().unwrap();
+
+    let mut len = transtime.shape()[0];
+    let mut i = 0;
+    while i < len {
+        if transtime[[i, 0]] > temtime[[i, 0]] && transtime[[i, 1]] > temtime[[i, 1]] {
+            // Delete row, copy row at end into it's place
+            transtime[[i, 0]] = transtime[[len - 1, 0]];
+            transtime[[i, 1]] = transtime[[len - 1, 1]];
+            temtime[[i, 0]] = temtime[[len - 1, 0]];
+            temtime[[i, 1]] = temtime[[len - 1, 1]];
+
+            len -= 1;
+        }
+        else {
+            i += 1;
+        }
+    }
+
+    Ok(len)
+}
 
 /* Define module "_rust_ext" */
 py_module_initializer!(_rust_fastforward, init_rust_fastforward, PyInit__rust_fastforward, |py, m| {
@@ -56,5 +80,8 @@ py_module_initializer!(_rust_fastforward, init_rust_fastforward, PyInit__rust_fa
             factor: f64,
             _f: PyObject
         )))?;
+    m.add(py, "deltransgttem_helper", py_fn!(py,
+        deltransgttem_helper_py(transtime: PyArray, temtime: PyArray)
+    ))?;
     Ok(())
 });

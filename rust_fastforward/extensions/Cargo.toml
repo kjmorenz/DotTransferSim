@@ -9,6 +9,8 @@ crate-type = ["cdylib"]
 
 [dependencies]
 cpython = "0.1"
-ndarray = "0.10"
 rand = "0.4.2"
+
+# These need to match
 numpy = "0.2.1"
+ndarray = "0.9.1"

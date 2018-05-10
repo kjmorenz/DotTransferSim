@@ -4,6 +4,8 @@ import numpy as np
 
 import diffuse as d
 
+from rust_fastforward import fastforward, deltransgttem_helper
+
 def newcphoton(antibunch, k_emission):
     if antibunch == 1:
         add = scipy.random.exponential(k_emission)
@@ -76,7 +78,6 @@ def ffs(val, biggerval, otherval, lifetime, factor):
 #         for j in range(2):
 #             transtime[i][j] = f(transtime[i][j], nextem, temtime[i][j], k_trans, factor)
 #     return transtime
-from rust_fastforward import fastforward
 
 def alltransgttemtime(transtime, temtime):
     for i in range(len(transtime)):
@@ -84,18 +85,22 @@ def alltransgttemtime(transtime, temtime):
             return 0
     return 1
 
-def deltransgttem(transtime,temtime):
-    i = 0
-    length = len(transtime)
-    while i < length:
-        if transtime[i, 0] > temtime[i, 0] and transtime[i, 1] > temtime[i, 1]:
-            transtime[i] = transtime[length - 1]
-            temtime[i] = temtime[length - 1]
-            length -= 1
-        else:
-            i += 1
+# def deltransgttem(transtime,temtime):
+#     i = 0
+#     length = len(transtime)
+#     while i < length:
+#         if transtime[i, 0] > temtime[i, 0] and transtime[i, 1] > temtime[i, 1]:
+#             transtime[i] = transtime[length - 1]
+#             temtime[i] = temtime[length - 1]
+#             length -= 1
+#         else:
+#             i += 1
 
-    return transtime[:length], temtime[:length]
+#     return transtime[:length], temtime[:length]
+
+def deltransgttem(transtime, temtime):
+    new_len = deltransgttem_helper(transtime, temtime)
+    return transtime[:new_len], temtime[:new_len]
 
 def allsemltallfiss(fisstime,semtime):
     for i in range(len(fisstime)):
