@@ -131,7 +131,7 @@ def make_transtime_temtime(k_lexcitation, problex, nextem, taurep, nligands, k_f
     nextfisstime = nextlex + scipy.random.exponential(k_fiss, nligands)
     nextsemtime = nextlex + scipy.random.exponential(k_sem, nligands)
     for i in range(nligands):
-        if nextsemtime[i] < nextfisstime[i]:
+        while nextsemtime[i] < nextfisstime[i]:
             nextlex[i] = excite(k_lexcitation, problex, nextem + nextsemtime[i], taurep)
             nextfisstime[i] = nextlex[i] + scipy.random.exponential(k_fiss)
             nextsemtime[i] = nextlex[i] + scipy.random.exponential(k_sem)
