@@ -1,5 +1,9 @@
 # Install instructions (incomplete)
 
+Install python3
+
+Install rust at https://rustup.rs/
+
 ```
 cd rust_fastforward
 # This only ever needs to be run once, it installs build dependencies.
