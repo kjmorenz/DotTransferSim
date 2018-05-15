@@ -10,7 +10,7 @@ antibunch = 1
 pulsed = 1
 
 #General saving folder parameters
-filepath = "C:/Users/Karen/Dropbox (WilsonLab)/WilsonLab Team Folder/Data/Karen/DotTransferSim/"
+filepath = "/mnt/c/Users/Karen/Dropbox (WilsonLab)/WilsonLab Team Folder/Data/Karen/DotTransferSim/"
 filedir = "Sens-Tau-LP-100ligands/"
 filenames = [""]
 

@@ -5,6 +5,7 @@ import calcnextphotondottrans6mL as mLcalc
 import time as rt
 import math
 import numpy
+import progbar as p
 
 def insert(array, val):
     if array == []:
@@ -40,11 +41,17 @@ def addafterpulse(photons, darks, deadtime, afterpulse):
 
 
 
-def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines, maxlines, endtime,
+def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts, numlines, maxlines, endtime,
             temp, concentration, dabsXsec, labsXsec,k_demission,
             k_fiss, k_trans, k_sem, k_tem, emwavelength, r,
             eta, n, reprate,wavelength, laserpwr, pulselength, foclen,
             NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, timestep, channels, seq, mL1):
+    allparams = [filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts, numlines, maxlines, endtime,
+                    temp, concentration, dabsXsec, labsXsec,k_demission,
+                    k_fiss, k_trans, k_sem, k_tem, emwavelength, r,
+                    eta, n, reprate,wavelength, laserpwr, pulselength, foclen,
+                    NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, timestep, channels, seq, mL1]
+
 
     if nligands != 1 or mL1 == 1:
         calc = mLcalc
@@ -302,6 +309,12 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines,
                     file.write(str(channels) + "," + str(lastsyncpulse)+"\n")
                     lastsyncpulse = lastsyncpulse + int(taurep)
                     line = line + 1
+                    if line%numlines==0:
+                        p.printProgressBar(line, numlines)
+                        print()
+                        print("time = " + str(lastwritten/10**12) + " s")
+                        if lastwritten>endtime:
+                            break #should never happen
 
                 if photons[0] - lastwritten <= deadtime: #leq since afterpulse photons have to go to other det too
                     channel = (channel+1)%channels #went to the other detector
@@ -311,13 +324,15 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines,
     ##            print("wrote a line")
                 line = line + 1
                 if line%numlines==0:
+                    p.printProgressBar(line, numlines)
+                    print()
                     print("time = " + str(lastwritten/10**12) + " s")
                     if lastwritten>endtime:
                         break #should never happen
-                if line%(numlines/10) == 0:
-                    print(fullfilename + ": " + str(line*100/numlines) + "% - " + str(photons[0]/10**9) + " ms")
+                elif line%(numlines/10) == 0:
+                    p.printProgressBar(line, numlines)
                 elif deltat > 1 and line%(numlines/100)==0:#if it's slow print more often
-                    print(str(line*100/numlines) + "% - " + str(photons[0]/10**9) + " ms")
+                    p.printProgressBar(line, numlines)
 
 
             for j in range(1,len(photons)):
@@ -331,13 +346,15 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines,
                         lastsyncpulse = lastsyncpulse + int(taurep)
                         line = line + 1
                         if line%numlines==0:
+                            p.printProgressBar(line, numlines)
+                            print()
                             print("time = " + str(lastwritten/10**12) + " s")
                             if lastwritten>endtime:
                                 break #should never happen
-                        if line%(numlines/10) == 0:
-                            print(fullfilename + ": " + str(line*100/numlines) + "% - " + str(photons[j]/10**9) + " ms")
+                        elif line%(numlines/10) == 0:
+                            p.printProgressBar(line, numlines)
                         elif deltat > 1 and line%(numlines/100)==0:#if it's slow print more often
-                            print(str(line*100/numlines) + "% - " + str(photons[j]/10**9) + " ms")
+                            p.printProgressBar(line, numlines)
 
                     if photons[j] - photons[j-1] <= deadtime: #leq since afterpulse photons have to go to other det too
                         channel = (channel+1)%channels #went to the other detector
@@ -347,13 +364,15 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines,
         ##            print("wrote a line")
                     line = line + 1
                     if line%numlines==0:
+                        p.printProgressBar(line, numlines)
+                        print()
                         print("time = " + str(lastwritten/10**12) + " s")
                         if lastwritten>endtime:
                             break #should never happen
-                    if line%(numlines/10) == 0:
-                        print(fullfilename + ": " + str(line*100/numlines) + "% - " + str(photons[j]/10**9) + " ms")
+                    elif line%(numlines/10) == 0:
+                        p.printProgressBar(line, numlines)
                     elif deltat > 1 and line%(numlines/100)==0:#if it's slow print more often
-                        print(str(line*100/numlines) + "% - " + str(photons[j]/10**9) + " ms")
+                        p.printProgressBar(line, numlines)
 
             #print("Lines written: " + str(line))
 
@@ -369,48 +388,50 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines,
     print("Final emitters in = " + str(numEms))
     file.close()
     difffile.close()
-    file = open(filepath +"Figures/"+ filedir + fullfilename +"/" + "params"+ suffix, 'w')
-    file.write(fullfilename +" - date and time: " + str(rt.time()) + "\n")
-    file.write("Last photon time = " + str(int(max(lastphoton))/(10**12)) + " s"+"\n")
-    file.write("Signal counts = " + str(sigcts)+"\n")
-    file.write("Excitations per pulse " + str(exsperpulse) +"\n")
-    file.write("Excitations per sec " + str(AvgExEvs) +"\n")
-    file.write("Diffusion-in events = " + str(diffsIn)+"\n")
-    file.write("Diffusion-out events = " + str(diffsOut)+ ", " +str(ndiffsOut) + "\n")
-    file.write("Final emitters in = " + str(numEms) + "\n")
-    file.write("Intended Avg Ems = " + str(AvgEms) + "\n")
-    file.write("Number of records = " + str(numlines)+"\n")
-    file.write("k_demission = " + str(int(k_demission))+"\n")
-    file.write("k_dexcitation = " +str(int(k_dexcitation))+"\n")
-    file.write("dabsXsec = " + str(dabsXsec) + "\n")
-    file.write("Ligands per dot = " +str(nligands) +"\n")
-    file.write("k_lemission = " + str(int(k_sem))+"\n")
-    file.write("k_lexcitation = " +str(int(k_lexcitation))+"\n")
-    file.write("labsXsec = " + str(labsXsec) + "\n")
-    file.write("darkcounts = " + str(darkcounts) + " Hz \n")
-    file.write("sensitivity = " + str(sensitivity) + "\n")
-    file.write("deadtime = " + str(deadtime/1000) + " ns \n")
-    file.write("afterpulsing = " + str(afterpulse) +"\n")
-    file.write("radius = " + str(r)+" M\n")
-    file.write("concentration = " + str(concentration)+" M\n")
-    file.write("Solvent viscosity = " + str(eta)+" \n")
-    file.write("Solvent refractive index = " + str(n)+" \n")
-    file.write("Dark fission lifetime = " + str(k_fiss)+" \n")
-    file.write("Triplet emission lifetime = " + str(k_tem)+" \n")
-    file.write("Transfer lifetime = " + str(k_trans)+" \n")
-    file.write("Focal length = " + str(foclen)+" \n")
-    file.write("NA = " + str(NA)+" \n")
-    file.write("Laser power = " + str(laserpwr) + "\n")
-    file.write("Time per round: " + str(timestep) + " ps \n")
-##    file.write("Time limits for photon_gn = " + str(2**gnpwr) + "ps \n")
-##    file.write("Pulse bins = " +str(pulsebins) + "\n")
-    file.write("Average time to diffuse out of " + str(focalVol) + " nm^3 focal volume is " + str(diffouttime/(10**9)) + " \n")
-    file.write("Antibunch? " + str(antibunch)+"\n")
-    file.write("Diffusing as t = -diffouttime*numpy.log(1-numpy.random.rand()) #poissonian with average time diffouttime \n")
+    file = open(filepath +"Figures/"+ filedir + fullfilename +"/" + "params-"+ fullfilename + suffix, 'w')
+    file.write(fullfilename +" - date and time: " + str(rt.time()) + " \n")
+    file.write("Last photon time = " + str(int(max(lastphoton))/(10**12)) + " s"+" \n")
+    file.write("Signal counts = " + str(sigcts)+" \n")
+    file.write("Excitations per pulse " + str(exsperpulse) +" \n")
+    file.write("Excitations per sec " + str(AvgExEvs) +" \n")
+    file.write("Diffusion-in events = " + str(diffsIn)+" \n")
+    file.write("Diffusion-out events = " + str(diffsOut)+ ", " +str(ndiffsOut) + " \n")
+    file.write("Final emitters in = " + str(numEms) + " \n")
+    file.write("Intended Avg Ems = " + str(AvgEms) + " \n")
+    file.write("Number of records = " + str(numlines)+" \n")
+    file.write("k_demission = " + str(int(k_demission))+" \n")
+    file.write("k_dexcitation = " +str(int(k_dexcitation))+" \n")
+    file.write("dabsXsec = " + str(dabsXsec) + " \n")
+    file.write("Ligands per dot = " +str(nligands) +" \n")
+    file.write("k_lemission = " + str(int(k_sem))+" \n")
+    file.write("k_lexcitation = " +str(int(k_lexcitation))+" \n")
+    file.write("labsXsec = " + str(labsXsec) + " \n")
+    file.write("darkcounts = " + str(darkcounts) + " Hz  \n")
+    file.write("sensitivity = " + str(sensitivity) + " \n")
+    file.write("deadtime = " + str(deadtime/1000) + " ns  \n")
+    file.write("afterpulsing = " + str(afterpulse) +" \n")
+    file.write("radius = " + str(r)+" M \n")
+    file.write("concentration = " + str(concentration)+" M \n")
+    file.write("Solvent viscosity = " + str(eta)+"  \n")
+    file.write("Solvent refractive index = " + str(n)+"  \n")
+    file.write("Dark fission lifetime = " + str(k_fiss)+"  \n")
+    file.write("Triplet emission lifetime = " + str(k_tem)+"  \n")
+    file.write("Transfer lifetime = " + str(k_trans)+"  \n")
+    file.write("Focal length = " + str(foclen)+"  \n")
+    file.write("NA = " + str(NA)+"  \n")
+    file.write("Laser power = " + str(laserpwr) + " \n")
+    file.write("Time per round: " + str(timestep) + " ps  \n")
+##    file.write("Time limits for photon_gn = " + str(2**gnpwr) + "ps  \n")
+##    file.write("Pulse bins = " +str(pulsebins) + " \n")
+    file.write("Average time to diffuse out of " + str(focalVol) + " nm^3 focal volume is " + str(diffouttime/(10**9)) + "  \n")
+    file.write("Antibunch? " + str(antibunch)+" \n")
+    file.write("Diffusing as t = -diffouttime*numpy.log(1-numpy.random.rand()) #poissonian with average time diffouttime  \n")
     file.write("\n")
-    file.write("Main file + definitive input parameters:")
-    # mf = open("C:/Users/Karen/Dropbox (WilsonLab)/WilsonLab Team Folder/Data/Karen/DotTransferSim/main.py", 'r')
-    # for line in mf.readlines():
-    #     file.write(line)
-    # mf.close()
+    file.write("Definitive input parameters:")
+    file.write("filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts, numlines, maxlines, endtime, \n")
+    file.write("temp, concentration, dabsXsec, labsXsec,k_demission, k_fiss, k_trans, k_sem, k_tem, \n")
+    file.write("emwavelength, r,eta, n, reprate,wavelength, laserpwr, pulselength, foclen, NA, darkcounts, \n")
+    file.write("sensitivity, nligands, deadtime, afterpulse, timestep, channels, seq, mL1 \n")
+    for i in allparams:
+        file.write(str(i) + " \n")
     file.close()

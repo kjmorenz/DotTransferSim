@@ -1,13 +1,34 @@
 import os
 import subprocess
 import math
+import matplotlib
+matplotlib.use('Agg')#FOR LINUX, OTHERWISE AUTOBACKEND IS XWINDOWS???
+
+'''otherwise gives error:
+File "main.py", line 106, in <module>
+    mode, gnpwr, numbins, pulsebins, channels, seq)
+  File "/mnt/c/Users/Karen/Dropbox (WilsonLab)/WilsonLab Team Folder/Data/Karen/DotTransferSimUpdated2/sim.py", line 73, in simulate
+    m.makeafig("g2", filename, [-1,-1], [-1,-1], 0, pulsed, filepath = filepath, filedir = filedir + file+"/", fileoutdir = fileoutname+".g2.run/", color = c)
+  File "/mnt/c/Users/Karen/Dropbox (WilsonLab)/WilsonLab Team Folder/Data/Karen/DotTransferSimUpdated2/makefig2.py", line 32, in makeafig
+    fig = g2.make_figure(log, xzoom = xzoom, yzoom = yzoom, fontsize = fontsize, normalize = normalize, scale = scale)#if log = 0 then it's not logscale, 1 is logscale
+  File "/mnt/c/Users/Karen/Dropbox (WilsonLab)/WilsonLab Team Folder/Data/Karen/DotTransferSimUpdated2/photon_correlation/G2.py", line 129, in make_figure
+    fig = plt.figure()
+  File "/home/karen/.local/lib/python3.5/site-packages/matplotlib/pyplot.py", line 548, in figure
+    **kwargs)
+  File "/home/karen/.local/lib/python3.5/site-packages/matplotlib/backend_bases.py", line 161, in new_figure_manager
+    return cls.new_figure_manager_given_figure(num, fig)
+  File "/home/karen/.local/lib/python3.5/site-packages/matplotlib/backends/_backend_tk.py", line 1044, in new_figure_manager_given_figure
+    window = Tk.Tk(className="matplotlib")
+  File "/usr/lib/python3.5/tkinter/__init__.py", line 1871, in __init__
+    self.tk = _tkinter.create(screenName, baseName, className, interactive, wantobjects, useTk, sync, use)
+_tkinter.TclError: no display name and no $DISPLAY environment variable'''
 import matplotlib.pyplot as plt
 import photon_correlation as pc
 
 import makefig2 as m
 import newfig as nm 
 
-import write as w
+import write2 as w
 import analyze2 as a
 
 def isbf(file):
@@ -20,7 +41,7 @@ def isbf(file):
     return rval
 
 def simulate(filepath, filedir, fullfilename, write = 1, analyze = 1, makefig = 1, diffuse = 1, antibunch = 1,
-             pulsed = 0, numlines = 10**7, maxlines = 10**8, endtime = 10**12,
+             pulsed = 0, endsigcts = 500000, numlines = 10**7, maxlines = 10**8, endtime = 10**12,
              temp = 298, concentration = 2*10**-8, dabsXsec = 3.6*10**-10, labsXsec = 3.6*10**(-10),
              k_demission = 1000000, k_sem = 10000, emwavelength = 815, r = 10,
              eta = 8.9 * 10**(-13), n = 1.3, k_tem = 1, k_fiss = 1, k_trans = 200000,
@@ -52,7 +73,7 @@ def simulate(filepath, filedir, fullfilename, write = 1, analyze = 1, makefig = 
 
     print(os.getcwd())
     if write == 1:
-        w.write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, numlines, maxlines, endtime,
+        w.write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts, numlines, maxlines, endtime,
                     temp, concentration, dabsXsec, labsXsec,k_demission, 
                     k_fiss, k_trans, k_sem, k_tem, emwavelength,  r,
                     eta, n, reprate,wavelength, laserpwr, pulselength, foclen,

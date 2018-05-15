@@ -60,7 +60,7 @@ def PLDecay(filepath, filedir, fullfilename, savename, mode, numbins, channels, 
     fig.savefig(filepath + "Figures/" + filedir + fullfilename + "/" + savename + "logy.png")
     plt.close(fig)
 
-filepath = "C:/Users/Karen/Dropbox (WilsonLab)/WilsonLab Team Folder/Data/Karen/DotTransferSim/"
+filepath = "/mnt/c/Users/Karen/Dropbox (WilsonLab)/WilsonLab Team Folder/Data/Karen/DotTransferSim/"
 filedir = "April17-longfinalfigs/"
 filenames = ["Apr17"]
 i = 0

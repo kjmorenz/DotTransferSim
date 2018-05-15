@@ -19,7 +19,7 @@ def analyze(filepath, filedir, fullfilename, numlines, order, mode, gnpwr,
     suffix = ".txt"
     t2time = "-"+str(2**gnpwr)+","+str(numbins)+","+str(2**gnpwr) #min, numbins, max in ps
     time = t2time
-    fileoutname = fullfilename +"gnpwr15"
+    fileoutname = fullfilename +"gnpwr" + str(gnpwr)
     if pulsed == 1:
         pulse = "-"+str((pulsebins)/2)+","+str(pulsebins)+","+str(pulsebins/2)
         taurep = (10**12)/(reprate*10**6) #ps
