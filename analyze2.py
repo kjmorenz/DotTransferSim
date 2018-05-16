@@ -3,6 +3,7 @@ import subprocess
 import matplotlib.pyplot as plt
 import photon_correlation as pc
 import numpy
+import newmakefigpulsed as npf
 
 def isbf(file):
     rval = 'r'
@@ -65,11 +66,14 @@ def analyze(filepath, filedir, fullfilename, numlines, order, mode, gnpwr,
     output, error = process.communicate()
 
     if makefig == 1:
-        c = isbf(file)
-        filename = fileoutname + "fig"
-        print(dfilepath+file+"/"+fileoutname+".g2.run")
-        makeafig("g2", filename, [-1,-1], [-1,-1], 0, pulsed, filepath = filepath, filedir = filedir + file+"/", fileoutdir = fileoutname+".g2.run/", color = c)
-        
+        if pulsed == 0:
+            filename = fileoutname + "fig"
+            print(dfilepath+file+"/"+fileoutname+".g2.run")
+            makeafig("g2", filename, [-1,-1], [-1,-1], 0, pulsed, filepath = filepath, filedir = filedir + file+"/", fileoutdir = fileoutname+".g2.run/", color = c)
+        else:
+            npf.makepulsedfig(filepath, "g2", fileoutname, reprate = reprate, timespace = 1000)
+            npf.makepulsedfig(filepath, "g2", fileoutname+"zoom", reprate = reprate, timespace = 1000, xzoom = 100)
+    
     os.chdir(dfilepath+file)
     
 

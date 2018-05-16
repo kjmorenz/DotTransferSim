@@ -81,7 +81,8 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts
     energyperpulse = laserpwr/(reprate * 1000000000) #J
     phperpulse = energyperpulse/energyperphoton
     phpers = laserpwr/(energyperphoton*1000)
-
+    probdex = 1- (1-dabsXsec)**phperpulse #1-probability of not being excited each pulse
+    problex = 1- (1-labsXsec)**phperpulse #1-probability of not being excited each pulse
 
     #make rounds average timestep emissions per round:
     if pulsed == 1:
@@ -236,7 +237,7 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts
                                                                         k_demission, k_fiss, k_trans, k_sem, k_tem, k_dexcitation, k_lexcitation,
                                                                         diffouttime, numEms, nextOut, nextIn, endround,
                                                                         antibunch, pulsed, taurep,
-                                                                        dabsXsec, labsXsec, phperpulse, AvgEms, diffsIn,
+                                                                        probdex,problex, AvgEms, diffsIn,
                                                                         diffsOut, ndiffsOut, testdummy, nextdex,seq)
         #if not dataphotons == []:
         #print(dataphotons)
@@ -395,6 +396,8 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts
     file.write("Signal counts = " + str(sigcts)+" \n")
     file.write("Excitations per pulse " + str(exsperpulse) +" \n")
     file.write("Excitations per sec " + str(AvgExEvs) +" \n")
+    file.write("Probability of dot excitation per pulse " + str(probdex) +" \n")
+    file.write("Probability of ligand excitation per pulse " + str(problex) +" \n")
     file.write("Diffusion-in events = " + str(diffsIn)+" \n")
     file.write("Diffusion-out events = " + str(diffsOut)+ ", " +str(ndiffsOut) + " \n")
     file.write("Final emitters in = " + str(numEms) + " \n")

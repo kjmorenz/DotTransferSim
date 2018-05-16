@@ -76,7 +76,7 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                k_demission, k_fiss, k_trans, k_sem, k_tem, k_dexcitation, k_lexcitation, 
                diffouttime, numEms, nextOut, nextIn, endround,
                antibunch, pulsed, taurep,
-               dabsXsec, labsXsec, photonsperpulse, AvgEms, diffsIn, 
+               probdex,problex, AvgEms, diffsIn, 
                diffsOut, ndiffsOut, testdummy, nextdex, seq):
     #Note that as it stands, this only works for: 
     # 2) PULSED - could be fixed by allowing the dot to be re-excited after emitting 
@@ -91,9 +91,7 @@ def nextphotonss(lastphoton, sensitivity, nligands,
         excite = excitepulsed
     else:
         excite = excitects
-    probdex = 1- (1-dabsXsec)**photonsperpulse #1-probability of not being excited each pulse
-    problex = 1- (1-labsXsec)**photonsperpulse #1-probability of not being excited each pulse
-     
+    
     if seq == 1:
             f = ffs
     else:

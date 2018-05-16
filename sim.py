@@ -27,6 +27,7 @@ import photon_correlation as pc
 
 import makefig2 as m
 import newfig as nm 
+import newmakefigpulsed as npf
 
 import write2 as w
 import analyze2 as a
@@ -85,19 +86,24 @@ def simulate(filepath, filedir, fullfilename, write = 1, analyze = 1, makefig = 
 
     elif makefig == 1: #only really used if it crashed part way through analysis
         #nm.figs(filepath, file, filoutpath, savename, fontsize, color, sfactor, xzoom, yzoom, log, pulsed)
-
         file = fullfilename
-        fileoutname = file + "gnpwr15"
-        c = isbf(fullfilename)
-        filename = "fig"
-  
-        m.makeafig("g2", filename, [-1,-1], [-1,-1], 0, pulsed, filepath = filepath, filedir = filedir + file+"/", fileoutdir = fileoutname+".g2.run/", color = c)
-        filename = "20mszoom"
-        m.makeafig("g2", filename, [-20000000,20000000], [-1,-1], 0, pulsed,filepath = filepath, filedir = filedir + file+"/", fileoutdir = fileoutname+".g2.run/", color = c)
-        filename = "200uszoom"
-        m.makeafig("g2", filename, [-200000,200000], [-1,-1], 0, pulsed,filepath = filepath, filedir = filedir + file+"/", fileoutdir = fileoutname+".g2.run/", color = c)
-        filename = "log"
-        m.makeafig("g2", filename,[-1,-1],[-1,-1], 1, pulsed,filepath = filepath, filedir = filedir + file+"/", fileoutdir = fileoutname+".g2.run/", color = c)
+        fileoutname = file + "gnpwr" + str(gnpwr)
+        if pulsed == 0:
+            fileoutname = file + "gnpwr" + str(gnpwr)
+            c = isbf(fullfilename)
+            filename = "fig"
+    
+            m.makeafig("g2", filename, [-1,-1], [-1,-1], 0, pulsed, filepath = filepath, filedir = filedir + file+"/", fileoutdir = fileoutname+".g2.run/", color = c)
+            filename = "20mszoom"
+            m.makeafig("g2", filename, [-20000000,20000000], [-1,-1], 0, pulsed,filepath = filepath, filedir = filedir + file+"/", fileoutdir = fileoutname+".g2.run/", color = c)
+            filename = "200uszoom"
+            m.makeafig("g2", filename, [-200000,200000], [-1,-1], 0, pulsed,filepath = filepath, filedir = filedir + file+"/", fileoutdir = fileoutname+".g2.run/", color = c)
+            filename = "log"
+            m.makeafig("g2", filename,[-1,-1],[-1,-1], 1, pulsed,filepath = filepath, filedir = filedir + file+"/", fileoutdir = fileoutname+".g2.run/", color = c)
+
+        else:
+            npf.makepulsedfig(filepath, "g2", fileoutname, reprate = reprate, timespace = 1000)
+            npf.makepulsedfig(filepath, "g2", fileoutname+"zoom", reprate = reprate, timespace = 1000, xzoom = 100)
 '''
         print(filepath+"/"+file)
         fileout = file + "-PIC"

@@ -11,11 +11,11 @@ pulsed = 1
 
 #General saving folder parameters
 filepath = "/mnt/c/Users/Karen/Dropbox (WilsonLab)/WilsonLab Team Folder/Data/Karen/DotTransferSim/"
-filedir = "May15-test/"
-filenames = ["short-"]
+filedir = "May15-longer/"
+filenames = ["LowLP"]
 
 #file length - goes to the max of these two
-endsigcts = 1000000
+endsigcts = 10000000
 numlines = 10**6
 maxlines = 10**7
 endtime = 300*10**12 #ps #10**15 = 16.6 min
@@ -76,7 +76,7 @@ seq = 1
 i = 0
 f = filenames[0]
 
-for laserpwr in [0.5,0.0005,0.05]:
+for laserpwr in [0.00005,0.005,0.000005]:
     for concentration in [2*10**(-8),2*10**(-6),2*10**(-10)]:
         i = i + 1
         for sensitivity in [0.1,0.5,0.01]:
