@@ -15,7 +15,7 @@ use rand::distributions::IndependentSample;
 
 
 fn ffs(val: f64, biggerval: f64, otherval: f64, lifetime: f64, _factor: f64, rng: &mut XorShiftRng) -> f64 {
-    if val < biggerval && val < otherval {
+    if val < biggerval && val < otherval { //MIGHT BE WRONG - what if val > biggerval and < otherval
         biggerval + Exp::new(1.0 / lifetime).ind_sample(rng)
     }
     else {

@@ -250,6 +250,12 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts
 
         if not dataphotons == []:
             sigcts += len(dataphotons)
+            '''print("**********************************")
+            print(len(dataphotons))
+            print(dataphotons[0])
+            print(dataphotons[-1])
+            print("**********************************")
+            print()'''
 
             datapointer = 0
 

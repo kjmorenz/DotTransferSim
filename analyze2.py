@@ -3,7 +3,7 @@ import subprocess
 import matplotlib.pyplot as plt
 import photon_correlation as pc
 import numpy
-import newmakefigpulsed as npf
+import newmakefigpulse as npf
 
 def isbf(file):
     rval = 'r'
@@ -17,10 +17,12 @@ def isbf(file):
 def analyze(filepath, filedir, fullfilename, numlines, order, mode, gnpwr, 
             numbins, pulsebins, channels, makefig, makeafig, pulsed, picyzoom, reprate = 1):
     dfilepath = filepath + "RawData/" + filedir
+    ffilepath = filepath + "Figures/" + filedir
     suffix = ".txt"
     t2time = "-"+str(2**gnpwr)+","+str(numbins)+","+str(2**gnpwr) #min, numbins, max in ps
     time = t2time
     fileoutname = fullfilename +"gnpwr" + str(gnpwr)
+    c = 'r'
     if pulsed == 1:
         pulse = "-"+str((pulsebins)/2)+","+str(pulsebins)+","+str(pulsebins/2)
         taurep = (10**12)/(reprate*10**6) #ps
@@ -71,8 +73,8 @@ def analyze(filepath, filedir, fullfilename, numlines, order, mode, gnpwr,
             print(dfilepath+file+"/"+fileoutname+".g2.run")
             makeafig("g2", filename, [-1,-1], [-1,-1], 0, pulsed, filepath = filepath, filedir = filedir + file+"/", fileoutdir = fileoutname+".g2.run/", color = c)
         else:
-            npf.makepulsedfig(filepath, "g2", fileoutname, reprate = reprate, timespace = 1000)
-            npf.makepulsedfig(filepath, "g2", fileoutname+"zoom", reprate = reprate, timespace = 1000, xzoom = 100)
+            npf.makepulsedfig(dfilepath+file+"/"+fileoutname+".g2.run/", "g2", ffilepath+file+"/", fileoutname, reprate = reprate, timespace = 1000)
+            npf.makepulsedfig(dfilepath+file+"/"+fileoutname+".g2.run/", "g2", ffilepath+file+"/", fileoutname+"zoom", reprate = reprate, timespace = 1000, xzoom = 2000)
     
     os.chdir(dfilepath+file)
     

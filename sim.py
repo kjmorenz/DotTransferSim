@@ -27,7 +27,7 @@ import photon_correlation as pc
 
 import makefig2 as m
 import newfig as nm 
-import newmakefigpulsed as npf
+import newmakefigpulse as npf
 
 import write2 as w
 import analyze2 as a
@@ -102,8 +102,10 @@ def simulate(filepath, filedir, fullfilename, write = 1, analyze = 1, makefig = 
             m.makeafig("g2", filename,[-1,-1],[-1,-1], 1, pulsed,filepath = filepath, filedir = filedir + file+"/", fileoutdir = fileoutname+".g2.run/", color = c)
 
         else:
-            npf.makepulsedfig(filepath, "g2", fileoutname, reprate = reprate, timespace = 1000)
-            npf.makepulsedfig(filepath, "g2", fileoutname+"zoom", reprate = reprate, timespace = 1000, xzoom = 100)
+            dfilepath = filepath + "RawData/" + filedir + file + "/" + file + "gnpwr" + str(gnpwr) + ".g2.run/"
+            sfilepath = filepath + "Figures/" + filedir + file + "/"
+            npf.makepulsedfig(dfilepath, "g2", sfilepath, fileoutname, reprate = reprate, timespace = 1000)
+            npf.makepulsedfig(dfilepath, "g2", sfilepath, fileoutname+"2kzoom", reprate = reprate, timespace = 1000, xzoom = 2000)
 '''
         print(filepath+"/"+file)
         fileout = file + "-PIC"

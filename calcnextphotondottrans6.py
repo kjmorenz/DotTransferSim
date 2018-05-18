@@ -66,7 +66,9 @@ def ff(val, biggerval, otherval, lifetime, factor):
     return val
 
 def ffs(val, biggerval, otherval, lifetime, factor):
-    if val < biggerval and val < otherval:
+    if val < otherval:
+        if val > biggerval:
+            return val
         rval = biggerval + scipy.random.exponential(lifetime)
         if rval < otherval: #added april 3
             return rval
@@ -85,7 +87,14 @@ def nextphotonss(lastphoton, sensitivity, nligands,
     # 3) SINGLE DIMER - could be fixed by building in the possibility of multiple
     # ligands trying to transfer to the same dot. This might be horribly slow.    
     nextphoton = []
-    
+    '''params = [lastphoton, sensitivity, nligands,
+               k_demission, k_fiss, k_trans, k_sem, k_tem, k_dexcitation, k_lexcitation, 
+               diffouttime, numEms, nextOut, nextIn, endround,
+               antibunch, pulsed, taurep,
+               probdex,problex, AvgEms, diffsIn, 
+               diffsOut, ndiffsOut, testdummy, nextdex, seq]
+    for i in params:
+        print(i)'''
     newphoton = newcphoton
     if pulsed == 1:
         excite = excitepulsed
@@ -141,7 +150,7 @@ def nextphotonss(lastphoton, sensitivity, nligands,
             index = transtime.index(min(transtime))
             otherone = (index + 1)%2
 
-            if nextdex < transtime[index]: #dot is excited before next transfer
+            if nextdex < transtime[index]: #dot is excited before next transfer, #usually happens at most 1 time and while creates a lot of other cases so ignore
                 nextem = dotem+0
                 if dotem > nextOut:
                     break
@@ -150,11 +159,13 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                 #dot emits, no transfers until it does
                 if numpy.random.rand() < sensitivity: # if we didn't miss it due to sensitivity
                     nextphoton = insert(nextphoton, dotem)
-                
+                nextdex = excite(k_dexcitation, probdex, nextem, taurep)
+                dotem = nextdex + scipy.random.exponential(k_demission)
                 #pre-april 3 these were just ff not ffs
                 transtime[index] = f(transtime[index], nextem, temtime[index], k_trans, 5)
                 transtime[otherone] = f(transtime[otherone], nextem, temtime[otherone], k_trans, 5)
                 index = transtime.index(min(transtime))
+                
                 
             if transtime[index] > nextOut:
                 break
@@ -165,14 +176,16 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                         nextphoton = insert(nextphoton, nextem)
                 transtime[index] = float("inf")
                 transtime[otherone] = f(transtime[otherone], nextem, temtime[otherone], k_trans, 5)
-                if nextdex < transtime[otherone] and nextdex > nextem:
+                if nextdex < transtime[otherone] and nextdex > nextem: #usually happens at most 1 time and while creates a lot of other cases so ignore
                     nextem = dotem+0
                     if dotem > nextOut:
                         break
                     if numpy.random.rand() < sensitivity: # if we didn't miss it due to sensitivity
                         nextphoton = insert(nextphoton, dotem)
-                    
+                    nextdex = excite(k_dexcitation, probdex, nextem, taurep)
+                    dotem = nextdex + scipy.random.exponential(k_demission)
                     transtime[otherone] = f(transtime[otherone], nextem, temtime[otherone], k_trans, 5)
+                    
                 if transtime[otherone] < temtime[otherone]:
                     nextem = transtime[otherone] + scipy.random.exponential(k_demission) #excitation transfers to dot and emits
                     if numpy.random.rand() < sensitivity and nextem < nextOut: # if we didn't miss it due to sensitivity
@@ -243,14 +256,15 @@ def nextphotonss(lastphoton, sensitivity, nligands,
             index = transtime.index(min(transtime))
             otherone = (index + 1)%2
 
-            if nextdex < transtime[index]: #dot is excited before next transfer
+            if nextdex < transtime[index]: #dot is excited before next transfer, #usually happens at most 1 time and while creates a lot of other cases so ignore
                 nextem = dotem+0
                 #if testdummy >0 :
                 #    print("in the if 209" + str(testdummy))
                 #dot emits, no transfers until it does
                 if numpy.random.rand() < sensitivity: # if we didn't miss it due to sensitivity
                     nextphoton = insert(nextphoton, dotem)
-                
+                nextdex = excite(k_dexcitation, probdex, nextem, taurep)
+                dotem = nextdex + scipy.random.exponential(k_demission)
                 #pre-april 3 these were just ff not ffs
                 transtime[index] = f(transtime[index], nextem, temtime[index], k_trans, 5)
                 transtime[otherone] = f(transtime[otherone], nextem, temtime[otherone], k_trans, 5)
@@ -262,12 +276,14 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                         nextphoton = insert(nextphoton, nextem)
                 transtime[index] = float("inf")
                 transtime[otherone] = f(transtime[otherone], nextem, temtime[otherone], k_trans, 5)
-                if nextdex < transtime[otherone] and nextdex > nextem:
+                if nextdex < transtime[otherone] and nextdex > nextem: #usually happens at most 1 time and while creates a lot of other cases so ignore
                     nextem = dotem+0
                     if numpy.random.rand() < sensitivity: # if we didn't miss it due to sensitivity
                         nextphoton = insert(nextphoton, dotem)
-                    
+                    nextdex = excite(k_dexcitation, probdex, nextem, taurep)
+                    dotem = nextdex + scipy.random.exponential(k_demission)
                     transtime[otherone] = f(transtime[otherone], nextem, temtime[otherone], k_trans, 5)
+                    
                 if transtime[otherone] < temtime[otherone]:
                     nextem = transtime[otherone] + scipy.random.exponential(k_demission) #excitation transfers to dot and emits
                     if numpy.random.rand() < sensitivity: # if we didn't miss it due to sensitivity

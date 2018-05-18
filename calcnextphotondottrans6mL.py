@@ -204,7 +204,6 @@ def nextphotonss(lastphoton, sensitivity, nligands,
 
         while nextem < nextOut:
             transtime, temtime = make_transtime_temtime(k_lexcitation, problex, nextem, taurep, nligands, k_fiss, k_sem, k_trans, k_tem, excite)
-
             while transtime.shape[0] != 0:
                 '''if lastnextem == nextem and lastnextdex == nextdex:
                     print("minval = " + str(minval))
@@ -218,11 +217,11 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                         print(temtime[i])'''
 
                 index, minval = findmin(transtime)
-                if nextdex < nextem:
+                while nextdex < nextem:
                     #re-excite the dot and find it's emission time
                     nextdex = excite(k_dexcitation, probdex, nextem, taurep)
 
-                if nextdex < minval: #usually nextdex is waaayyy later
+                while nextdex < minval: #usually nextdex is waaayyy later
                     nextem = nextdex + scipy.random.exponential(k_demission)
                     if nextdex > nextOut:
                         transtime = None
@@ -236,9 +235,11 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                     fastforward(transtime, nextem, temtime, k_trans, 5, f)
                     transtime, temtime = deltransgttem(transtime,temtime)
                     if transtime.shape[0] == 0:
+                        transtime = None
                         break
                     index, minval = findmin(transtime)
-
+                if transtime is None:
+                    break
 
                 if minval > nextem:
                     nextem = minval + scipy.random.exponential(k_demission)#excitation transfers to dot and emits
@@ -251,9 +252,13 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                         transtime = None
                         break
                     transtime[index] = float("inf")
-
-                fastforward(transtime, nextem, temtime, k_trans, 5, f)
-                transtime, temtime = deltransgttem(transtime,temtime)
+                '''print(type(transtime))
+                print(type(nextem))
+                print(type(temtime))
+                print(type(k_trans))'''
+                if transtime is not None:
+                    fastforward(transtime, nextem, temtime, k_trans, 5, f)
+                    transtime, temtime = deltransgttem(transtime,temtime)
             lastnextem = nextem
             lastnextdex = nextdex
             #print(nextem)
@@ -291,11 +296,11 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                 #print("transtime isn't empty")
                 #print(transtime)
                 index, minval = findmin(transtime)
-                if nextdex < nextem:
+                while nextdex < nextem:
                     #re-excite the dot and find it's emission time
                     nextdex = excite(k_dexcitation, probdex, nextem, taurep)
 
-                if nextdex < minval: #usually nextdex is waaayyy later
+                while nextdex < minval: #usually nextdex is waaayyy later
                     nextem = nextdex + scipy.random.exponential(k_demission)
                     if numpy.random.rand() < sensitivity: # if we didn't miss it due to sensitivity
                         nextphoton = insert(nextphoton, nextem)
@@ -303,9 +308,13 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                     fastforward(transtime, nextem, temtime, k_trans, 5, f)
                     transtime, temtime = deltransgttem(transtime,temtime)
                     if transtime.shape[0] == 0:
+                        transtime = None
                         break
                     index, minval = findmin(transtime)
-
+                
+                if transtime is None or transtime.shape[0] == 0:
+                    #transtime = None
+                    break
 
                 if minval > nextem:
                     nextem = minval + scipy.random.exponential(k_demission)#excitation transfers to dot and emits

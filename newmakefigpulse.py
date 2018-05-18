@@ -57,7 +57,7 @@ def tickfunction(trep, npulses, divby):
         labels.append(str(i-npulses))
     return ticks, labels
 
-def makepulsedfig(filepath, file, savename, reprate = 1, npulses=1, time=float('inf'), fontsize=12, figsize = [-1,-1], linewidth = 0.5, timespace = -1, xzoom = -1, yzoom =[-1,-1]):
+def makepulsedfig(filepath, file, sfilepath, savename, reprate = 1, npulses=1, time=float('inf'), fontsize=12, figsize = [-1,-1], linewidth = 0.5, timespace = -1, xzoom = -1, yzoom =[-1,-1]):
     trep = (10**6)/reprate # in ps
     data, xdata, bindata, cdata, cxdata, endbin = effload(filepath,file,100000,npulses,time,trep)
     divby = 1
@@ -137,7 +137,7 @@ def makepulsedfig(filepath, file, savename, reprate = 1, npulses=1, time=float('
 
 
     fig.tight_layout()
-    fig.savefig(savename + ".png",facecolor=fig.get_facecolor(), edgecolor = 'none')
+    fig.savefig(sfilepath + savename + ".png",facecolor=fig.get_facecolor(), edgecolor = 'none')
     
     plt.close()
 
@@ -206,7 +206,7 @@ def makepulsedfig(filepath, file, savename, reprate = 1, npulses=1, time=float('
 
 
     fig.tight_layout()
-    fig.savefig(savename + "SYMM.png",facecolor=fig.get_facecolor(), edgecolor = 'none')
+    fig.savefig(sfilepath + savename + "SYMM.png",facecolor=fig.get_facecolor(), edgecolor = 'none')
     
     plt.close()
 
@@ -224,15 +224,16 @@ def makepulsedfig(filepath, file, savename, reprate = 1, npulses=1, time=float('
             fig.set_size_inches(figsize[0], figsize[1])
         else:
             fig.set_size_inches(6, 4)
-        fig.savefig(savename, facecolor=fig.get_facecolor(), edgecolor = 'none')
+        fig.savefig(sfilepath + savename, facecolor=fig.get_facecolor(), edgecolor = 'none')
         plt.close()
     elif yzoom !=[-1,-1]:
         ax.set_ylim((yzoom[0],yzoom[1]))
-        fig.savefig(savename + "SYMMyzoom" + str(yzoom[0])+"to"+str(yzoom[1]) +  ".png",facecolor=fig.get_facecolor(), edgecolor = 'none')
+        fig.savefig(sfilepath + savename + "SYMMyzoom" + str(yzoom[0])+"to"+str(yzoom[1]) +  ".png",facecolor=fig.get_facecolor(), edgecolor = 'none')
         plt.close()
-filepath = '/mnt/c/Users/Karen/Dropbox (WilsonLab)/WilsonLab Team Folder/Data/Karen/DotTransferSim/RawData/May15-test/fixedDeadtime70psto70nsPbS100ligs/fixedDeadtime70psto70nsPbS100ligsgnpwr23.g2.run/'
+'''filepath = '/mnt/c/Users/Karen/Dropbox (WilsonLab)/WilsonLab Team Folder/Data/Karen/DotTransferSim/RawData/May15-test/fixedDeadtime70psto70nsPbS100ligs/fixedDeadtime70psto70nsPbS100ligsgnpwr23.g2.run/'
 file = "g2"
 savename = '/mnt/c/Users/Karen/Dropbox (WilsonLab)/WilsonLab Team Folder/Data/Karen/DotTransferSim/Figures/May15-test/fixedDeadtime70psto70nsPbS100ligs/practicenewpulsedfig'
 reprate = 0.05
 time = 2**23
-makepulsedfig(filepath, file, savename, reprate = reprate, timespace = 1000, xzoom = 100)
+makepulsedfig(filepath, file, filepath, savename, reprate = reprate, timespace = 1000, xzoom = 100)
+'''
