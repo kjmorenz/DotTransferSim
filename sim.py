@@ -49,7 +49,7 @@ def simulate(filepath, filedir, fullfilename, write = 1, analyze = 1, makefig = 
              reprate = 1, wavelength = 532, laserpwr = 0.5, pulselength = 80, foclen = 310000,
              NA = 1.4, darkcounts = 1, sensitivity = 0.1, nligands = 1, deadtime = 70000, afterpulse = 0, order = 2,
              mode = "t2", gnpwr = 20, numbins = 4096, pulsebins = 99, channels = 3, seq = 0, mL1 = 0,
-             picyzoom = 100, timestep = 200):
+             picyzoom = 100, timestep = 200, probfiss = 1):
     
     
     suffix = ".txt"
@@ -78,7 +78,7 @@ def simulate(filepath, filedir, fullfilename, write = 1, analyze = 1, makefig = 
                     temp, concentration, dabsXsec, labsXsec,k_demission, 
                     k_fiss, k_trans, k_sem, k_tem, emwavelength,  r,
                     eta, n, reprate,wavelength, laserpwr, pulselength, foclen,
-                    NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, timestep, channels, seq, mL1)
+                    NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, timestep, channels, seq, mL1, probfiss)
 
     if analyze == 1:
         a.analyze(filepath, filedir, fullfilename, numlines, order, mode, gnpwr, numbins, pulsebins, channels, makefig, m.makeafig, pulsed, picyzoom, reprate)
@@ -105,7 +105,7 @@ def simulate(filepath, filedir, fullfilename, write = 1, analyze = 1, makefig = 
             dfilepath = filepath + "RawData/" + filedir + file + "/" + file + "gnpwr" + str(gnpwr) + ".g2.run/"
             sfilepath = filepath + "Figures/" + filedir + file + "/"
             npf.makepulsedfig(dfilepath, "g2", sfilepath, fileoutname, reprate = reprate, timespace = 1000)
-            npf.makepulsedfig(dfilepath, "g2", sfilepath, fileoutname+"2kzoom", reprate = reprate, timespace = 1000, xzoom = 2000)
+            npf.makepulsedfig(dfilepath, "g2", sfilepath, fileoutname+"250nszoom", reprate = reprate, timespace = 1000, xzoom = 250,yzoom = [0,2000])
 '''
         print(filepath+"/"+file)
         fileout = file + "-PIC"

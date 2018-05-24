@@ -2,6 +2,7 @@
 import diffuse as d
 import calcnextphotondottrans6 as calc1
 import calcnextphotondottrans6mL as mLcalc
+import calcnextphotondottrans6NF as NFcalc1
 import time as rt
 import math
 import numpy
@@ -45,7 +46,7 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts
             temp, concentration, dabsXsec, labsXsec,k_demission,
             k_fiss, k_trans, k_sem, k_tem, emwavelength, r,
             eta, n, reprate,wavelength, laserpwr, pulselength, foclen,
-            NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, timestep, channels, seq, mL1):
+            NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, timestep, channels, seq, mL1, probfiss):
     
     allparams = [filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts, numlines, maxlines, endtime,
                     temp, concentration, dabsXsec, labsXsec,k_demission,
@@ -55,6 +56,8 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts
 
     if nligands != 1 or mL1 == 1:
         calc = mLcalc
+    elif probfiss < 1:
+        calc = NFcalc1
     else:
         calc = calc1
 
@@ -88,15 +91,16 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts
     if pulsed == 1:
         k_dexcitation = 10**6/(phperpulse*dabsXsec*reprate)#*AvgEms) #ps/excitation
         k_lexcitation = 10**6/(phperpulse*labsXsec*reprate)#*AvgEms) #ps/excitation
-        experemperpulse = dabsXsec*phperpulse
+        experemperpulse = dabsXsec*phperpulse + labsXsec*phperpulse*nligands
         exsperpulse = dabsXsec*phperpulse*AvgEms + labsXsec*phperpulse*nligands*AvgEms
         AvgExEvs = exsperpulse*reprate*10**6
-        if experemperpulse > 1:
-            experemperpulse = 1
-        experps = experemperpulse*taurep*AvgEms # comment *avgems out to make per em
+        if experemperpulse > 1 + nligands:
+            experemperpulse = 1 + nligands
+        experps = experemperpulse*AvgEms/taurep # comment *avgems out to make per em
         timestep = timestep/experps #ps per round
         if timestep < taurep:
             timestep = taurep
+        
 
     #CW version:
     else:
@@ -238,7 +242,7 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts
                                                                         diffouttime, numEms, nextOut, nextIn, endround,
                                                                         antibunch, pulsed, taurep,
                                                                         probdex,problex, AvgEms, diffsIn,
-                                                                        diffsOut, ndiffsOut, testdummy, nextdex,seq)
+                                                                        diffsOut, ndiffsOut, testdummy, nextdex,seq, probfiss)
         #if not dataphotons == []:
         #print(dataphotons)
         endround = endround + timestep

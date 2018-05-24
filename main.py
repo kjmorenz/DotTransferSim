@@ -11,8 +11,8 @@ pulsed = 1
 
 #General saving folder parameters
 filepath = "/mnt/c/Users/Karen/Dropbox (WilsonLab)/WilsonLab Team Folder/Data/Karen/DotTransferSim/"
-filedir = "May17LongfixedDotem/"
-filenames = ["LowLP"]
+filedir = "May24rerun1lig/"
+filenames = [""]
 
 #file length - goes to the max of these two
 endsigcts = 10000000
@@ -76,34 +76,28 @@ seq = 1
 i = 0
 f = filenames[0]
 count = 0
-for laserpwr in [0.00005,0.005,0.000005]:
-    for concentration in [2*10**(-8),2*10**(-6),2*10**(-10)]:
-        i = i + 1
-        for sensitivity in [0.1,0.5,0.01]:
-            for k_demission in [1400000,15]:
-                for nligands in [1,100,10000]:
-                    for diffuse in range(2):
-                        count = count + 1
-                        if count > 3:
-                            f = filenames[0]
-                            if i == 2:
-                                f = f + "conc"
-                            elif i == 3:
-                                f = f + "dilute"
-                            if k_demission == 15:
-                                f = f + "CdSe"
-                            else:
-                                f = f + "PbS"
-                            f = f + str(nligands) + "ligs"
-                            if diffuse == 1:
-                                f = f + "DIFF"
-                            sim.simulate(filepath, filedir, f, write, analyze, makefig, diffuse, antibunch,
-                                                pulsed, endsigcts, numlines, maxlines, endtime,temp, concentration,
-                                                dabsXsec, labsXsec, k_demission, k_sem,
-                                                emwavelength, r,eta, n, k_tem, k_fiss, k_trans,
-                                                reprate, wavelength, laserpwr, pulselength, foclen,
-                                                NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, order,
-                                                mode, gnpwr, numbins, pulsebins, channels, seq)
+for laserpwr in [0.005,0.00005,0.000005]:
+    for k_demission in [1400000, 15000]:
+        for nligands in [1]:
+            for diffuse in range(2):
+                
+                f = filenames[0]
+                if k_demission == 15000:
+                    f = f + "CdSe"
+                else:
+                    f = f + "PbS"
+                f = f + str(nligands) + "ligs"
+                if diffuse == 1:
+                    f = f + "DIFF"
+                f = f + "sens" + str(int(100*sensitivity))
+                f=f + "LP" + str(int(10**6*laserpwr))
+                sim.simulate(filepath, filedir, f, write, analyze, makefig, diffuse, antibunch,
+                                    pulsed, endsigcts, numlines, maxlines, endtime,temp, concentration,
+                                    dabsXsec, labsXsec, k_demission, k_sem,
+                                    emwavelength, r,eta, n, k_tem, k_fiss, k_trans,
+                                    reprate, wavelength, laserpwr, pulselength, foclen,
+                                    NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, order,
+                                    mode, gnpwr, numbins, pulsebins, channels, seq, probfiss = 1)
 
 
 '''

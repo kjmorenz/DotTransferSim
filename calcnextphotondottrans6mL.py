@@ -125,7 +125,7 @@ def findmax(array):
             index = [i,1]
     return index, minval
 
-def make_transtime_temtime(k_lexcitation, problex, nextem, taurep, nligands, k_fiss, k_sem, k_trans, k_tem, excite):
+def make_transtime_temtime(k_lexcitation, problex, nextem, taurep, nligands, k_fiss, k_sem, k_trans, k_tem, excite, probfiss):
     # Temporary variables
     nextlex = np.array([excite(k_lexcitation, problex, nextem, taurep) for _ in range(nligands)])
     nextfisstime = nextlex + scipy.random.exponential(k_fiss, nligands)
@@ -169,17 +169,93 @@ def make_transtime_temtime(k_lexcitation, problex, nextem, taurep, nligands, k_f
             temtime[i] = [fisstime[i] + scipy.random.exponential(k_tem),fisstime[i] + scipy.random.exponential(k_tem)]
     return transtime, temtime
 
+
+# first attempt at non-unity probability of fission
+# the problem is that either all ligands fiss or don't which is a bit silly
+def make_transtime_temtime_f(k_lexcitation, problex, nextem, taurep, nligands, k_fiss, k_sem, k_trans, k_tem, excite, probfiss):
+    # Temporary variables
+    nextlex = np.array([excite(k_lexcitation, problex, nextem, taurep) for _ in range(nligands)])
+    if numpy.random.rand()<probfiss:
+        nextfisstime = nextlex + scipy.random.exponential(k_fiss, nligands)
+        nextsemtime = nextlex + scipy.random.exponential(k_sem, nligands)
+        for i in range(nligands):
+            while nextsemtime[i] < nextfisstime[i]:
+                nextlex[i] = excite(k_lexcitation, problex, nextem + nextsemtime[i], taurep)
+                nextfisstime[i] = nextlex[i] + scipy.random.exponential(k_fiss)
+                nextsemtime[i] = nextlex[i] + scipy.random.exponential(k_sem)
+
+        fisstime = nextfisstime
+        semtime = nextsemtime
+    
+        transtime = scipy.random.exponential(k_trans, (nligands, 2))
+        transtime[:,0] += fisstime
+        transtime[:,1] += fisstime
+        temtime = scipy.random.exponential(k_tem, (nligands, 2))
+        temtime[:,0] += fisstime
+        temtime[:,1] += fisstime
+        while True:
+            greater_map = transtime > temtime
+            problems = np.logical_and(greater_map[:,0], greater_map[:,1])
+            idx = np.where(problems)[0]
+
+            if len(idx) == 0:
+                break
+
+            for i in idx:
+                nextlex = excite(k_lexcitation, problex, nextem + np.max(temtime[i]), taurep)
+                nextfisstime = nextlex + scipy.random.exponential(k_fiss)
+                nextsemtime = nextlex + scipy.random.exponential(k_sem)
+                while nextsemtime < nextfisstime:
+                    #print("5")
+                    nextlex = excite(k_lexcitation, problex, nextem + np.max(temtime[i]) + nextsemtime, taurep)
+                    nextfisstime = nextlex + scipy.random.exponential(k_fiss)
+                    nextsemtime = nextlex + scipy.random.exponential(k_sem)
+                fisstime[i] = (nextfisstime)
+                semtime[i] = (nextsemtime)
+
+                transtime[i] = [fisstime[i] + scipy.random.exponential(k_trans),fisstime[i] + scipy.random.exponential(k_trans)]
+                temtime[i] = [fisstime[i] + scipy.random.exponential(k_tem),fisstime[i] + scipy.random.exponential(k_tem)]
+
+    else:
+        transtime = scipy.random.exponential(k_trans, (nligands, 1))
+        temtime = scipy.random.exponential(k_sem, (nligands, 1)) #temtime actually holds the singlet emission time in the case of no fission
+        while True:
+            greater_map = transtime > temtime
+            problems = np.logical_and(greater_map[:,0], greater_map[:,1])
+            idx = np.where(problems)[0]
+
+            if len(idx) == 0:
+                break
+
+            for i in idx:
+                nextlex = excite(k_lexcitation, problex, nextem + np.max(temtime[i]), taurep)
+                nextfisstime = nextlex + scipy.random.exponential(k_fiss)
+                nextsemtime = nextlex + scipy.random.exponential(k_sem)
+                while nextsemtime < nextfisstime:
+                    #print("5")
+                    nextlex = excite(k_lexcitation, problex, nextem + np.max(temtime[i]) + nextsemtime, taurep)
+                    nextfisstime = nextlex + scipy.random.exponential(k_fiss)
+                    nextsemtime = nextlex + scipy.random.exponential(k_sem)
+                fisstime[i] = (nextfisstime)
+                semtime[i] = (nextsemtime)
+
+                transtime[i] = [fisstime[i] + scipy.random.exponential(k_trans),fisstime[i] + scipy.random.exponential(k_trans)]
+                temtime[i] = [fisstime[i] + scipy.random.exponential(k_tem),fisstime[i] + scipy.random.exponential(k_tem)]
+    return transtime, temtime
+
 def nextphotonss(lastphoton, sensitivity, nligands,
                k_demission, k_fiss, k_trans, k_sem, k_tem, k_dexcitation, k_lexcitation,
                diffouttime, numEms, nextOut, nextIn, endround,
                antibunch, pulsed, taurep,
                probdex,problex, AvgEms, diffsIn,
-               diffsOut, ndiffsOut, testdummy, nextdex, seq):
+               diffsOut, ndiffsOut, testdummy, nextdex, seq, probfiss):
 
     #Note that as it stands, this only works for:
     # 1) PULSED - could be fixed by allowing the dot to be re-excited after emitting
     # before another triplet transfer. We would also have to consider new ligand excitations.
 
+    if probfiss < 1:
+        make_transtime_temtime = make_transtime_temtime_f
     nextphoton = []
 
     newphoton = newcphoton
@@ -203,7 +279,7 @@ def nextphotonss(lastphoton, sensitivity, nligands,
 
 
         while nextem < nextOut:
-            transtime, temtime = make_transtime_temtime(k_lexcitation, problex, nextem, taurep, nligands, k_fiss, k_sem, k_trans, k_tem, excite)
+            transtime, temtime = make_transtime_temtime(k_lexcitation, problex, nextem, taurep, nligands, k_fiss, k_sem, k_trans, k_tem, excite, probfiss)
             while transtime.shape[0] != 0:
                 '''if lastnextem == nextem and lastnextdex == nextdex:
                     print("minval = " + str(minval))
@@ -289,7 +365,7 @@ def nextphotonss(lastphoton, sensitivity, nligands,
         nextem = lastphoton[j]
         #print(3)
         while nextem < endround: #continue adding photons until end of round, on average 10 emissions
-            transtime, temtime = make_transtime_temtime(k_lexcitation, problex, nextem, taurep, nligands, k_fiss, k_sem, k_trans, k_tem, excite)
+            transtime, temtime = make_transtime_temtime(k_lexcitation, problex, nextem, taurep, nligands, k_fiss, k_sem, k_trans, k_tem, excite, probfiss)
 
             while transtime.shape[0] != 0:
                 #print("10")

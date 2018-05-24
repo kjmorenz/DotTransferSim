@@ -114,36 +114,45 @@ def nextphotonss(lastphoton, sensitivity, nligands,
 
         while nextem < nextOut:
             nextlex = excite(k_lexcitation, problex, nextem, taurep)
-            fisstime = nextlex + scipy.random.exponential(k_fiss)
-            semtime = nextlex + scipy.random.exponential(k_sem)
-            #nextdex = excite(k_dexcitation, probdex, nextem, taurep)
             dotem = nextdex + scipy.random.exponential(k_demission)
-            transtime = [fisstime + scipy.random.exponential(k_trans),fisstime + scipy.random.exponential(k_trans)]
-            temtime = [fisstime + scipy.random.exponential(k_tem),fisstime + scipy.random.exponential(k_tem)]
-
-            #theoretically we almost never go into these while loops when using realistic lifetimes - we're basically just fastforwarding
-            #until we get some time points that could result in a detection
-            while (nextdex < min(transtime) and dotem > max(temtime)) or (transtime[0] > temtime[0] and transtime[1] > temtime[1]) or semtime < fisstime:
-                nextlex = excite(k_lexcitation, problex, min(semtime,dotem,max(temtime)), taurep)
+            if numpy.random.rand() < probfiss:
                 fisstime = nextlex + scipy.random.exponential(k_fiss)
                 semtime = nextlex + scipy.random.exponential(k_sem)
-                
-                while semtime < fisstime:
-                    nextem = semtime + 0#not needed?
-                    nextlex = excite(k_lexcitation, problex, nextem, taurep)
+                #nextdex = excite(k_dexcitation, probdex, nextem, taurep)
+                transtime = [fisstime + scipy.random.exponential(k_trans),fisstime + scipy.random.exponential(k_trans)]
+                temtime = [fisstime + scipy.random.exponential(k_tem),fisstime + scipy.random.exponential(k_tem)]
+
+                #theoretically we almost never go into these while loops when using realistic lifetimes - we're basically just fastforwarding
+                #until we get some time points that could result in a detection
+                while (nextdex < min(transtime) and dotem > max(temtime)) or (transtime[0] > temtime[0] and transtime[1] > temtime[1]) or semtime < fisstime:
+                    nextlex = excite(k_lexcitation, problex, min(semtime,dotem,max(temtime)), taurep)
                     fisstime = nextlex + scipy.random.exponential(k_fiss)
                     semtime = nextlex + scipy.random.exponential(k_sem)
-                    if dotem < semtime:
-                        nextem = dotem +0
-                        if numpy.random.rand() < sensitivity and dotem < nextOut:
-                            nextphoton = insert(nextphoton, dotem)
-                    #re-excite the dot and find it's emission time
-                        nextdex = excite(k_dexcitation, probdex, nextem, taurep)
-                        dotem = nextdex + scipy.random.exponential(k_demission)
-                #fission has occurred
-                temtime = [fisstime + scipy.random.exponential(k_tem),fisstime + scipy.random.exponential(k_tem)]
-                transtime = [fisstime + scipy.random.exponential(k_trans),fisstime + scipy.random.exponential(k_trans)]
+                    
+                    while semtime < fisstime:
+                        nextem = semtime + 0#not needed?
+                        nextlex = excite(k_lexcitation, problex, nextem, taurep)
+                        fisstime = nextlex + scipy.random.exponential(k_fiss)
+                        semtime = nextlex + scipy.random.exponential(k_sem)
+                        if dotem < semtime:
+                            nextem = dotem +0
+                            if numpy.random.rand() < sensitivity and dotem < nextOut:
+                                nextphoton = insert(nextphoton, dotem)
+                        #re-excite the dot and find it's emission time
+                            nextdex = excite(k_dexcitation, probdex, nextem, taurep)
+                            dotem = nextdex + scipy.random.exponential(k_demission)
+                    
+                    #fission has occurred
+                    temtime = [fisstime + scipy.random.exponential(k_tem),fisstime + scipy.random.exponential(k_tem)]
+                    transtime = [fisstime + scipy.random.exponential(k_trans),fisstime + scipy.random.exponential(k_trans)]
             
+            else:
+                transtime = [nextlex + scipy.random.exponential(k_trans), float("inf")]
+                temtime = [nextlex + scipy.random.exponential(k_sem), float("inf")]
+                while (nextdex < min(transtime) and dotem > max(temtime)) or (transtime[0] > temtime[0]):
+                    nextlex = excite(k_lexcitation, problex, min(dotem, temtime[0]), taurep)
+                    transtime = [nextlex + scipy.random.exponential(k_trans)]
+                    temtime = [nextlex + scipy.random.exponential(k_sem)]
             #now atleast one triplet successfully transfers to the dot to emit
 
             index = transtime.index(min(transtime))
@@ -219,43 +228,51 @@ def nextphotonss(lastphoton, sensitivity, nligands,
         #print(3)
         while nextem < endround: #continue adding photons until end of round, on average 10 emissions
             nextlex = excite(k_lexcitation, problex, nextem, taurep)
-            fisstime = nextlex + scipy.random.exponential(k_fiss)
-            semtime = nextlex + scipy.random.exponential(k_sem)
-            #nextdex = excite(k_dexcitation, probdex, nextem, taurep)
             dotem = nextdex + scipy.random.exponential(k_demission)
-            transtime = [fisstime + scipy.random.exponential(k_trans),fisstime + scipy.random.exponential(k_trans)]
-            temtime = [fisstime + scipy.random.exponential(k_tem),fisstime + scipy.random.exponential(k_tem)]
-
-            #theoretically we almost never go into these while loops when using realistic lifetimes - we're basically just fastforwarding
-            #until we get some time points that could result in a detection
-            while (nextdex < min(transtime) and dotem > max(temtime)) or (transtime[0] > temtime[0] and transtime[1] > temtime[1]) or semtime < fisstime:
-                nextlex = excite(k_lexcitation, problex, min(semtime,dotem,max(temtime)), taurep)
+            if numpy.random.rand() < probfiss:
                 fisstime = nextlex + scipy.random.exponential(k_fiss)
                 semtime = nextlex + scipy.random.exponential(k_sem)
-                
-                while semtime < fisstime:
-                    nextem = semtime + 0#not needed?
-                    nextlex = excite(k_lexcitation, problex, nextem, taurep)
+                #nextdex = excite(k_dexcitation, probdex, nextem, taurep)
+                transtime = [fisstime + scipy.random.exponential(k_trans),fisstime + scipy.random.exponential(k_trans)]
+                temtime = [fisstime + scipy.random.exponential(k_tem),fisstime + scipy.random.exponential(k_tem)]
+
+                #theoretically we almost never go into these while loops when using realistic lifetimes - we're basically just fastforwarding
+                #until we get some time points that could result in a detection
+                while (nextdex < min(transtime) and dotem > max(temtime)) or (transtime[0] > temtime[0] and transtime[1] > temtime[1]) or semtime < fisstime:
+                    nextlex = excite(k_lexcitation, problex, min(semtime,dotem,max(temtime)), taurep)
                     fisstime = nextlex + scipy.random.exponential(k_fiss)
                     semtime = nextlex + scipy.random.exponential(k_sem)
-                    if dotem < semtime:
-                        nextem = dotem +0
-                        if numpy.random.rand() < sensitivity:
-                            nextphoton = insert(nextphoton, dotem)
-                    #re-excite the dot and find it's emission time
-                        nextdex = excite(k_dexcitation, probdex, nextem, taurep)
-                        dotem = nextdex + scipy.random.exponential(k_demission)
-                #fission has occurred
-                temtime = [fisstime + scipy.random.exponential(k_tem),fisstime + scipy.random.exponential(k_tem)]
-                transtime = [fisstime + scipy.random.exponential(k_trans),fisstime + scipy.random.exponential(k_trans)]
+                    
+                    while semtime < fisstime:
+                        nextem = semtime + 0#not needed?
+                        nextlex = excite(k_lexcitation, problex, nextem, taurep)
+                        fisstime = nextlex + scipy.random.exponential(k_fiss)
+                        semtime = nextlex + scipy.random.exponential(k_sem)
+                        if dotem < semtime:
+                            nextem = dotem +0
+                            if numpy.random.rand() < sensitivity and dotem < nextOut:
+                                nextphoton = insert(nextphoton, dotem)
+                        #re-excite the dot and find it's emission time
+                            nextdex = excite(k_dexcitation, probdex, nextem, taurep)
+                            dotem = nextdex + scipy.random.exponential(k_demission)
+                    
+                    #fission has occurred
+                    temtime = [fisstime + scipy.random.exponential(k_tem),fisstime + scipy.random.exponential(k_tem)]
+                    transtime = [fisstime + scipy.random.exponential(k_trans),fisstime + scipy.random.exponential(k_trans)]
             
+            else:
+                transtime = [nextlex + scipy.random.exponential(k_trans), float("inf")]
+                temtime = [nextlex + scipy.random.exponential(k_sem), float("inf")]
+                while (nextdex < min(transtime) and dotem > max(temtime)) or (transtime[0] > temtime[0]):
+                    nextlex = excite(k_lexcitation, problex, min(dotem, temtime[0]), taurep)
+                    transtime = [nextlex + scipy.random.exponential(k_trans)]
+                    temtime = [nextlex + scipy.random.exponential(k_sem)]
             #now atleast one triplet successfully transfers to the dot to emit
 
             index = transtime.index(min(transtime))
             otherone = (index + 1)%2
 
             if nextdex < transtime[index]: #dot is excited before next transfer, #usually happens at most 1 time and while creates a lot of other cases so ignore
-                #print("if")
                 nextem = dotem+0
                 #if testdummy >0 :
                 #    print("in the if 209" + str(testdummy))
@@ -268,9 +285,7 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                 transtime[index] = f(transtime[index], nextem, temtime[index], k_trans, 5)
                 transtime[otherone] = f(transtime[otherone], nextem, temtime[otherone], k_trans, 5)
                 index = transtime.index(min(transtime))
-                
             else:
-                #print("else")
                 if transtime[index] < temtime[index]:
                     nextem = transtime[index] + scipy.random.exponential(k_demission)#excitation transfers to dot and emits
                     if numpy.random.rand() < sensitivity: # if we didn't miss it due to sensitivity
@@ -289,16 +304,13 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                     nextem = transtime[otherone] + scipy.random.exponential(k_demission) #excitation transfers to dot and emits
                     if numpy.random.rand() < sensitivity: # if we didn't miss it due to sensitivity
                         nextphoton = insert(nextphoton, nextem)
-
                 #ignore nextdex because it is probably many pulses later and ligands will get excited again
                 #so we assume ligands relax within a pulse i.e. there's basically never triplet emission
-
-        
+            
     
 
         lastphoton[i] = nextem
 
-    #print(len(nextphoton))
     if numEms == 0:
         numEms = 1
         while nextOut<nextIn:
