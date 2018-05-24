@@ -74,18 +74,13 @@ def ffs(val, biggerval, otherval, lifetime, factor):
             return rval
     return float("inf")
 
-def ffanni(val, biggerval, otherval, lifetime, factor):
-    if val < otherval:
-        if val > biggerval:
-            return val
-    return float("inf")
     
 def nextphotonss(lastphoton, sensitivity, nligands,
                k_demission, k_fiss, k_trans, k_sem, k_tem, k_dexcitation, k_lexcitation, 
                diffouttime, numEms, nextOut, nextIn, endround,
                antibunch, pulsed, taurep,
                probdex,problex, AvgEms, diffsIn, 
-               diffsOut, ndiffsOut, testdummy, nextdex, seq, probfiss, anni):
+               diffsOut, ndiffsOut, testdummy, nextdex, seq, probfiss):
     #Note that as it stands, this only works for: 
     # 2) PULSED - could be fixed by allowing the dot to be re-excited after emitting 
     # before another triplet transfer. We would also have to consider new ligand excitations.
@@ -111,9 +106,7 @@ def nextphotonss(lastphoton, sensitivity, nligands,
             f = ffs
     else:
         f = ff
-    
-    if anni == 1:
-        f = ffanni
+  
 
     while nextOut < endround: #calculate emissions before it diffuses out
         #print("1")
