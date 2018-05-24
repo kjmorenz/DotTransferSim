@@ -59,44 +59,11 @@ def excitepulsed(k_ex, probex, nextem, taurep):
 def excitects(k_ex, probex, nextem, taurep):
     return nextem + scipy.random.exponential(k_ex)
 
-def ff(val, biggerval, otherval, lifetime, factor):
-    while val < biggerval and val < otherval:
-        if biggerval - val < factor*lifetime:#fast forward close to the right time
-            val = int((biggerval - val)/lifetime)*lifetime + val
-        val = val + scipy.random.exponential(lifetime)
-    if val > otherval:
-        return float("inf")
-    return val
-
-def ffs(val, biggerval, otherval, lifetime, factor):
-    if val < biggerval and val < otherval:
-        return biggerval + scipy.random.exponential(lifetime)
-    return float("inf")
-
-# def fastforward(transtime, nextem, temtime, k_trans, factor, f):
-#     for i in range(len(transtime)):
-#         for j in range(2):
-#             transtime[i][j] = f(transtime[i][j], nextem, temtime[i][j], k_trans, factor)
-#     return transtime
-
 def alltransgttemtime(transtime, temtime):
     for i in range(len(transtime)):
         if transtime[i][0] < temtime[i][0] or transtime[i][1] < temtime[i][1]:
             return 0
     return 1
-
-# def deltransgttem(transtime,temtime):
-#     i = 0
-#     length = len(transtime)
-#     while i < length:
-#         if transtime[i, 0] > temtime[i, 0] and transtime[i, 1] > temtime[i, 1]:
-#             transtime[i] = transtime[length - 1]
-#             temtime[i] = temtime[length - 1]
-#             length -= 1
-#         else:
-#             i += 1
-
-#     return transtime[:length], temtime[:length]
 
 def deltransgttem(transtime, temtime):
     new_len = deltransgttem_helper(transtime, temtime)
@@ -263,12 +230,6 @@ def nextphotonss(lastphoton, sensitivity, nligands,
         excite = excitepulsed
     else:
         excite = excitects
-    
-
-    if seq == 1:
-        f = ffs
-    else:
-        f = ff
 
     lastnextem = 0
     lastnextdex = 0
@@ -277,7 +238,6 @@ def nextphotonss(lastphoton, sensitivity, nligands,
         #print("1")
         diffOut = numpy.random.randint(numEms)#index identity of emitter which diffused out
         nextem = lastphoton[diffOut] #lastphoton is an array of length numEms holding the time of last photon emitted for each emitter
-
 
         while nextem < nextOut:
             transtime, temtime = make_transtime_temtime(k_lexcitation, problex, nextem, taurep, nligands, k_fiss, k_sem, k_trans, k_tem, excite, probfiss)
@@ -303,13 +263,15 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                     if nextdex > nextOut:
                         transtime = None
                         break
-                    if numpy.random.rand() < sensitivity and nextem < nextOut: # if we didn't miss it due to sensitivity
+                    if nextem > minval:
+                        nextem = minval
+                        transtime[index] = float("inf")
+                    elif numpy.random.rand() < sensitivity and nextem < nextOut: # if we didn't miss it due to sensitivity
                         nextphoton = insert(nextphoton, nextem)
                     elif nextem > nextOut:
                         transtime = None
                         break
                     nextdex = excite(k_dexcitation, probdex, nextem, taurep)
-                    fastforward(transtime, nextem, temtime, k_trans, 5, f)
                     transtime, temtime = deltransgttem(transtime,temtime)
                     if transtime.shape[0] == 0:
                         transtime = None
@@ -323,19 +285,18 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                     if minval > nextOut:
                         transtime = None
                         break
-                    if numpy.random.rand() < sensitivity and nextem < nextOut: # if we didn't miss it due to sensitivity
-                        nextphoton = insert(nextphoton, nextem)
-                    elif nextem > nextOut:
-                        transtime = None
-                        break
                     transtime[index] = float("inf")
+                    transtime, temtime = deltransgttem(transtime,temtime)
+                    index, minval = findmin(transtime)
+                    if nextem > minval:
+                        nextem = minval
+                        transtime[index] = float("inf")
+                    elif numpy.random.rand() < sensitivity and nextem < nextOut: # if we didn't miss it due to sensitivity
+                        nextphoton = insert(nextphoton, nextem)
                 '''print(type(transtime))
                 print(type(nextem))
                 print(type(temtime))
                 print(type(k_trans))'''
-                if transtime is not None:
-                    fastforward(transtime, nextem, temtime, k_trans, 5, f)
-                    transtime, temtime = deltransgttem(transtime,temtime)
             lastnextem = nextem
             lastnextdex = nextdex
             #print(nextem)
@@ -379,10 +340,12 @@ def nextphotonss(lastphoton, sensitivity, nligands,
 
                 while nextdex < minval: #usually nextdex is waaayyy later
                     nextem = nextdex + scipy.random.exponential(k_demission)
-                    if numpy.random.rand() < sensitivity: # if we didn't miss it due to sensitivity
+                    if nextem > minval:
+                        nextem = minval
+                        transtime[index] = float("inf")
+                    elif numpy.random.rand() < sensitivity: # if we didn't miss it due to sensitivity
                         nextphoton = insert(nextphoton, nextem)
                     nextdex = excite(k_dexcitation, probdex, nextem, taurep)
-                    fastforward(transtime, nextem, temtime, k_trans, 5, f)
                     transtime, temtime = deltransgttem(transtime,temtime)
                     if transtime.shape[0] == 0:
                         transtime = None
@@ -395,13 +358,15 @@ def nextphotonss(lastphoton, sensitivity, nligands,
 
                 if minval > nextem:
                     nextem = minval + scipy.random.exponential(k_demission)#excitation transfers to dot and emits
-                    if numpy.random.rand() < sensitivity: # if we didn't miss it due to sensitivity
+                    transtime[index] = float("inf")
+                    transtime, temtime = deltransgttem(transtime,temtime)
+                    index, minval = findmin(transtime)
+                    if nextem > minval:
+                        nextem = minval
+                        transtime[index] = float("inf")
+                    elif numpy.random.rand() < sensitivity: # if we didn't miss it due to sensitivity
                         nextphoton = insert(nextphoton, nextem)
 
-                    transtime[index] = float("inf")
-
-                fastforward(transtime, nextem, temtime, k_trans, 5, f)
-                transtime, temtime = deltransgttem(transtime,temtime)
             #print(nextem)#nextem is shrinking?
 
 

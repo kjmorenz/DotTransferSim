@@ -11,8 +11,8 @@ pulsed = 1
 
 #General saving folder parameters
 filepath = "/mnt/c/Users/Karen/Dropbox (WilsonLab)/WilsonLab Team Folder/Data/Karen/DotTransferSim/"
-filedir = "May24rerun1lig/"
-filenames = [""]
+filedir = "May24ANNI/"
+filenames = ["Anni"]
 
 #file length - goes to the max of these two
 endsigcts = 10000000
@@ -76,9 +76,9 @@ seq = 1
 i = 0
 f = filenames[0]
 count = 0
-for laserpwr in [0.005,0.00005,0.000005]:
+for laserpwr in [0.00005,0.005,0.000005]:
     for k_demission in [1400000, 15000]:
-        for nligands in [1]:
+        for nligands in [1,100,10000]:
             for diffuse in range(2):
                 
                 f = filenames[0]
@@ -97,7 +97,7 @@ for laserpwr in [0.005,0.00005,0.000005]:
                                     emwavelength, r,eta, n, k_tem, k_fiss, k_trans,
                                     reprate, wavelength, laserpwr, pulselength, foclen,
                                     NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, order,
-                                    mode, gnpwr, numbins, pulsebins, channels, seq, probfiss = 1)
+                                    mode, gnpwr, numbins, pulsebins, channels, seq, anni = 1)
 
 
 '''

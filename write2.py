@@ -3,6 +3,9 @@ import diffuse as d
 import calcnextphotondottrans6 as calc1
 import calcnextphotondottrans6mL as mLcalc
 import calcnextphotondottrans6NF as NFcalc1
+import calcnextphotondottrans6anni as calc1a
+import calcnextphotondottrans6mLanni as mLcalca
+import calcnextphotondottrans6NFanni as NFcalc1a
 import time as rt
 import math
 import numpy
@@ -46,21 +49,27 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts
             temp, concentration, dabsXsec, labsXsec,k_demission,
             k_fiss, k_trans, k_sem, k_tem, emwavelength, r,
             eta, n, reprate,wavelength, laserpwr, pulselength, foclen,
-            NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, timestep, channels, seq, mL1, probfiss):
+            NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, timestep, channels, seq, mL1, probfiss, anni):
     
     allparams = [filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts, numlines, maxlines, endtime,
                     temp, concentration, dabsXsec, labsXsec,k_demission,
                     k_fiss, k_trans, k_sem, k_tem, emwavelength, r,
                     eta, n, reprate,wavelength, laserpwr, pulselength, foclen,
-                    NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, timestep, channels, seq, mL1]
-
-    if nligands != 1 or mL1 == 1:
-        calc = mLcalc
-    elif probfiss < 1:
-        calc = NFcalc1
+                    NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, timestep, channels, seq, mL1, probfiss, anni]
+    if anni == 1:
+        if nligands != 1 or mL1 == 1:
+            calc = mLcalca
+        elif probfiss < 1:
+            calc = NFcalc1a
+        else:
+            calc = calc1a
     else:
-        calc = calc1
-
+        if nligands != 1 or mL1 == 1:
+            calc = mLcalc
+        elif probfiss < 1:
+            calc = NFcalc1
+        else:
+            calc = calc1
 
     h = 6.62607004*10**(-34) # m^2 kg / s (Planck's const)
     c = 299792458 # m/s (Speed of light)
@@ -439,13 +448,14 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts
 ##    file.write("Pulse bins = " +str(pulsebins) + " \n")
     file.write("Average time to diffuse out of " + str(focalVol) + " nm^3 focal volume is " + str(diffouttime/(10**9)) + "  \n")
     file.write("Antibunch? " + str(antibunch)+" \n")
+    file.write("Annihilating? " + str(anni) + " \n")
     file.write("Diffusing as t = -diffouttime*numpy.log(1-numpy.random.rand()) #poissonian with average time diffouttime  \n")
     file.write("\n")
     file.write("Definitive input parameters:")
     file.write("filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts, numlines, maxlines, endtime, \n")
     file.write("temp, concentration, dabsXsec, labsXsec,k_demission, k_fiss, k_trans, k_sem, k_tem, \n")
     file.write("emwavelength, r,eta, n, reprate,wavelength, laserpwr, pulselength, foclen, NA, darkcounts, \n")
-    file.write("sensitivity, nligands, deadtime, afterpulse, timestep, channels, seq, mL1 \n")
+    file.write("sensitivity, nligands, deadtime, afterpulse, timestep, channels, seq, mL1, probfiss, anni \n")
     for i in allparams:
         file.write(str(i) + " \n")
     file.close()

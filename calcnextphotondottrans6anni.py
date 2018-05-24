@@ -56,36 +56,14 @@ def excitepulsed(k_ex, probex, nextem, taurep):
 def excitects(k_ex, probex, nextem, taurep):
     return nextem + scipy.random.exponential(k_ex)
 
-def ff(val, biggerval, otherval, lifetime, factor):
-    while val < biggerval and val < otherval:
-        if biggerval - val < factor*lifetime:#fast forward close to the right time
-            val = int((biggerval - val)/lifetime)*lifetime + val
-        val = val + scipy.random.exponential(lifetime)
-    if val > otherval:#added april 3
-        return float("inf")
-    return val
 
-def ffs(val, biggerval, otherval, lifetime, factor):
-    if val < otherval:
-        if val > biggerval:
-            return val
-        rval = biggerval + scipy.random.exponential(lifetime)
-        if rval < otherval: #added april 3
-            return rval
-    return float("inf")
-
-def ffanni(val, biggerval, otherval, lifetime, factor):
-    if val < otherval:
-        if val > biggerval:
-            return val
-    return float("inf")
     
 def nextphotonss(lastphoton, sensitivity, nligands,
                k_demission, k_fiss, k_trans, k_sem, k_tem, k_dexcitation, k_lexcitation, 
                diffouttime, numEms, nextOut, nextIn, endround,
                antibunch, pulsed, taurep,
                probdex,problex, AvgEms, diffsIn, 
-               diffsOut, ndiffsOut, testdummy, nextdex, seq, probfiss, anni):
+               diffsOut, ndiffsOut, testdummy, nextdex, seq, probfiss):
     #Note that as it stands, this only works for: 
     # 2) PULSED - could be fixed by allowing the dot to be re-excited after emitting 
     # before another triplet transfer. We would also have to consider new ligand excitations.
@@ -107,13 +85,6 @@ def nextphotonss(lastphoton, sensitivity, nligands,
     else:
         excite = excitects
     
-    if seq == 1:
-            f = ffs
-    else:
-        f = ff
-    
-    if anni == 1:
-        f = ffanni
 
     while nextOut < endround: #calculate emissions before it diffuses out
         #print("1")
@@ -158,7 +129,7 @@ def nextphotonss(lastphoton, sensitivity, nligands,
             index = transtime.index(min(transtime))
             otherone = (index + 1)%2
 
-            if nextdex < transtime[index]: #dot is excited before next transfer, #usually happens at most 1 time and while creates a lot of other cases so ignore
+            while nextdex < transtime[index]: #dot is excited before next transfer
                 nextem = dotem+0
                 if dotem > nextOut:
                     break
@@ -169,37 +140,39 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                     nextphoton = insert(nextphoton, dotem)
                 nextdex = excite(k_dexcitation, probdex, nextem, taurep)
                 dotem = nextdex + scipy.random.exponential(k_demission)
-                #pre-april 3 these were just ff not ffs
-                transtime[index] = f(transtime[index], nextem, temtime[index], k_trans, 5)
-                transtime[otherone] = f(transtime[otherone], nextem, temtime[otherone], k_trans, 5)
-                index = transtime.index(min(transtime))
+                
                 
                 
             if transtime[index] > nextOut:
                 break
-            else:
-                if transtime[index] < temtime[index]:
-                    nextem = transtime[index] + scipy.random.exponential(k_demission)#excitation transfers to dot and emits
-                    if numpy.random.rand() < sensitivity and nextem < nextOut: # if we didn't miss it due to sensitivity
-                        nextphoton = insert(nextphoton, nextem)
-                transtime[index] = float("inf")
-                transtime[otherone] = f(transtime[otherone], nextem, temtime[otherone], k_trans, 5)
-                if nextdex < transtime[otherone] and nextdex > nextem: #usually happens at most 1 time and while creates a lot of other cases so ignore
-                    nextem = dotem+0
-                    if dotem > nextOut:
-                        break
-                    if numpy.random.rand() < sensitivity: # if we didn't miss it due to sensitivity
-                        nextphoton = insert(nextphoton, dotem)
-                    nextdex = excite(k_dexcitation, probdex, nextem, taurep)
-                    dotem = nextdex + scipy.random.exponential(k_demission)
-                    transtime[otherone] = f(transtime[otherone], nextem, temtime[otherone], k_trans, 5)
-                    
-                if transtime[otherone] < temtime[otherone]:
-                    nextem = transtime[otherone] + scipy.random.exponential(k_demission) #excitation transfers to dot and emits
-                    if numpy.random.rand() < sensitivity and nextem < nextOut: # if we didn't miss it due to sensitivity
-                        nextphoton = insert(nextphoton, nextem)
-                #ignore nextdex because it is probably many pulses later and ligands will get excited again
-                #so we assume ligands relax within a pulse i.e. there's basically never triplet emission
+            if transtime[index] < temtime[index]:
+                nextem = transtime[index] + scipy.random.exponential(k_demission)#excitation transfers to dot and emits
+                if nextem > transtime[otherone]: # annihilation - IGNORES DOT GETTING EXCITED WHEN LIGAND ALREADY EXCITED
+                    nextem = transtime[otherone]
+                    transtime[otherone] = float("inf")
+                elif numpy.random.rand() < sensitivity and nextem < nextOut:
+                    nextphoton = insert(nextphoton, nextem)
+            transtime[index] = float("inf")
+            
+            if transtime[otherone] is not float("inf") and nextdex < transtime[otherone] and nextdex > nextem: #usually happens at most 1 time and while creates a lot of other cases so ignore
+                nextem = dotem+0
+                if dotem > nextOut:
+                    break
+                if nextem > transtime[otherone]: # annihilation - IGNORES DOT GETTING EXCITED WHEN LIGAND ALREADY EXCITED
+                    nextem = transtime[otherone]
+                    transtime[otherone] = float("inf")
+                elif numpy.random.rand() < sensitivity: # if we didn't miss it due to sensitivity
+                    nextphoton = insert(nextphoton, dotem)
+                nextdex = excite(k_dexcitation, probdex, nextem, taurep)
+                dotem = nextdex + scipy.random.exponential(k_demission)
+                
+                
+            if transtime[otherone] < temtime[otherone]:
+                nextem = transtime[otherone] + scipy.random.exponential(k_demission) #excitation transfers to dot and emits
+                if numpy.random.rand() < sensitivity and nextem < nextOut: # if we didn't miss it due to sensitivity
+                    nextphoton = insert(nextphoton, nextem)
+            #ignore nextdex because it is probably many pulses later and ligands will get excited again
+            #so we assume ligands relax within a pulse i.e. there's basically never triplet emission
             
                 
 
@@ -263,8 +236,7 @@ def nextphotonss(lastphoton, sensitivity, nligands,
             index = transtime.index(min(transtime))
             otherone = (index + 1)%2
 
-            if nextdex < transtime[index]: #dot is excited before next transfer, #usually happens at most 1 time and while creates a lot of other cases so ignore
-                #print("if")
+            while nextdex < transtime[index]: #dot is excited before next transfer
                 nextem = dotem+0
                 #if testdummy >0 :
                 #    print("in the if 209" + str(testdummy))
@@ -273,37 +245,34 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                     nextphoton = insert(nextphoton, dotem)
                 nextdex = excite(k_dexcitation, probdex, nextem, taurep)
                 dotem = nextdex + scipy.random.exponential(k_demission)
-                #pre-april 3 these were just ff not ffs
-                transtime[index] = f(transtime[index], nextem, temtime[index], k_trans, 5)
-                transtime[otherone] = f(transtime[otherone], nextem, temtime[otherone], k_trans, 5)
-                index = transtime.index(min(transtime))
-                
-            else:
-                #print("else")
-                if transtime[index] < temtime[index]:
-                    nextem = transtime[index] + scipy.random.exponential(k_demission)#excitation transfers to dot and emits
-                    if numpy.random.rand() < sensitivity: # if we didn't miss it due to sensitivity
-                        nextphoton = insert(nextphoton, nextem)
-                transtime[index] = float("inf")
-                transtime[otherone] = f(transtime[otherone], nextem, temtime[otherone], k_trans, 5)
-                if nextdex < transtime[otherone] and nextdex > nextem: #usually happens at most 1 time and while creates a lot of other cases so ignore
-                    nextem = dotem+0
-                    if numpy.random.rand() < sensitivity: # if we didn't miss it due to sensitivity
-                        nextphoton = insert(nextphoton, dotem)
-                    nextdex = excite(k_dexcitation, probdex, nextem, taurep)
-                    dotem = nextdex + scipy.random.exponential(k_demission)
-                    transtime[otherone] = f(transtime[otherone], nextem, temtime[otherone], k_trans, 5)
+
+            if transtime[index] < temtime[index]:
+                nextem = transtime[index] + scipy.random.exponential(k_demission)#excitation transfers to dot and emits
+                if nextem > transtime[otherone]: # annihilation - IGNORES DOT GETTING EXCITED WHEN LIGAND ALREADY EXCITED
+                    nextem = transtime[otherone]
+                    transtime[otherone] = float("inf")
                     
-                if transtime[otherone] < temtime[otherone]:
-                    nextem = transtime[otherone] + scipy.random.exponential(k_demission) #excitation transfers to dot and emits
-                    if numpy.random.rand() < sensitivity: # if we didn't miss it due to sensitivity
-                        nextphoton = insert(nextphoton, nextem)
-
-                #ignore nextdex because it is probably many pulses later and ligands will get excited again
-                #so we assume ligands relax within a pulse i.e. there's basically never triplet emission
-
-        
-    
+                elif numpy.random.rand() < sensitivity:
+                    nextphoton = insert(nextphoton, nextem)
+            transtime[index] = float("inf")
+            
+            if transtime[otherone] is not float("inf") and nextdex < transtime[otherone] and nextdex > nextem: #usually happens at most 1 time and while creates a lot of other cases so ignore
+                nextem = dotem+0
+                if nextem > transtime[otherone]: # annihilation - IGNORES DOT GETTING EXCITED WHEN LIGAND ALREADY EXCITED
+                    nextem = transtime[otherone]
+                    transtime[otherone] = float("inf")
+                elif numpy.random.rand() < sensitivity: # if we didn't miss it due to sensitivity
+                    nextphoton = insert(nextphoton, dotem)
+                nextdex = excite(k_dexcitation, probdex, nextem, taurep)
+                dotem = nextdex + scipy.random.exponential(k_demission)
+                
+                
+            if transtime[otherone] < temtime[otherone]:
+                nextem = transtime[otherone] + scipy.random.exponential(k_demission) #excitation transfers to dot and emits
+                if numpy.random.rand() < sensitivity: # if we didn't miss it due to sensitivity
+                    nextphoton = insert(nextphoton, nextem)
+            #ignore nextdex because it is probably many pulses later and ligands will get excited again
+            #so we assume ligands relax within a pulse i.e. there's basically never triplet emission
 
         lastphoton[i] = nextem
 
