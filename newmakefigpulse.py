@@ -22,6 +22,23 @@ File "main.py", line 106, in <module>
     self.tk = _tkinter.create(screenName, baseName, className, interactive, wantobjects, useTk, sync, use)
 _tkinter.TclError: no display name and no $DISPLAY environment variable'''
 import matplotlib.pyplot as plt
+def findafterglow(deadtime, cxdata):
+    diffpos = float("inf")
+    diffneg = float("inf")
+    indexpos = 0
+    indexneg = 0
+    for i in range(len(cxdata)):
+        if numpy.abs(cxdata[i]-deadtime) < diffpos:
+            secondindpos = indexpos
+            diffpos = numpy.abs(cxdata[i]-deadtime)
+            indexpos = i
+        if numpy.abs(cxdata[i] + deadtime) < diffneg:
+            secondindneg = indexneg
+            diffneg = numpy.abs(cxdata[i]+deadtime)
+            indexneg = i
+    return indexpos, secondindpos, indexneg, secondindneg
+    #print(cxdata[indexpos])
+    #print(cxdata[indexneg])
 
 def effload(filepath,file,printevery,npulses,time,trep):
     val = 0
@@ -37,16 +54,19 @@ def effload(filepath,file,printevery,npulses,time,trep):
             if printevery != 0 and val%printevery == 0:
                 print(str(val) + " lines")
             thisline = numpy.genfromtxt(BytesIO(line.encode('utf-8')), delimiter = ",")
+            
             if val == 1 and numpy.absolute(thisline[4]) < time:
                 endbin = numpy.absolute(thisline[4])
                 
             if thisline[0] < thisline[1] and max(numpy.absolute(thisline[2]), numpy.absolute(thisline[3])) <= npulses + 0.5 and numpy.absolute(thisline[4]) < time:
-                data.append(thisline[-1])
-                xdata.append(thisline[4]+(thisline[2]+0.5)*trep)
+                
                 bindata.append(thisline[2])
                 if thisline[2] == -0.5:
                     cdata.append(thisline[-1])
                     cxdata.append(thisline[4]+(thisline[2]+0.5)*trep)
+                else:
+                    data.append(thisline[-1])
+                    xdata.append(thisline[4]+(thisline[2]+0.5)*trep)
     return data, xdata, bindata, cdata, cxdata, endbin
 
 def tickfunction(trep, npulses, divby):
@@ -57,9 +77,19 @@ def tickfunction(trep, npulses, divby):
         labels.append(str(i-npulses))
     return ticks, labels
 
-def makepulsedfig(filepath, file, sfilepath, savename, reprate = 1, npulses=1, time=float('inf'), fontsize=12, figsize = [-1,-1], linewidth = 0.5, timespace = -1, xzoom = -1, yzoom =[-1,-1]):
+def makepulsedfig(filepath, file, sfilepath, savename, reprate = 1, npulses=1, time=float('inf'), fontsize=12, figsize = [-1,-1], linewidth = 0.5, 
+                    grayafterglow = 1, deadtime = 70000, timespace = -1, xzoom = -1, yzoom =[-1,-1]):
+    
+    agcolor = "darkslategray"
+    spcolor = 'white'
+    cpcolor = 'red'
+
     trep = (10**6)/reprate # in ps
     data, xdata, bindata, cdata, cxdata, endbin = effload(filepath,file,100000,npulses,time,trep)
+    if grayafterglow ==1:
+        inp, sinp, inn, sinn = findafterglow(deadtime, cxdata)
+        
+
     divby = 1
     if not timespace == -1:
         if 1000 <= timespace <= 100000:
@@ -78,7 +108,15 @@ def makepulsedfig(filepath, file, sfilepath, savename, reprate = 1, npulses=1, t
             xdata[i] = xdata[i]/divby
         for i in range(len(cxdata)):
             cxdata[i] = cxdata[i]/divby
-
+    if grayafterglow ==1:
+        if len(cxdata) > inp + 2 and len(cxdata) > inn + 2:
+            agxpdata = [cxdata[inp-1], cxdata[inp], cxdata[inp+1]]
+            agxndata = [cxdata[inn-1], cxdata[inn], cxdata[inn+1]]
+            agpdata = [cdata[inp-1], cdata[inp], cdata[inp+1]]
+            agndata = [cdata[inn-1], cdata[inn], cdata[inn+1]]
+            del cxdata[inp-1], cxdata[inp-1], cxdata[inp-1], cxdata[inn-1], cxdata[inn-1], cxdata[inn-1]
+            del cdata[inp-1], cdata[inp-1], cdata[inp-1], cdata[inn-1], cdata[inn-1], cdata[inn-1]
+        else: grayafterglow = 0
 
     fig = plt.figure()
     fig.patch.set_facecolor('black')
@@ -88,11 +126,18 @@ def makepulsedfig(filepath, file, sfilepath, savename, reprate = 1, npulses=1, t
     
     matplotlib.rcParams.update({'font.size': fontsize})
     matplotlib.rc('xtick', labelsize = fontsize)
+    
+    ax.plot(xdata[:len(cxdata)],data[:len(cxdata)], color = spcolor, linewidth = linewidth)
+    ax.plot(xdata[len(cxdata)+7:],data[len(cxdata)+7:], color = spcolor, linewidth = linewidth)
 
-    color = 'white'
+    if grayafterglow == 1:
+        ax.plot(agxpdata,agpdata, color = agcolor, linewidth = linewidth)
+        ax.plot(agxndata,agndata, color = agcolor, linewidth = linewidth)
+        
+    
+    ax.plot(cxdata,cdata, color = cpcolor, linewidth = linewidth)
+    
 
-    ax.plot(xdata,data, color = color, linewidth = linewidth)
-    ax.plot(cxdata,cdata, color = 'red', linewidth = linewidth)
     
     ticks, labels = tickfunction(trep, npulses, divby)
     ax2.set_xlim(ax.get_xlim())
@@ -116,8 +161,8 @@ def makepulsedfig(filepath, file, sfilepath, savename, reprate = 1, npulses=1, t
     ax2.xaxis.label.set_color('white')
     ax2.yaxis.label.set_color('white')
 
-    ax.set_ylabel("$g^{(2)}$")
-    ax.set_xlabel("time relative to pulse (" + timetag + ")" )
+    ax.set_ylabel("$g^{(2)}($" + u'\u03C4' + "$)$")
+    ax.set_xlabel("time relative to pulse (" + u'\u03C4' + " " + timetag + ")" )
     ax2.set_xlabel("pulses elapsed")
 
     if fontsize > 12:
@@ -152,17 +197,25 @@ def makepulsedfig(filepath, file, sfilepath, savename, reprate = 1, npulses=1, t
     matplotlib.rcParams.update({'font.size': fontsize})
     matplotlib.rc('xtick', labelsize = fontsize)
 
-    color = 'white'
-
-    ax.plot(xdata,data, color = color, linewidth = linewidth)
-    ax.plot(cxdata,cdata, color = 'red', linewidth = linewidth)
+    ax.plot(xdata[:len(cxdata)],data[:len(cxdata)], color = spcolor, linewidth = linewidth)
+    ax.plot(xdata[len(cxdata)+7:],data[len(cxdata)+7:], color = spcolor, linewidth = linewidth)
     for i in range(len(xdata)):
         xdata[i] = -xdata[i]
+    ax.plot(xdata[:len(cxdata)],data[:len(cxdata)], color = spcolor, linewidth = linewidth)
+    ax.plot(xdata[len(cxdata)+7:],data[len(cxdata)+7:], color = spcolor, linewidth = linewidth)
+    if grayafterglow == 1:
+        ax.plot(agxpdata,agpdata, color = agcolor, linewidth = linewidth)
+        ax.plot(agxndata,agndata, color = agcolor, linewidth = linewidth)
+        for i in range(len(agxpdata)):
+            agxpdata[i] = - agxpdata[i]
+            agxndata[i] = - agxndata[i]
+        ax.plot(agxpdata,agpdata, color = agcolor, linewidth = linewidth)
+        ax.plot(agxndata,agndata, color = agcolor, linewidth = linewidth)
+    ax.plot(cxdata,cdata, color = cpcolor, linewidth = linewidth)
     for i in range(len(cxdata)):
         cxdata[i] = -cxdata[i]
+    ax.plot(cxdata,cdata, color = cpcolor, linewidth = linewidth)
     
-    ax.plot(xdata,data, color = color, linewidth = linewidth)
-    ax.plot(cxdata,cdata, color = 'red', linewidth = linewidth)
 
     ax2.set_xlim(ax.get_xlim())
     ax2.set_xticks(ticks)
@@ -185,8 +238,8 @@ def makepulsedfig(filepath, file, sfilepath, savename, reprate = 1, npulses=1, t
     ax2.xaxis.label.set_color('white')
     ax2.yaxis.label.set_color('white')
 
-    ax.set_ylabel("$g^{(2)}$")
-    ax.set_xlabel("time relative to pulse (" + timetag + ")" )
+    ax.set_ylabel("$g^{(2)}($" + u'\u03C4' + "$)$")
+    ax.set_xlabel("time relative to pulse (" + u'\u03C4' + " " + timetag + ")" )
     ax2.set_xlabel("pulses elapsed")
 
     if fontsize > 12:
@@ -217,19 +270,101 @@ def makepulsedfig(filepath, file, sfilepath, savename, reprate = 1, npulses=1, t
         ax2.set_xticklabels(labels)
         if yzoom != [-1,-1]:
             ax.set_ylim((yzoom[0],yzoom[1]))
-            savename = savename + "SYMM-xzoom" +str(xzoom)+"yzoom" + str(yzoom[0])+"to"+str(yzoom[1]) +  ".png"
+            sname = savename + "SYMM-xzoom" +str(xzoom)+"yzoom" + str(yzoom[0])+"to"+str(yzoom[1]) +  ".png"
         else:
-            savename = savename + "SYMM-zoom" +str(xzoom)+".png"
+            sname = savename + "SYMM-zoom" +str(xzoom)+".png"
         if not figsize == [-1,-1]:
             fig.set_size_inches(figsize[0], figsize[1])
         else:
             fig.set_size_inches(6, 4)
-        fig.savefig(sfilepath + savename, facecolor=fig.get_facecolor(), edgecolor = 'none')
+        fig.savefig(sfilepath + sname, facecolor=fig.get_facecolor(), edgecolor = 'none')
         plt.close()
     elif yzoom !=[-1,-1]:
         ax.set_ylim((yzoom[0],yzoom[1]))
         fig.savefig(sfilepath + savename + "SYMMyzoom" + str(yzoom[0])+"to"+str(yzoom[1]) +  ".png",facecolor=fig.get_facecolor(), edgecolor = 'none')
         plt.close()
+    
+
+    #replot overlap
+
+    #symmetric
+    linewidth = linewidth/2
+    fig = plt.figure()
+    fig.patch.set_facecolor('black')
+    ax = fig.add_subplot(1, 1, 1)
+    
+    matplotlib.rcParams.update({'font.size': fontsize})
+    matplotlib.rc('xtick', labelsize = fontsize)
+
+    ax.plot(cxdata,data[:len(cxdata)], color = spcolor, linewidth = linewidth)
+    for i in range(len(cxdata)):
+        cxdata[i] = -cxdata[i]
+    ax.plot(cxdata,data[:len(cxdata)], color = spcolor, linewidth = linewidth)
+    if grayafterglow == 1:
+        ax.plot(agxpdata,agpdata, color = agcolor, linewidth = linewidth)
+        ax.plot(agxndata,agndata, color = agcolor, linewidth = linewidth)
+        for i in range(len(agxpdata)):
+            agxpdata[i] = - agxpdata[i]
+            agxndata[i] = - agxndata[i]
+        ax.plot(agxpdata,agpdata, color = agcolor, linewidth = linewidth)
+        ax.plot(agxndata,agndata, color = agcolor, linewidth = linewidth)
+    ax.plot(cxdata,cdata, color = cpcolor, linewidth = linewidth)
+    for i in range(len(cxdata)):
+        cxdata[i] = -cxdata[i]
+    ax.plot(cxdata,cdata, color = cpcolor, linewidth = linewidth)
+    
+
+    
+    ax.set_facecolor('black')
+    ax.spines['top'].set_color('white')
+    ax.spines['bottom'].set_color('white')
+    ax.spines['left'].set_color('white')
+    ax.spines['right'].set_color('white')
+
+    ax.xaxis.label.set_color('white')
+    ax.yaxis.label.set_color('white')
+
+    
+
+    ax.set_ylabel("$g^{(2)}($" + u'\u03C4' + "$)$")
+    ax.set_xlabel("time relative to pulse (" + u'\u03C4' + " " + timetag + ")" )
+
+
+    if fontsize > 12:
+        ax.xaxis.set_tick_params(size = 7, width=2)
+        ax.yaxis.set_tick_params(size = 7, width=2)
+
+    if not figsize == [-1,-1]:
+        fig.set_size_inches(figsize[0], figsize[1])
+    else:
+        fig.set_size_inches(6, 4)
+    ax.tick_params(axis = 'x', colors = 'white')
+    ax.tick_params(axis = 'y', colors = 'white')
+
+
+    fig.tight_layout()
+    fig.savefig(sfilepath + savename + "OVERLAPSYMM.png",facecolor=fig.get_facecolor(), edgecolor = 'none')
+    
+    plt.close()
+
+    if xzoom != -1:
+        ax.set_xlim((-xzoom, xzoom))
+        if yzoom != [-1,-1]:
+            ax.set_ylim((yzoom[0],yzoom[1]))
+            savename = savename + "OVERLAPSYMM-xzoom" +str(xzoom)+"yzoom" + str(yzoom[0])+"to"+str(yzoom[1]) +  ".png"
+        else:
+            savename = savename + "OVERLAPSYMM-zoom" +str(xzoom)+".png"
+        if not figsize == [-1,-1]:
+            fig.set_size_inches(figsize[0], figsize[1])
+        else:
+            fig.set_size_inches(5, 4)
+        fig.savefig(sfilepath + savename, facecolor=fig.get_facecolor(), edgecolor = 'none')
+        plt.close()
+    elif yzoom !=[-1,-1]:
+        ax.set_ylim((yzoom[0],yzoom[1]))
+        fig.savefig(sfilepath + savename + "OVERLAPSYMMyzoom" + str(yzoom[0])+"to"+str(yzoom[1]) +  ".png",facecolor=fig.get_facecolor(), edgecolor = 'none')
+        plt.close()
+    
 '''filepath = '/mnt/c/Users/Karen/Dropbox (WilsonLab)/WilsonLab Team Folder/Data/Karen/DotTransferSim/RawData/May15-test/fixedDeadtime70psto70nsPbS100ligs/fixedDeadtime70psto70nsPbS100ligsgnpwr23.g2.run/'
 file = "g2"
 savename = '/mnt/c/Users/Karen/Dropbox (WilsonLab)/WilsonLab Team Folder/Data/Karen/DotTransferSim/Figures/May15-test/fixedDeadtime70psto70nsPbS100ligs/practicenewpulsedfig'

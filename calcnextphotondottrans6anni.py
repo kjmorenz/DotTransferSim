@@ -70,6 +70,8 @@ def nextphotonss(lastphoton, sensitivity, nligands,
     # 
     # 3) SINGLE DIMER - could be fixed by building in the possibility of multiple
     # ligands trying to transfer to the same dot. This might be horribly slow.    
+
+    
     nextphoton = []
     '''params = [lastphoton, sensitivity, nligands,
                k_demission, k_fiss, k_trans, k_sem, k_tem, k_dexcitation, k_lexcitation, 

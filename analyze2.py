@@ -15,7 +15,7 @@ def isbf(file):
     return rval
 
 def analyze(filepath, filedir, fullfilename, numlines, order, mode, gnpwr, 
-            numbins, pulsebins, channels, makefig, makeafig, pulsed, picyzoom, reprate = 1):
+            numbins, pulsebins, channels, makefig, makeafig, pulsed, picyzoom, reprate = 1, deadtime = 70000):
     dfilepath = filepath + "RawData/" + filedir
     ffilepath = filepath + "Figures/" + filedir
     suffix = ".txt"
@@ -73,8 +73,9 @@ def analyze(filepath, filedir, fullfilename, numlines, order, mode, gnpwr,
             print(dfilepath+file+"/"+fileoutname+".g2.run")
             makeafig("g2", filename, [-1,-1], [-1,-1], 0, pulsed, filepath = filepath, filedir = filedir + file+"/", fileoutdir = fileoutname+".g2.run/", color = c)
         else:
-            npf.makepulsedfig(dfilepath+file+"/"+fileoutname+".g2.run/", "g2", ffilepath+file+"/", fileoutname, reprate = reprate, timespace = 1000)
-            npf.makepulsedfig(dfilepath+file+"/"+fileoutname+".g2.run/", "g2", ffilepath+file+"/", fileoutname+"zoom", reprate = reprate, timespace = 1000, xzoom = 2000)
+            npf.makepulsedfig(dfilepath+file+"/"+fileoutname+".g2.run/", "g2", ffilepath+file+"/", fileoutname, deadtime = deadtime, reprate = reprate, timespace = 1000)
+            npf.makepulsedfig(dfilepath+file+"/"+fileoutname+".g2.run/", "g2", ffilepath+file+"/", fileoutname, deadtime = deadtime, reprate = reprate, timespace = 1000, xzoom = 2000)
+            #npf.makepulsedfig(dfilepath, "g2", sfilepath, fileoutname+"250nszoom", reprate = reprate, timespace = 1000, xzoom = 100)
     
     os.chdir(dfilepath+file)
     

@@ -1,0 +1,1005 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Binding	rust_fastforward/setup.py	/^from setuptools_rust import RustExtension, Binding$/;"	kind:namespace	line:3
+Blinking	photon_correlation/Blinking.py	/^class Blinking(object):$/;"	kind:class	line:6
+Blinking.py	photon_correlation/Blinking.py	1;"	kind:file	line:1
+BytesIO	PLdecay.py	/^from io import BytesIO$/;"	kind:namespace	line:3
+BytesIO	PLdecay2.py	/^from io import BytesIO$/;"	kind:namespace	line:3
+BytesIO	newmakefigpulse.py	/^from io import BytesIO$/;"	kind:namespace	line:1
+CMRmap	photon_correlation/util.py	/^CMRmap = matplotlib.colors.ListedColormap($/;"	kind:variable	line:28
+Counts	photon_correlation/IDGN.py	/^class Counts(object):$/;"	kind:class	line:9
+Exponential	photon_correlation/Exponential.py	/^class Exponential:$/;"	kind:class	line:7
+Exponential.py	photon_correlation/Exponential.py	1;"	kind:file	line:1
+FLID	photon_correlation/FLID.py	/^class FLID(object):$/;"	kind:class	line:15
+FLID	photon_correlation/__init__.py	/^from .FLID import FLID$/;"	kind:namespace	line:3
+FLID.py	photon_correlation/FLID.py	1;"	kind:file	line:1
+FakeIniSection	photon_correlation/Picoquant.py	/^class FakeIniSection(object):$/;"	kind:class	line:11
+G1	photon_correlation/G1.py	/^class G1(GN):$/;"	kind:class	line:11
+G1	photon_correlation/__init__.py	/^from .G1 import G1$/;"	kind:namespace	line:4
+G1.py	photon_correlation/G1.py	1;"	kind:file	line:1
+G2.py	photon_correlation/G2.py	1;"	kind:file	line:1
+G2_T2	photon_correlation/G2.py	/^class G2_T2(GN):       $/;"	kind:class	line:322
+G2_T2	photon_correlation/__init__.py	/^from .G2 import G2_T2, G2_T3$/;"	kind:namespace	line:5
+G2_T3	photon_correlation/G2.py	/^class G2_T3(GN):$/;"	kind:class	line:34
+G2_T3	photon_correlation/__init__.py	/^from .G2 import G2_T2, G2_T3$/;"	kind:namespace	line:5
+G3.py	photon_correlation/G3.py	1;"	kind:file	line:1
+G3_T2	photon_correlation/G3.py	/^class G3_T2(GN):$/;"	kind:class	line:112
+G3_T2	photon_correlation/G4.py	/^class G3_T2(GN):$/;"	kind:class	line:133
+G3_T2	photon_correlation/__init__.py	/^from .G3 import G3_T2, G3_T3$/;"	kind:namespace	line:6
+G3_T3	photon_correlation/G3.py	/^class G3_T3(GN):$/;"	kind:class	line:10
+G3_T3	photon_correlation/__init__.py	/^from .G3 import G3_T2, G3_T3$/;"	kind:namespace	line:6
+G4.py	photon_correlation/G4.py	1;"	kind:file	line:1
+G4_T3	photon_correlation/G4.py	/^class G4_T3(GN):$/;"	kind:class	line:10
+G4_T3	photon_correlation/__init__.py	/^from .G4 import G4_T3$/;"	kind:namespace	line:7
+GN	photon_correlation/G1.py	/^from .GN import GN$/;"	kind:namespace	line:8
+GN	photon_correlation/G2.py	/^from .GN import GN$/;"	kind:namespace	line:28
+GN	photon_correlation/G3.py	/^from .GN import GN$/;"	kind:namespace	line:7
+GN	photon_correlation/G4.py	/^from .GN import GN$/;"	kind:namespace	line:7
+GN	photon_correlation/GN.py	/^class GN(object):$/;"	kind:class	line:7
+GN.py	photon_correlation/GN.py	1;"	kind:file	line:1
+Gaussian	photon_correlation/Gaussian.py	/^class Gaussian:$/;"	kind:class	line:3
+Gaussian	photon_correlation/__init__.py	/^from .Gaussian import Gaussian$/;"	kind:namespace	line:8
+Gaussian.py	photon_correlation/Gaussian.py	1;"	kind:file	line:1
+GaussianExponential	photon_correlation/GaussianExponential.py	/^class GaussianExponential:$/;"	kind:class	line:8
+GaussianExponential	photon_correlation/__init__.py	/^from .GaussianExponential import GaussianExponential$/;"	kind:namespace	line:9
+GaussianExponential.py	photon_correlation/GaussianExponential.py	1;"	kind:file	line:1
+IDGN	photon_correlation/IDGN.py	/^class IDGN(object):$/;"	kind:class	line:21
+IDGN	photon_correlation/__init__.py	/^from .IDGN import IDGN$/;"	kind:namespace	line:10
+IDGN.py	photon_correlation/IDGN.py	1;"	kind:file	line:1
+Intensity	photon_correlation/Intensity.py	/^class Intensity(object):$/;"	kind:class	line:17
+Intensity	photon_correlation/__init__.py	/^from .Intensity import Intensity$/;"	kind:namespace	line:13
+Intensity.py	photon_correlation/Intensity.py	1;"	kind:file	line:1
+Lifetime	photon_correlation/G1.py	/^from .Lifetime import Lifetime$/;"	kind:namespace	line:7
+Lifetime	photon_correlation/Lifetime.py	/^class Lifetime(object):$/;"	kind:class	line:14
+Lifetime	photon_correlation/__init__.py	/^from .Lifetime import Lifetime$/;"	kind:namespace	line:11
+Lifetime	photon_correlation/calculate.py	/^from .Lifetime import Lifetime$/;"	kind:namespace	line:11
+Lifetime.py	photon_correlation/Lifetime.py	1;"	kind:file	line:1
+Limits	photon_correlation/Limits.py	/^class Limits(object):$/;"	kind:class	line:1
+Limits	photon_correlation/__init__.py	/^from .Limits import Limits$/;"	kind:namespace	line:12
+Limits	photon_correlation/calculate.py	/^from .Limits import Limits$/;"	kind:namespace	line:10
+Limits.py	photon_correlation/Limits.py	1;"	kind:file	line:1
+MultiExponential	photon_correlation/Exponential.py	/^class MultiExponential:$/;"	kind:class	line:23
+NA	main.py	/^NA = 1.4$/;"	kind:variable	line:55
+NA	main100L.py	/^NA = 1.4$/;"	kind:variable	line:54
+NFcalc1	write2.py	/^import calcnextphotondottrans6NF as NFcalc1$/;"	kind:namespace	line:5
+NFcalc1a	write2.py	/^import calcnextphotondottrans6NFanni as NFcalc1a$/;"	kind:namespace	line:8
+Offsets	photon_correlation/Offsets.py	/^class Offsets(object):$/;"	kind:class	line:1
+Offsets	photon_correlation/__init__.py	/^from .Offsets import Offsets$/;"	kind:namespace	line:14
+Offsets.py	photon_correlation/Offsets.py	1;"	kind:file	line:1
+PLDecay	PLdecay.py	/^def PLDecay(filepath, filedir, fullfilename, savenam, mode, numbins, channels, printev = 1000000, reprate = 1, fontsize = 12, numlines = float('inf')):$/;"	kind:function	line:7
+PLDecay	PLdecay2.py	/^def PLDecay(filepath, filedir, fullfilename, savename, mode, numbins, channels, printev = 1000000, reprate = 1, fontsize = 12, numlines = float('inf')):$/;"	kind:function	line:7
+PLdecay.py	PLdecay.py	1;"	kind:file	line:1
+PLdecay2.py	PLdecay2.py	1;"	kind:file	line:1
+Photon	photon_correlation/Photon.py	/^class Photon(object):$/;"	kind:class	line:1
+Photon	photon_correlation/T2.py	/^from .Photon import Photon$/;"	kind:namespace	line:1
+Photon	photon_correlation/T3.py	/^from .Photon import Photon$/;"	kind:namespace	line:1
+Photon.py	photon_correlation/Photon.py	1;"	kind:file	line:1
+Picoquant	photon_correlation/Picoquant.py	/^class Picoquant(object):$/;"	kind:class	line:34
+Picoquant	photon_correlation/__init__.py	/^from .Picoquant import Picoquant$/;"	kind:namespace	line:15
+Picoquant	photon_correlation/calculate.py	/^from .Picoquant import Picoquant$/;"	kind:namespace	line:9
+Picoquant.py	photon_correlation/Picoquant.py	1;"	kind:file	line:1
+RustExtension	rust_fastforward/setup.py	/^from setuptools_rust import RustExtension, Binding$/;"	kind:namespace	line:3
+T2	photon_correlation/T2.py	/^class T2(Photon):$/;"	kind:class	line:3
+T2	photon_correlation/__init__.py	/^from .T2 import T2$/;"	kind:namespace	line:16
+T2.py	photon_correlation/T2.py	1;"	kind:file	line:1
+T3	photon_correlation/T3.py	/^class T3(Photon):$/;"	kind:class	line:3
+T3	photon_correlation/__init__.py	/^from .T3 import T3$/;"	kind:namespace	line:17
+T3.py	photon_correlation/T3.py	1;"	kind:file	line:1
+TD	photon_correlation/TD.py	/^class TD(object):$/;"	kind:class	line:34
+TD.py	photon_correlation/TD.py	1;"	kind:file	line:1
+__add__	photon_correlation/IDGN.py	/^    def __add__(self, other):$/;"	kind:member	line:14
+__add__	photon_correlation/Lifetime.py	/^    def __add__(self, other):$/;"	kind:member	line:35
+__all__	photon_correlation/__init__.py	/^__all__ = ["Exponential", "MultiExponential",$/;"	kind:variable	line:19
+__call__	photon_correlation/Exponential.py	/^    def __call__(self, x):$/;"	kind:member	line:12
+__call__	photon_correlation/Exponential.py	/^    def __call__(self, x):$/;"	kind:member	line:31
+__call__	photon_correlation/Gaussian.py	/^    def __call__(self, x):$/;"	kind:member	line:9
+__call__	photon_correlation/GaussianExponential.py	/^    def __call__(self, tau):$/;"	kind:member	line:21
+__delitem__	photon_correlation/GN.py	/^    def __delitem__(self, correlation):$/;"	kind:member	line:29
+__delitem__	photon_correlation/Intensity.py	/^    def __delitem__(self, channel):$/;"	kind:member	line:36
+__eq__	photon_correlation/T2.py	/^    def __eq__(self, other):$/;"	kind:member	line:11
+__eq__	photon_correlation/T3.py	/^    def __eq__(self, other):$/;"	kind:member	line:16
+__ge__	photon_correlation/T2.py	/^    def __ge__(self, other):$/;"	kind:member	line:24
+__ge__	photon_correlation/T3.py	/^    def __ge__(self, other):$/;"	kind:member	line:39
+__getitem__	photon_correlation/Exponential.py	/^    def __getitem__(self, index):$/;"	kind:member	line:40
+__getitem__	photon_correlation/GN.py	/^    def __getitem__(self, correlation):$/;"	kind:member	line:23
+__getitem__	photon_correlation/IDGN.py	/^    def __getitem__(self, intensity_bin):$/;"	kind:member	line:29
+__getitem__	photon_correlation/Intensity.py	/^    def __getitem__(self, channel):$/;"	kind:member	line:30
+__getitem__	photon_correlation/Offsets.py	/^    def __getitem__(self, index):$/;"	kind:member	line:8
+__gt__	photon_correlation/T2.py	/^    def __gt__(self, other):$/;"	kind:member	line:21
+__gt__	photon_correlation/T3.py	/^    def __gt__(self, other):$/;"	kind:member	line:33
+__init__	photon_correlation/Blinking.py	/^    def __init__(self, intensity):$/;"	kind:member	line:7
+__init__	photon_correlation/Exponential.py	/^    def __init__(self, magnitude, rate):$/;"	kind:member	line:8
+__init__	photon_correlation/Exponential.py	/^    def __init__(self, params):$/;"	kind:member	line:24
+__init__	photon_correlation/FLID.py	/^    def __init__(self, filename=None):$/;"	kind:member	line:16
+__init__	photon_correlation/GN.py	/^    def __init__(self, filename=None, stream=None,$/;"	kind:member	line:8
+__init__	photon_correlation/Gaussian.py	/^    def __init__(self, magnitude, sigma, mu):$/;"	kind:member	line:4
+__init__	photon_correlation/GaussianExponential.py	/^    def __init__(self, gaussian_magnitude, gaussian_sigma,$/;"	kind:member	line:15
+__init__	photon_correlation/IDGN.py	/^    def __init__(self, events, counts):$/;"	kind:member	line:10
+__init__	photon_correlation/IDGN.py	/^    def __init__(self, filename):$/;"	kind:member	line:22
+__init__	photon_correlation/Intensity.py	/^    def __init__(self, filename=None, mode="t3", times=list(), counts=dict()):$/;"	kind:member	line:21
+__init__	photon_correlation/Lifetime.py	/^    def __init__(self, counts, times=None, resolution=None):$/;"	kind:member	line:15
+__init__	photon_correlation/Limits.py	/^    def __init__(self, lower, upper, n_bins=1):$/;"	kind:member	line:2
+__init__	photon_correlation/Offsets.py	/^    def __init__(self, *offsets):$/;"	kind:member	line:2
+__init__	photon_correlation/Picoquant.py	/^    def __init__(self, filename):$/;"	kind:member	line:45
+__init__	photon_correlation/Picoquant.py	/^    def __init__(self, fp):$/;"	kind:member	line:15
+__init__	photon_correlation/T2.py	/^    def __init__(self, channel=None, time=None):$/;"	kind:member	line:4
+__init__	photon_correlation/T3.py	/^    def __init__(self, channel=None, pulse=None, time=None,$/;"	kind:member	line:4
+__init__	photon_correlation/TD.py	/^    def __init__(self, run_dir=None, filename=None, order=None):$/;"	kind:member	line:35
+__init__.py	photon_correlation/__init__.py	1;"	kind:file	line:1
+__init__.py	rust_fastforward/rust_fastforward/__init__.py	1;"	kind:file	line:1
+__iter__	photon_correlation/Exponential.py	/^    def __iter__(self):$/;"	kind:member	line:28
+__iter__	photon_correlation/GN.py	/^    def __iter__(self):$/;"	kind:member	line:35
+__iter__	photon_correlation/IDGN.py	/^    def __iter__(self):$/;"	kind:member	line:35
+__iter__	photon_correlation/Intensity.py	/^    def __iter__(self):$/;"	kind:member	line:39
+__iter__	photon_correlation/Lifetime.py	/^    def __iter__(self):$/;"	kind:member	line:50
+__iter__	photon_correlation/Offsets.py	/^    def __iter__(self):$/;"	kind:member	line:17
+__iter__	photon_correlation/Picoquant.py	/^    def __iter__(self):$/;"	kind:member	line:120
+__le__	photon_correlation/T2.py	/^    def __le__(self, other):$/;"	kind:member	line:18
+__le__	photon_correlation/T3.py	/^    def __le__(self, other):$/;"	kind:member	line:27
+__len__	photon_correlation/Exponential.py	/^    def __len__(self):$/;"	kind:member	line:37
+__len__	photon_correlation/GN.py	/^    def __len__(self):$/;"	kind:member	line:32
+__len__	photon_correlation/Intensity.py	/^    def __len__(self):$/;"	kind:member	line:43
+__len__	photon_correlation/Offsets.py	/^    def __len__(self):$/;"	kind:member	line:14
+__lt__	photon_correlation/T2.py	/^    def __lt__(self, other):$/;"	kind:member	line:15
+__lt__	photon_correlation/T3.py	/^    def __lt__(self, other):$/;"	kind:member	line:21
+__repr__	photon_correlation/T2.py	/^    def __repr__(self):$/;"	kind:member	line:8
+__repr__	photon_correlation/T3.py	/^    def __repr__(self):$/;"	kind:member	line:13
+__setitem__	photon_correlation/Exponential.py	/^    def __setitem__(self, index, value):$/;"	kind:member	line:43
+__setitem__	photon_correlation/GN.py	/^    def __setitem__(self, correlation, gn):$/;"	kind:member	line:26
+__setitem__	photon_correlation/IDGN.py	/^    def __setitem__(self, intensity_bin, counts):$/;"	kind:member	line:32
+__setitem__	photon_correlation/Intensity.py	/^    def __setitem__(self, channel, value):$/;"	kind:member	line:33
+__setitem__	photon_correlation/Offsets.py	/^    def __setitem__(self, index, offset):$/;"	kind:member	line:11
+__str__	photon_correlation/Exponential.py	/^    def __str__(self):$/;"	kind:member	line:15
+__str__	photon_correlation/Exponential.py	/^    def __str__(self):$/;"	kind:member	line:34
+__str__	photon_correlation/Gaussian.py	/^    def __str__(self):$/;"	kind:member	line:12
+__str__	photon_correlation/Limits.py	/^    def __str__(self):$/;"	kind:member	line:7
+__str__	photon_correlation/Offsets.py	/^    def __str__(self):$/;"	kind:member	line:5
+__sub__	photon_correlation/G1.py	/^    def __sub__(self, other):$/;"	kind:member	line:12
+__sub__	photon_correlation/Lifetime.py	/^    def __sub__(self, other):$/;"	kind:member	line:46
+a	sim.py	/^import analyze2 as a$/;"	kind:namespace	line:33
+add_to_axes	photon_correlation/G1.py	/^    def add_to_axes(self, ax, resolution=None):$/;"	kind:member	line:74
+add_to_axes	photon_correlation/Intensity.py	/^    def add_to_axes(self, ax):$/;"	kind:member	line:134
+add_to_axis	photon_correlation/G2.py	/^    def add_to_axis(self, ax, color):$/;"	kind:member	line:236
+addafterpulse	write.py	/^def addafterpulse(photons, darks, deadtime, afterpulse):$/;"	kind:function	line:27
+addafterpulse	write2.py	/^def addafterpulse(photons, darks, deadtime, afterpulse):$/;"	kind:function	line:31
+afterpulse	main.py	/^afterpulse = 0.0001 #percent of time a photon is emitted a deadtime after one is detected$/;"	kind:variable	line:61
+afterpulse	main100L.py	/^afterpulse = 0.0001 #percent of time a photon is emitted a deadtime after one is detected$/;"	kind:variable	line:60
+all_same	photon_correlation/Offsets.py	/^    def all_same(self):$/;"	kind:member	line:20
+allsemltallfiss	calcnextphotondottrans3mL.py	/^def allsemltallfiss(fisstime,semtime):$/;"	kind:function	line:94
+allsemltallfiss	calcnextphotondottrans4SEQmL.py	/^def allsemltallfiss(fisstime,semtime):$/;"	kind:function	line:97
+allsemltallfiss	calcnextphotondottrans4mL.py	/^def allsemltallfiss(fisstime,semtime):$/;"	kind:function	line:96
+allsemltallfiss	calcnextphotondottrans4v2mL.py	/^def allsemltallfiss(fisstime,semtime):$/;"	kind:function	line:94
+allsemltallfiss	calcnextphotondottrans4v3mL.py	/^def allsemltallfiss(fisstime,semtime):$/;"	kind:function	line:95
+allsemltallfiss	calcnextphotondottrans5SEQmL.py	/^def allsemltallfiss(fisstime,semtime):$/;"	kind:function	line:95
+allsemltallfiss	calcnextphotondottrans5mL.py	/^def allsemltallfiss(fisstime,semtime):$/;"	kind:function	line:90
+allsemltallfiss	calcnextphotondottrans6mL.py	/^def allsemltallfiss(fisstime,semtime):$/;"	kind:function	line:105
+allsemltallfiss	calcnextphotondottrans6mLanni.py	/^def allsemltallfiss(fisstime,semtime):$/;"	kind:function	line:72
+allsemltallfiss	calcnextphotondottrans6mLcts.py	/^def allsemltallfiss(fisstime,semtime):$/;"	kind:function	line:95
+alltransgttemtime	calcnextphotondottrans3mL.py	/^def alltransgttemtime(transtime, temtime):$/;"	kind:function	line:73
+alltransgttemtime	calcnextphotondottrans4SEQmL.py	/^def alltransgttemtime(transtime, temtime):$/;"	kind:function	line:76
+alltransgttemtime	calcnextphotondottrans4mL.py	/^def alltransgttemtime(transtime, temtime):$/;"	kind:function	line:75
+alltransgttemtime	calcnextphotondottrans4v2mL.py	/^def alltransgttemtime(transtime, temtime):$/;"	kind:function	line:73
+alltransgttemtime	calcnextphotondottrans4v3mL.py	/^def alltransgttemtime(transtime, temtime):$/;"	kind:function	line:74
+alltransgttemtime	calcnextphotondottrans5SEQmL.py	/^def alltransgttemtime(transtime, temtime):$/;"	kind:function	line:79
+alltransgttemtime	calcnextphotondottrans5mL.py	/^def alltransgttemtime(transtime, temtime):$/;"	kind:function	line:74
+alltransgttemtime	calcnextphotondottrans6mL.py	/^def alltransgttemtime(transtime, temtime):$/;"	kind:function	line:82
+alltransgttemtime	calcnextphotondottrans6mLanni.py	/^def alltransgttemtime(transtime, temtime):$/;"	kind:function	line:62
+alltransgttemtime	calcnextphotondottrans6mLcts.py	/^def alltransgttemtime(transtime, temtime):$/;"	kind:function	line:79
+analyze	analyze2.py	/^def analyze(filepath, filedir, fullfilename, numlines, order, mode, gnpwr, $/;"	kind:function	line:17
+analyze	main.py	/^analyze = 1$/;"	kind:variable	line:5
+analyze	main100L.py	/^analyze = 1$/;"	kind:variable	line:5
+analyze2.py	analyze2.py	1;"	kind:file	line:1
+antibunch	main.py	/^antibunch = 1$/;"	kind:variable	line:9
+antibunch	main100L.py	/^antibunch = 1$/;"	kind:variable	line:9
+apply_background	photon_correlation/Lifetime.py	/^        def apply_background(count):$/;"	kind:function	line:279
+apply_t3_time_offsets	photon_correlation/calculate.py	/^def apply_t3_time_offsets(photons, time_offsets, repetition_rate):$/;"	kind:function	line:15
+area	photon_correlation/Exponential.py	/^    def area(self):$/;"	kind:member	line:19
+areas	photon_correlation/Exponential.py	/^    def areas(self):$/;"	kind:member	line:58
+autocorrelation	photon_correlation/G2.py	/^    def autocorrelation(self):$/;"	kind:member	line:115
+autocorrelation	photon_correlation/G2.py	/^    def autocorrelation(self):$/;"	kind:member	line:345
+autocorrelation	photon_correlation/GN.py	/^    def autocorrelation(self):$/;"	kind:member	line:62
+beamdiam	main.py	/^beamdiam = 5000000 #5 mm in nm$/;"	kind:variable	line:46
+beamdiam	main100L.py	/^beamdiam = 5000000 #5 mm in nm$/;"	kind:variable	line:45
+bin	photon_correlation/TD.py	/^    def bin(self, magnitude_bins, dst_filename):$/;"	kind:member	line:91
+binding	rust_fastforward/setup.py	/^                        binding=Binding.RustCPython)],$/;"	kind:variable	line:9
+bisect	photon_correlation/Intensity.py	/^import bisect$/;"	kind:namespace	line:5
+bisect	photon_correlation/Lifetime.py	/^import bisect$/;"	kind:namespace	line:1
+bisect	photon_correlation/TD.py	/^import bisect$/;"	kind:namespace	line:4
+blinking	photon_correlation/Intensity.py	/^    def blinking(self):$/;"	kind:member	line:220
+bz2	photon_correlation/FLID.py	/^import bz2$/;"	kind:namespace	line:5
+bz2	photon_correlation/GN.py	/^import bz2$/;"	kind:namespace	line:2
+bz2	photon_correlation/IDGN.py	/^import bz2$/;"	kind:namespace	line:1
+bz2	photon_correlation/Intensity.py	/^import bz2$/;"	kind:namespace	line:2
+bz2	photon_correlation/TD.py	/^import bz2$/;"	kind:namespace	line:8
+calc1	write.py	/^import calcnextphotondottrans6 as calc1$/;"	kind:namespace	line:3
+calc1	write2.py	/^import calcnextphotondottrans6 as calc1$/;"	kind:namespace	line:3
+calc1a	write2.py	/^import calcnextphotondottrans6anni as calc1a$/;"	kind:namespace	line:6
+calcnextphotondottrans-v1notesplusv2stuff.py	calcnextphotondottrans-v1notesplusv2stuff.py	1;"	kind:file	line:1
+calcnextphotondottrans.py	calcnextphotondottrans.py	1;"	kind:file	line:1
+calcnextphotondottrans2.py	calcnextphotondottrans2.py	1;"	kind:file	line:1
+calcnextphotondottrans3.py	calcnextphotondottrans3.py	1;"	kind:file	line:1
+calcnextphotondottrans3mL.py	calcnextphotondottrans3mL.py	1;"	kind:file	line:1
+calcnextphotondottrans4.py	calcnextphotondottrans4.py	1;"	kind:file	line:1
+calcnextphotondottrans4SEQ.py	calcnextphotondottrans4SEQ.py	1;"	kind:file	line:1
+calcnextphotondottrans4SEQmL.py	calcnextphotondottrans4SEQmL.py	1;"	kind:file	line:1
+calcnextphotondottrans4mL.py	calcnextphotondottrans4mL.py	1;"	kind:file	line:1
+calcnextphotondottrans4v2mL.py	calcnextphotondottrans4v2mL.py	1;"	kind:file	line:1
+calcnextphotondottrans4v3mL.py	calcnextphotondottrans4v3mL.py	1;"	kind:file	line:1
+calcnextphotondottrans5SEQmL.py	calcnextphotondottrans5SEQmL.py	1;"	kind:file	line:1
+calcnextphotondottrans5mL.py	calcnextphotondottrans5mL.py	1;"	kind:file	line:1
+calcnextphotondottrans6.py	calcnextphotondottrans6.py	1;"	kind:file	line:1
+calcnextphotondottrans6NF.py	calcnextphotondottrans6NF.py	1;"	kind:file	line:1
+calcnextphotondottrans6NFanni.py	calcnextphotondottrans6NFanni.py	1;"	kind:file	line:1
+calcnextphotondottrans6anni.py	calcnextphotondottrans6anni.py	1;"	kind:file	line:1
+calcnextphotondottrans6mL.py	calcnextphotondottrans6mL.py	1;"	kind:file	line:1
+calcnextphotondottrans6mLanni.py	calcnextphotondottrans6mLanni.py	1;"	kind:file	line:1
+calcnextphotondottrans6mLcts.py	calcnextphotondottrans6mLcts.py	1;"	kind:file	line:1
+calcnextphotondottransSEQ.py	calcnextphotondottransSEQ.py	1;"	kind:file	line:1
+calculate	photon_correlation/__init__.py	/^from . import calculate$/;"	kind:namespace	line:1
+calculate.py	photon_correlation/calculate.py	1;"	kind:file	line:1
+center_side_ratio	photon_correlation/G2.py	/^    def center_side_ratio(self, center=t3_center, side=t3_side):$/;"	kind:member	line:95
+center_side_ratios	photon_correlation/G2.py	/^    def center_side_ratios(self, center=t3_center, side=t3_side):$/;"	kind:member	line:80
+channels	main.py	/^channels = 2$/;"	kind:variable	line:69
+channels	main100L.py	/^channels = 2$/;"	kind:variable	line:68
+channels	photon_correlation/Intensity.py	/^    def channels(self):$/;"	kind:member	line:62
+channels	photon_correlation/Picoquant.py	/^    def channels(self):$/;"	kind:member	line:76
+cm	photon_correlation/util.py	/^import matplotlib.cm as cm$/;"	kind:namespace	line:11
+coarse_binning	photon_correlation/TD.py	/^    def coarse_binning(self, n_bins=20):$/;"	kind:member	line:81
+collections	photon_correlation/Intensity.py	/^import collections$/;"	kind:namespace	line:4
+collections	photon_correlation/util.py	/^import collections$/;"	kind:namespace	line:6
+colors	photon_correlation/util.py	/^import matplotlib.colors$/;"	kind:namespace	line:10
+combine	photon_correlation/G1.py	/^    def combine(self):$/;"	kind:member	line:60
+combine	photon_correlation/G3.py	/^    def combine(self):$/;"	kind:member	line:92
+combine	photon_correlation/G4.py	/^    def combine(self):$/;"	kind:member	line:113
+common_name	photon_correlation/util.py	/^def common_name(filename):$/;"	kind:function	line:121
+concentration	main.py	/^concentration = 2*10**(-8)$/;"	kind:variable	line:36
+concentration	main100L.py	/^concentration = 2*10**(-10) $/;"	kind:variable	line:35
+configparser	photon_correlation/Picoquant.py	/^    import ConfigParser as configparser$/;"	kind:namespace	line:6
+configparser	photon_correlation/Picoquant.py	/^    import configparser$/;"	kind:namespace	line:2
+copy	photon_correlation/IDGN.py	/^import copy$/;"	kind:namespace	line:2
+count	PLdecay.py	/^                        count = count + 1$/;"	kind:variable	line:105
+count	PLdecay.py	/^                    count = count + 1$/;"	kind:variable	line:74
+count	PLdecay.py	/^count = 0$/;"	kind:variable	line:65
+count	PLdecay2.py	/^                        count = count + 1$/;"	kind:variable	line:107
+count	PLdecay2.py	/^                    count = count + 1$/;"	kind:variable	line:76
+count	PLdecay2.py	/^count = 0$/;"	kind:variable	line:67
+count	main.py	/^count = 0$/;"	kind:variable	line:78
+cross_correlations	photon_correlation/GN.py	/^    def cross_correlations(self):$/;"	kind:member	line:59
+csv	photon_correlation/FLID.py	/^import csv$/;"	kind:namespace	line:4
+csv	photon_correlation/G1.py	/^import csv$/;"	kind:namespace	line:1
+csv	photon_correlation/G2.py	/^import csv$/;"	kind:namespace	line:1
+csv	photon_correlation/G3.py	/^import csv$/;"	kind:namespace	line:1
+csv	photon_correlation/G4.py	/^import csv$/;"	kind:namespace	line:1
+csv	photon_correlation/GN.py	/^import csv$/;"	kind:namespace	line:1
+csv	photon_correlation/IDGN.py	/^import csv$/;"	kind:namespace	line:3
+csv	photon_correlation/Intensity.py	/^import csv$/;"	kind:namespace	line:3
+csv	photon_correlation/Picoquant.py	/^import csv$/;"	kind:namespace	line:9
+csv	photon_correlation/TD.py	/^import csv$/;"	kind:namespace	line:1
+csv	photon_correlation/calculate.py	/^import csv$/;"	kind:namespace	line:1
+d	calcnextphotondottrans-v1notesplusv2stuff.py	/^import diffuse as d$/;"	kind:namespace	line:4
+d	calcnextphotondottrans.py	/^import diffuse as d$/;"	kind:namespace	line:4
+d	calcnextphotondottrans2.py	/^import diffuse as d$/;"	kind:namespace	line:4
+d	calcnextphotondottrans3.py	/^import diffuse as d$/;"	kind:namespace	line:4
+d	calcnextphotondottrans3mL.py	/^import diffuse as d$/;"	kind:namespace	line:4
+d	calcnextphotondottrans4.py	/^import diffuse as d$/;"	kind:namespace	line:4
+d	calcnextphotondottrans4SEQ.py	/^import diffuse as d$/;"	kind:namespace	line:4
+d	calcnextphotondottrans4SEQmL.py	/^import diffuse as d$/;"	kind:namespace	line:4
+d	calcnextphotondottrans4mL.py	/^import diffuse as d$/;"	kind:namespace	line:4
+d	calcnextphotondottrans4v2mL.py	/^import diffuse as d$/;"	kind:namespace	line:4
+d	calcnextphotondottrans4v3mL.py	/^import diffuse as d$/;"	kind:namespace	line:4
+d	calcnextphotondottrans5SEQmL.py	/^import diffuse as d$/;"	kind:namespace	line:4
+d	calcnextphotondottrans5mL.py	/^import diffuse as d$/;"	kind:namespace	line:4
+d	calcnextphotondottrans6.py	/^import diffuse as d$/;"	kind:namespace	line:4
+d	calcnextphotondottrans6NF.py	/^import diffuse as d$/;"	kind:namespace	line:4
+d	calcnextphotondottrans6NFanni.py	/^import diffuse as d$/;"	kind:namespace	line:4
+d	calcnextphotondottrans6anni.py	/^import diffuse as d$/;"	kind:namespace	line:4
+d	calcnextphotondottrans6mL.py	/^import diffuse as d$/;"	kind:namespace	line:5
+d	calcnextphotondottrans6mLanni.py	/^import diffuse as d$/;"	kind:namespace	line:5
+d	calcnextphotondottrans6mLcts.py	/^import diffuse as d$/;"	kind:namespace	line:4
+d	calcnextphotondottransSEQ.py	/^import diffuse as d$/;"	kind:namespace	line:4
+d	write.py	/^import diffuse as d$/;"	kind:namespace	line:2
+d	write2.py	/^import diffuse as d$/;"	kind:namespace	line:2
+dabsXsec	main.py	/^dabsXsec = 7.180616773321853*10**(-9)# per emitter numabs'd = phperpulse*absXsec*numEms - this is reasonable based on absXsec for CdSe is 550000*r^3\/cm (from Bawendi paper Ruvim sent me)$/;"	kind:variable	line:39
+dabsXsec	main100L.py	/^dabsXsec = 7.180616773321853*10**(-9)# per emitter numabs'd = phperpulse*absXsec*numEms - this is reasonable based on absXsec for CdSe is 550000*r^3\/cm (from Bawendi paper Ruvim sent me)$/;"	kind:variable	line:38
+darkcounts	calcnextphotondottrans-v1notesplusv2stuff.py	/^def darkcounts(avtime, length, lastdc, deadtime):$/;"	kind:function	line:274
+darkcounts	calcnextphotondottrans.py	/^def darkcounts(avtime, length, lastdc, deadtime):$/;"	kind:function	line:309
+darkcounts	calcnextphotondottrans2.py	/^def darkcounts(avtime, length, lastdc, deadtime):$/;"	kind:function	line:276
+darkcounts	calcnextphotondottrans3.py	/^def darkcounts(avtime, length, lastdc, deadtime):$/;"	kind:function	line:314
+darkcounts	calcnextphotondottrans3mL.py	/^def darkcounts(avtime, length, lastdc, deadtime):$/;"	kind:function	line:348
+darkcounts	calcnextphotondottrans4.py	/^def darkcounts(avtime, length, lastdc, deadtime):$/;"	kind:function	line:250
+darkcounts	calcnextphotondottrans4SEQ.py	/^def darkcounts(avtime, length, lastdc, deadtime):$/;"	kind:function	line:258
+darkcounts	calcnextphotondottrans4SEQmL.py	/^def darkcounts(avtime, length, lastdc, deadtime):$/;"	kind:function	line:311
+darkcounts	calcnextphotondottrans4mL.py	/^def darkcounts(avtime, length, lastdc, deadtime):$/;"	kind:function	line:310
+darkcounts	calcnextphotondottrans4v2mL.py	/^def darkcounts(avtime, length, lastdc, deadtime):$/;"	kind:function	line:300
+darkcounts	calcnextphotondottrans4v3mL.py	/^def darkcounts(avtime, length, lastdc, deadtime):$/;"	kind:function	line:301
+darkcounts	calcnextphotondottrans5SEQmL.py	/^def darkcounts(avtime, length, lastdc, deadtime):$/;"	kind:function	line:301
+darkcounts	calcnextphotondottrans5mL.py	/^def darkcounts(avtime, length, lastdc, deadtime):$/;"	kind:function	line:301
+darkcounts	calcnextphotondottransSEQ.py	/^def darkcounts(avtime, length, lastdc, deadtime):$/;"	kind:function	line:269
+darkcounts	main.py	/^darkcounts = 100 #s^-1$/;"	kind:variable	line:58
+darkcounts	main100L.py	/^darkcounts = 100 #s^-1$/;"	kind:variable	line:57
+datetime	photon_correlation/TD.py	/^import datetime$/;"	kind:namespace	line:7
+deadtime	main.py	/^deadtime = 70000 #70 ns in ps$/;"	kind:variable	line:60
+deadtime	main100L.py	/^deadtime = 70#70000 #70 ns in ps$/;"	kind:variable	line:59
+deltransgttem	calcnextphotondottrans3mL.py	/^def deltransgttem(transtime,temtime):$/;"	kind:function	line:79
+deltransgttem	calcnextphotondottrans4SEQmL.py	/^def deltransgttem(transtime,temtime):$/;"	kind:function	line:82
+deltransgttem	calcnextphotondottrans4mL.py	/^def deltransgttem(transtime,temtime):$/;"	kind:function	line:81
+deltransgttem	calcnextphotondottrans4v2mL.py	/^def deltransgttem(transtime,temtime):$/;"	kind:function	line:79
+deltransgttem	calcnextphotondottrans4v3mL.py	/^def deltransgttem(transtime,temtime):$/;"	kind:function	line:80
+deltransgttem	calcnextphotondottrans5SEQmL.py	/^def deltransgttem(transtime,temtime):$/;"	kind:function	line:85
+deltransgttem	calcnextphotondottrans5mL.py	/^def deltransgttem(transtime,temtime):$/;"	kind:function	line:80
+deltransgttem	calcnextphotondottrans6mL.py	/^def deltransgttem(transtime, temtime):$/;"	kind:function	line:101
+deltransgttem	calcnextphotondottrans6mLanni.py	/^def deltransgttem(transtime, temtime):$/;"	kind:function	line:68
+deltransgttem	calcnextphotondottrans6mLcts.py	/^def deltransgttem(transtime,temtime):$/;"	kind:function	line:85
+deltransgttem_helper	calcnextphotondottrans6mL.py	/^from rust_fastforward import fastforward, deltransgttem_helper$/;"	kind:namespace	line:7
+deltransgttem_helper	calcnextphotondottrans6mLanni.py	/^from rust_fastforward import fastforward, deltransgttem_helper$/;"	kind:namespace	line:7
+diffuse	diffuse.py	/^def diffuse(diffouttime, Ems):$/;"	kind:function	line:2
+diffuse	main.py	/^diffuse = 1$/;"	kind:variable	line:8
+diffuse	main100L.py	/^diffuse = 0$/;"	kind:variable	line:8
+diffuse.py	diffuse.py	1;"	kind:file	line:1
+dot_index	photon_correlation/util.py	/^def dot_index(dot, dots_dict):$/;"	kind:function	line:248
+dot_number	photon_correlation/util.py	/^def dot_number(filename):$/;"	kind:function	line:81
+dt	photon_correlation/Blinking.py	/^    def dt(self):$/;"	kind:member	line:12
+dt	photon_correlation/Intensity.py	/^    def dt(self):$/;"	kind:member	line:59
+effload	newmakefigpulse.py	/^def effload(filepath,file,printevery,npulses,time,trep):$/;"	kind:function	line:26
+emwavelength	main.py	/^emwavelength = 815$/;"	kind:variable	line:30
+emwavelength	main100L.py	/^emwavelength = 815$/;"	kind:variable	line:29
+endsigcts	main.py	/^endsigcts = 10000000$/;"	kind:variable	line:18
+endtime	main.py	/^endtime = 300*10**12 #ps #10**15 = 16.6 min$/;"	kind:variable	line:21
+endtime	main100L.py	/^endtime = 3*10**14 #ps$/;"	kind:variable	line:20
+error	photon_correlation/Lifetime.py	/^        def error(p):$/;"	kind:function	line:206
+error	photon_correlation/Lifetime.py	/^        def error(params):$/;"	kind:function	line:172
+eta	main.py	/^eta = 8.9 * 10**(-13) # kg\/nm s - dynamic viscosity of solvent (water)$/;"	kind:variable	line:33
+eta	main100L.py	/^eta = 8.9 * 10**(-13) # kg\/nm s - dynamic viscosity of solvent (water)$/;"	kind:variable	line:32
+excitects	calcnextphotondottrans-v1notesplusv2stuff.py	/^def excitects(k_ex, probex, nextem, taurep):$/;"	kind:function	line:56
+excitects	calcnextphotondottrans.py	/^def excitects(k_ex, probex, nextem, taurep):$/;"	kind:function	line:56
+excitects	calcnextphotondottrans3.py	/^def excitects(k_ex, probex, nextem, taurep):$/;"	kind:function	line:56
+excitects	calcnextphotondottrans3mL.py	/^def excitects(k_ex, probex, nextem, taurep):$/;"	kind:function	line:56
+excitects	calcnextphotondottrans4.py	/^def excitects(k_ex, probex, nextem, taurep):$/;"	kind:function	line:56
+excitects	calcnextphotondottrans4SEQ.py	/^def excitects(k_ex, probex, nextem, taurep):$/;"	kind:function	line:56
+excitects	calcnextphotondottrans4SEQmL.py	/^def excitects(k_ex, probex, nextem, taurep):$/;"	kind:function	line:56
+excitects	calcnextphotondottrans4mL.py	/^def excitects(k_ex, probex, nextem, taurep):$/;"	kind:function	line:56
+excitects	calcnextphotondottrans4v2mL.py	/^def excitects(k_ex, probex, nextem, taurep):$/;"	kind:function	line:56
+excitects	calcnextphotondottrans4v3mL.py	/^def excitects(k_ex, probex, nextem, taurep):$/;"	kind:function	line:56
+excitects	calcnextphotondottrans5SEQmL.py	/^def excitects(k_ex, probex, nextem, taurep):$/;"	kind:function	line:56
+excitects	calcnextphotondottrans5mL.py	/^def excitects(k_ex, probex, nextem, taurep):$/;"	kind:function	line:56
+excitects	calcnextphotondottrans6.py	/^def excitects(k_ex, probex, nextem, taurep):$/;"	kind:function	line:56
+excitects	calcnextphotondottrans6NF.py	/^def excitects(k_ex, probex, nextem, taurep):$/;"	kind:function	line:56
+excitects	calcnextphotondottrans6NFanni.py	/^def excitects(k_ex, probex, nextem, taurep):$/;"	kind:function	line:56
+excitects	calcnextphotondottrans6anni.py	/^def excitects(k_ex, probex, nextem, taurep):$/;"	kind:function	line:56
+excitects	calcnextphotondottrans6mL.py	/^def excitects(k_ex, probex, nextem, taurep):$/;"	kind:function	line:59
+excitects	calcnextphotondottrans6mLanni.py	/^def excitects(k_ex, probex, nextem, taurep):$/;"	kind:function	line:59
+excitects	calcnextphotondottrans6mLcts.py	/^def excitects(k_ex, probex, nextem, taurep):$/;"	kind:function	line:56
+excitects	calcnextphotondottransSEQ.py	/^def excitects(k_ex, probex, nextem, taurep):$/;"	kind:function	line:56
+excitepulsed	calcnextphotondottrans-v1notesplusv2stuff.py	/^def excitepulsed(k_ex, probex, nextem, taurep):$/;"	kind:function	line:53
+excitepulsed	calcnextphotondottrans.py	/^def excitepulsed(k_ex, probex, nextem, taurep):$/;"	kind:function	line:53
+excitepulsed	calcnextphotondottrans3.py	/^def excitepulsed(k_ex, probex, nextem, taurep):$/;"	kind:function	line:53
+excitepulsed	calcnextphotondottrans3mL.py	/^def excitepulsed(k_ex, probex, nextem, taurep):$/;"	kind:function	line:53
+excitepulsed	calcnextphotondottrans4.py	/^def excitepulsed(k_ex, probex, nextem, taurep):$/;"	kind:function	line:53
+excitepulsed	calcnextphotondottrans4SEQ.py	/^def excitepulsed(k_ex, probex, nextem, taurep):$/;"	kind:function	line:53
+excitepulsed	calcnextphotondottrans4SEQmL.py	/^def excitepulsed(k_ex, probex, nextem, taurep):$/;"	kind:function	line:53
+excitepulsed	calcnextphotondottrans4mL.py	/^def excitepulsed(k_ex, probex, nextem, taurep):$/;"	kind:function	line:53
+excitepulsed	calcnextphotondottrans4v2mL.py	/^def excitepulsed(k_ex, probex, nextem, taurep):$/;"	kind:function	line:53
+excitepulsed	calcnextphotondottrans4v3mL.py	/^def excitepulsed(k_ex, probex, nextem, taurep):$/;"	kind:function	line:53
+excitepulsed	calcnextphotondottrans5SEQmL.py	/^def excitepulsed(k_ex, probex, nextem, taurep):$/;"	kind:function	line:53
+excitepulsed	calcnextphotondottrans5mL.py	/^def excitepulsed(k_ex, probex, nextem, taurep):$/;"	kind:function	line:53
+excitepulsed	calcnextphotondottrans6.py	/^def excitepulsed(k_ex, probex, nextem, taurep):$/;"	kind:function	line:53
+excitepulsed	calcnextphotondottrans6NF.py	/^def excitepulsed(k_ex, probex, nextem, taurep):$/;"	kind:function	line:53
+excitepulsed	calcnextphotondottrans6NFanni.py	/^def excitepulsed(k_ex, probex, nextem, taurep):$/;"	kind:function	line:53
+excitepulsed	calcnextphotondottrans6anni.py	/^def excitepulsed(k_ex, probex, nextem, taurep):$/;"	kind:function	line:53
+excitepulsed	calcnextphotondottrans6mL.py	/^def excitepulsed(k_ex, probex, nextem, taurep):$/;"	kind:function	line:56
+excitepulsed	calcnextphotondottrans6mLanni.py	/^def excitepulsed(k_ex, probex, nextem, taurep):$/;"	kind:function	line:56
+excitepulsed	calcnextphotondottrans6mLcts.py	/^def excitepulsed(k_ex, probex, nextem, taurep):$/;"	kind:function	line:53
+excitepulsed	calcnextphotondottransSEQ.py	/^def excitepulsed(k_ex, probex, nextem, taurep):$/;"	kind:function	line:53
+exponential_fit	photon_correlation/Lifetime.py	/^    def exponential_fit(self,$/;"	kind:member	line:135
+f	PLdecay.py	/^                            f = f + "CdSe"$/;"	kind:variable	line:113
+f	PLdecay.py	/^                            f = f + "DIFF"$/;"	kind:variable	line:120
+f	PLdecay.py	/^                            f = f + "PbS"$/;"	kind:variable	line:115
+f	PLdecay.py	/^                            f = f + "conc"$/;"	kind:variable	line:108
+f	PLdecay.py	/^                            f = f + "dilute"$/;"	kind:variable	line:110
+f	PLdecay.py	/^                        f = f + "CdSe"$/;"	kind:variable	line:82
+f	PLdecay.py	/^                        f = f + "DIFF"$/;"	kind:variable	line:89
+f	PLdecay.py	/^                        f = f + "PbS"$/;"	kind:variable	line:84
+f	PLdecay.py	/^                        f = f + "conc"$/;"	kind:variable	line:77
+f	PLdecay.py	/^                        f = f + "dilute"$/;"	kind:variable	line:79
+f	PLdecay.py	/^                        f = f + "lp" + str(laserpwr)$/;"	kind:variable	line:122
+f	PLdecay.py	/^                        f = f + str(nligands) + "ligs"$/;"	kind:variable	line:117
+f	PLdecay.py	/^                        f = filenames[0]$/;"	kind:variable	line:104
+f	PLdecay.py	/^                    f = f + str(nligands) + "ligs"$/;"	kind:variable	line:86
+f	PLdecay.py	/^                    f = filenames[0]$/;"	kind:variable	line:73
+f	PLdecay2.py	/^                            f = f + "CdSe"$/;"	kind:variable	line:115
+f	PLdecay2.py	/^                            f = f + "DIFF"$/;"	kind:variable	line:122
+f	PLdecay2.py	/^                            f = f + "PbS"$/;"	kind:variable	line:117
+f	PLdecay2.py	/^                            f = f + "conc"$/;"	kind:variable	line:110
+f	PLdecay2.py	/^                            f = f + "dilute"$/;"	kind:variable	line:112
+f	PLdecay2.py	/^                        f = f + "CdSe"$/;"	kind:variable	line:84
+f	PLdecay2.py	/^                        f = f + "DIFF"$/;"	kind:variable	line:91
+f	PLdecay2.py	/^                        f = f + "PbS"$/;"	kind:variable	line:86
+f	PLdecay2.py	/^                        f = f + "conc"$/;"	kind:variable	line:79
+f	PLdecay2.py	/^                        f = f + "dilute"$/;"	kind:variable	line:81
+f	PLdecay2.py	/^                        f = f + "lp" + str(laserpwr)$/;"	kind:variable	line:124
+f	PLdecay2.py	/^                        f = f + str(nligands) + "ligs"$/;"	kind:variable	line:119
+f	PLdecay2.py	/^                        f = filenames[0]$/;"	kind:variable	line:106
+f	PLdecay2.py	/^                    f = f + str(nligands) + "ligs"$/;"	kind:variable	line:88
+f	PLdecay2.py	/^                    f = filenames[0]$/;"	kind:variable	line:75
+f	main.py	/^                            f = f + "CdSe"$/;"	kind:variable	line:89
+f	main.py	/^                            f = f + "DIFF"$/;"	kind:variable	line:94
+f	main.py	/^                            f = f + "NOFISS"$/;"	kind:variable	line:98
+f	main.py	/^                            f = f + "PbS"$/;"	kind:variable	line:91
+f	main.py	/^                            f = f + "anni"$/;"	kind:variable	line:96
+f	main.py	/^                        f = f + str(nligands) + "ligs"$/;"	kind:variable	line:92
+f	main.py	/^                        f = filenames[0]$/;"	kind:variable	line:87
+f	main.py	/^f = filenames[0]$/;"	kind:variable	line:77
+factorial	photon_correlation/util.py	/^def factorial(n):$/;"	kind:function	line:69
+fake_ini_section	photon_correlation/Picoquant.py	/^def fake_ini_section(text, section="header"):$/;"	kind:function	line:28
+fastforward	calcnextphotondottrans3mL.py	/^def fastforward(transtime, nextem, temtime, k_trans, factor):$/;"	kind:function	line:66
+fastforward	calcnextphotondottrans4SEQmL.py	/^def fastforward(transtime, nextem, temtime, k_trans, factor):$/;"	kind:function	line:69
+fastforward	calcnextphotondottrans4mL.py	/^def fastforward(transtime, nextem, temtime, k_trans, factor):$/;"	kind:function	line:68
+fastforward	calcnextphotondottrans4v2mL.py	/^def fastforward(transtime, nextem, temtime, k_trans, factor):$/;"	kind:function	line:66
+fastforward	calcnextphotondottrans4v3mL.py	/^def fastforward(transtime, nextem, temtime, k_trans, factor):$/;"	kind:function	line:68
+fastforward	calcnextphotondottrans5SEQmL.py	/^def fastforward(transtime, nextem, temtime, k_trans, factor):$/;"	kind:function	line:73
+fastforward	calcnextphotondottrans5mL.py	/^def fastforward(transtime, nextem, temtime, k_trans, factor):$/;"	kind:function	line:68
+fastforward	calcnextphotondottrans6mL.py	/^from rust_fastforward import fastforward, deltransgttem_helper$/;"	kind:namespace	line:7
+fastforward	calcnextphotondottrans6mLanni.py	/^from rust_fastforward import fastforward, deltransgttem_helper$/;"	kind:namespace	line:7
+fastforward	calcnextphotondottrans6mLcts.py	/^def fastforward(transtime, nextem, temtime, k_trans, factor, f):$/;"	kind:function	line:73
+ff	calcnextphotondottrans-v1notesplusv2stuff.py	/^def ff(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:59
+ff	calcnextphotondottrans.py	/^def ff(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:59
+ff	calcnextphotondottrans3.py	/^def ff(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:59
+ff	calcnextphotondottrans3mL.py	/^def ff(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:59
+ff	calcnextphotondottrans4.py	/^def ff(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:59
+ff	calcnextphotondottrans4SEQ.py	/^def ff(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:59
+ff	calcnextphotondottrans4SEQmL.py	/^def ff(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:59
+ff	calcnextphotondottrans4mL.py	/^def ff(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:59
+ff	calcnextphotondottrans4v2mL.py	/^def ff(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:59
+ff	calcnextphotondottrans4v3mL.py	/^def ff(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:59
+ff	calcnextphotondottrans5SEQmL.py	/^def ff(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:59
+ff	calcnextphotondottrans5mL.py	/^def ff(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:59
+ff	calcnextphotondottrans6.py	/^def ff(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:59
+ff	calcnextphotondottrans6NF.py	/^def ff(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:59
+ff	calcnextphotondottrans6mL.py	/^def ff(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:62
+ff	calcnextphotondottrans6mLcts.py	/^def ff(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:59
+ff	calcnextphotondottransSEQ.py	/^def ff(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:59
+ffs	calcnextphotondottrans4SEQ.py	/^def ffs(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:68
+ffs	calcnextphotondottrans4SEQmL.py	/^def ffs(val, biggerval, otherval, lifetime):$/;"	kind:function	line:66
+ffs	calcnextphotondottrans5SEQmL.py	/^def ffs(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:68
+ffs	calcnextphotondottrans6.py	/^def ffs(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:68
+ffs	calcnextphotondottrans6NF.py	/^def ffs(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:68
+ffs	calcnextphotondottrans6mL.py	/^def ffs(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:71
+ffs	calcnextphotondottrans6mLcts.py	/^def ffs(val, biggerval, otherval, lifetime, factor):$/;"	kind:function	line:68
+figs	newfig.py	/^def figs(filepath, file, filoutpath, savename, fontsize=12, color='black', sfactor=1, xzoom=[-1,-1], yzoom=[-1,-1], log=0, pulsed=0):$/;"	kind:function	line:8
+file	pulsefigtest.py	/^file = "g2"$/;"	kind:variable	line:4
+filedir	PLdecay.py	/^filedir = "April17-longfinalfigs\/"$/;"	kind:variable	line:62
+filedir	PLdecay.py	/^filedir = "April23-longfinalfigs-lowflux\/"$/;"	kind:variable	line:93
+filedir	PLdecay2.py	/^filedir = "April17-longfinalfigs\/"$/;"	kind:variable	line:64
+filedir	PLdecay2.py	/^filedir = "April23-longfinalfigs-lowflux\/"$/;"	kind:variable	line:95
+filedir	main.py	/^filedir = "May24realishligex\/"$/;"	kind:variable	line:14
+filedir	main100L.py	/^filedir = "Sens-Tau-LP-100ligands\/"$/;"	kind:variable	line:14
+filename	main100L.py	/^            filename = "sens-" + str(int(100*sensitivity)) + "-lp-"+str(int(1000*laserpwr)) + "uW-tauDotEm-"+str(int(k_demission\/1000)) +"ns"$/;"	kind:variable	line:81
+filenames	PLdecay.py	/^filenames = ["Apr17"]$/;"	kind:variable	line:63
+filenames	PLdecay.py	/^filenames = ["Apr23"]$/;"	kind:variable	line:94
+filenames	PLdecay2.py	/^filenames = ["Apr17"]$/;"	kind:variable	line:65
+filenames	PLdecay2.py	/^filenames = ["Apr23"]$/;"	kind:variable	line:96
+filenames	main.py	/^filenames = [""]$/;"	kind:variable	line:15
+filenames	main100L.py	/^filenames = [""]$/;"	kind:variable	line:15
+filepath	PLdecay.py	/^filepath = "\/mnt\/c\/Users\/Karen\/Dropbox (WilsonLab)\/WilsonLab Team Folder\/Data\/Karen\/DotTransferSim\/"$/;"	kind:variable	line:61
+filepath	PLdecay2.py	/^filepath = "\/mnt\/c\/Users\/Karen\/Dropbox (WilsonLab)\/WilsonLab Team Folder\/Data\/Karen\/DotTransferSim\/"$/;"	kind:variable	line:63
+filepath	main.py	/^filepath = "\/mnt\/c\/Users\/Karen\/Dropbox (WilsonLab)\/WilsonLab Team Folder\/Data\/Karen\/DotTransferSim\/"$/;"	kind:variable	line:13
+filepath	main100L.py	/^filepath = "\/mnt\/c\/Users\/Karen\/Dropbox (WilsonLab)\/WilsonLab Team Folder\/Data\/Karen\/DotTransferSim\/"$/;"	kind:variable	line:13
+filepath	pulsefigtest.py	/^filepath = "\/mnt\/c\/Users\/Karen\/Dropbox (WilsonLab)\/WilsonLab Team Folder\/Data\/Karen\/DotTransferSim\/RawData\/Basic\/A Real Test\/A Real Test.g2.run\/"$/;"	kind:variable	line:3
+final_nonzero	photon_correlation/util.py	/^def final_nonzero(L):$/;"	kind:function	line:160
+findmax	calcnextphotondottrans3mL.py	/^def findmax(array):$/;"	kind:function	line:112
+findmax	calcnextphotondottrans4SEQmL.py	/^def findmax(array):$/;"	kind:function	line:115
+findmax	calcnextphotondottrans4mL.py	/^def findmax(array):$/;"	kind:function	line:114
+findmax	calcnextphotondottrans4v2mL.py	/^def findmax(array):$/;"	kind:function	line:112
+findmax	calcnextphotondottrans4v3mL.py	/^def findmax(array):$/;"	kind:function	line:113
+findmax	calcnextphotondottrans5SEQmL.py	/^def findmax(array):$/;"	kind:function	line:113
+findmax	calcnextphotondottrans5mL.py	/^def findmax(array):$/;"	kind:function	line:108
+findmax	calcnextphotondottrans6mL.py	/^def findmax(array):$/;"	kind:function	line:116
+findmax	calcnextphotondottrans6mLanni.py	/^def findmax(array):$/;"	kind:function	line:83
+findmax	calcnextphotondottrans6mLcts.py	/^def findmax(array):$/;"	kind:function	line:113
+findmin	calcnextphotondottrans3mL.py	/^def findmin(array):$/;"	kind:function	line:100
+findmin	calcnextphotondottrans4SEQmL.py	/^def findmin(array):$/;"	kind:function	line:103
+findmin	calcnextphotondottrans4mL.py	/^def findmin(array):$/;"	kind:function	line:102
+findmin	calcnextphotondottrans4v2mL.py	/^def findmin(array):$/;"	kind:function	line:100
+findmin	calcnextphotondottrans4v3mL.py	/^def findmin(array):$/;"	kind:function	line:101
+findmin	calcnextphotondottrans5SEQmL.py	/^def findmin(array):$/;"	kind:function	line:101
+findmin	calcnextphotondottrans5mL.py	/^def findmin(array):$/;"	kind:function	line:96
+findmin	calcnextphotondottrans6mL.py	/^def findmin(array):$/;"	kind:function	line:111
+findmin	calcnextphotondottrans6mLanni.py	/^def findmin(array):$/;"	kind:function	line:78
+findmin	calcnextphotondottrans6mLcts.py	/^def findmin(array):$/;"	kind:function	line:101
+first_index	photon_correlation/util.py	/^def first_index(L, value):$/;"	kind:function	line:95
+first_second_emission	photon_correlation/Lifetime.py	/^    def first_second_emission(self):$/;"	kind:member	line:288
+fit	photon_correlation/Lifetime.py	/^    def fit(self, fit_f, p0=None, error="least squares", params_check=None,$/;"	kind:member	line:194
+fit_data	photon_correlation/Lifetime.py	/^    def fit_data(self, min_val=min_val_default, max_val=max_val_default):$/;"	kind:member	line:106
+flatten	photon_correlation/util.py	/^def flatten(LoL):$/;"	kind:function	line:256
+flid	photon_correlation/calculate.py	/^def flid(src_filename, dst_filename, intensity_bins,$/;"	kind:function	line:255
+foclen	main.py	/^foclen = 310000 #310 microns in nm (working distance + coverslip thickness)$/;"	kind:variable	line:54
+foclen	main100L.py	/^foclen = 310000 #310 microns in nm (working distance + coverslip thickness)$/;"	kind:variable	line:53
+force_aspect	photon_correlation/FLID.py	/^def force_aspect(ax,aspect=1):$/;"	kind:function	line:10
+fractions	photon_correlation/G2.py	/^import fractions$/;"	kind:namespace	line:2
+from_file	photon_correlation/G2.py	/^    def from_file(self, filename, int_counts=True):$/;"	kind:member	line:323
+from_file	photon_correlation/GN.py	/^    def from_file(self, filename):$/;"	kind:member	line:38
+from_file	photon_correlation/IDGN.py	/^    def from_file(self, filename):$/;"	kind:member	line:38
+from_file	photon_correlation/Intensity.py	/^    def from_file(self, filename):$/;"	kind:member	line:65
+from_filename	photon_correlation/FLID.py	/^    def from_filename(self, filename):$/;"	kind:member	line:26
+from_stream	photon_correlation/FLID.py	/^    def from_stream(self, stream_in):$/;"	kind:member	line:40
+from_stream	photon_correlation/G1.py	/^    def from_stream(self, stream_in):$/;"	kind:member	line:28
+from_stream	photon_correlation/G2.py	/^    def from_stream(self, stream_in):$/;"	kind:member	line:40
+from_stream	photon_correlation/G2.py	/^    def from_stream(self, stream_in, int_counts=True):$/;"	kind:member	line:328
+from_stream	photon_correlation/G3.py	/^    def from_stream(self, stream_in):$/;"	kind:member	line:11
+from_stream	photon_correlation/G4.py	/^    def from_stream(self, stream_in):$/;"	kind:member	line:11
+from_stream	photon_correlation/IDGN.py	/^    def from_stream(self, stream_in):$/;"	kind:member	line:52
+from_string	photon_correlation/T2.py	/^    def from_string(self, string):$/;"	kind:member	line:31
+from_string	photon_correlation/T3.py	/^    def from_string(self, string):$/;"	kind:member	line:49
+functools	photon_correlation/GaussianExponential.py	/^import functools$/;"	kind:namespace	line:1
+functools	photon_correlation/util.py	/^import functools$/;"	kind:namespace	line:4
+g2	photon_correlation/G2.py	/^    g2 = G2_T3(filename="\/home\/tsbischof\/Documents\/data\/microscopy\/analysis\/triexciton\/2014-09-04_oc2014-04-08\/oc2014-04-08_1e-5_dot_009_250nW_000.ht3.g2.run\/g2")$/;"	kind:variable	line:446
+get_colors	photon_correlation/util.py	/^def get_colors(n, lower=None, upper=None, colormap=cm.rainbow):$/;"	kind:function	line:72
+gn	photon_correlation/calculate.py	/^def gn(data_filename, dst_dir=None, dst_filename=None,$/;"	kind:function	line:115
+gn_filename	photon_correlation/TD.py	/^    def gn_filename(self):$/;"	kind:member	line:78
+gn_td	photon_correlation/TD.py	/^    def gn_td(self, filename=None):$/;"	kind:member	line:72
+gnpwr	main.py	/^gnpwr = 23$/;"	kind:variable	line:66
+gnpwr	main100L.py	/^gnpwr = 20$/;"	kind:variable	line:65
+header	photon_correlation/Picoquant.py	/^    def header(self):$/;"	kind:member	line:52
+histogram	photon_correlation/Intensity.py	/^    def histogram(self, bins=30, summed=True):$/;"	kind:member	line:187
+i	PLdecay.py	/^    i = i + 1$/;"	kind:variable	line:67
+i	PLdecay.py	/^    i = i + 1$/;"	kind:variable	line:98
+i	PLdecay.py	/^i = 0$/;"	kind:variable	line:64
+i	PLdecay.py	/^i = 0$/;"	kind:variable	line:96
+i	PLdecay2.py	/^    i = i + 1$/;"	kind:variable	line:100
+i	PLdecay2.py	/^    i = i + 1$/;"	kind:variable	line:69
+i	PLdecay2.py	/^i = 0$/;"	kind:variable	line:66
+i	PLdecay2.py	/^i = 0$/;"	kind:variable	line:98
+i	main.py	/^i = 0$/;"	kind:variable	line:76
+idgn	photon_correlation/calculate.py	/^def idgn(src_filename, dst_filename, intensity_bins,$/;"	kind:function	line:283
+insert	calcnextphotondottrans-v1notesplusv2stuff.py	/^def insert(array, val):$/;"	kind:function	line:36
+insert	calcnextphotondottrans.py	/^def insert(array, val):$/;"	kind:function	line:36
+insert	calcnextphotondottrans2.py	/^def insert(array, val):$/;"	kind:function	line:88
+insert	calcnextphotondottrans3.py	/^def insert(array, val):$/;"	kind:function	line:36
+insert	calcnextphotondottrans3mL.py	/^def insert(array, val):$/;"	kind:function	line:36
+insert	calcnextphotondottrans4.py	/^def insert(array, val):$/;"	kind:function	line:36
+insert	calcnextphotondottrans4SEQ.py	/^def insert(array, val):$/;"	kind:function	line:36
+insert	calcnextphotondottrans4SEQmL.py	/^def insert(array, val):$/;"	kind:function	line:36
+insert	calcnextphotondottrans4mL.py	/^def insert(array, val):$/;"	kind:function	line:36
+insert	calcnextphotondottrans4v2mL.py	/^def insert(array, val):$/;"	kind:function	line:36
+insert	calcnextphotondottrans4v3mL.py	/^def insert(array, val):$/;"	kind:function	line:36
+insert	calcnextphotondottrans5SEQmL.py	/^def insert(array, val):$/;"	kind:function	line:36
+insert	calcnextphotondottrans5mL.py	/^def insert(array, val):$/;"	kind:function	line:36
+insert	calcnextphotondottrans6.py	/^def insert(array, val):$/;"	kind:function	line:36
+insert	calcnextphotondottrans6NF.py	/^def insert(array, val):$/;"	kind:function	line:36
+insert	calcnextphotondottrans6NFanni.py	/^def insert(array, val):$/;"	kind:function	line:36
+insert	calcnextphotondottrans6anni.py	/^def insert(array, val):$/;"	kind:function	line:36
+insert	calcnextphotondottrans6mL.py	/^def insert(array, val):$/;"	kind:function	line:39
+insert	calcnextphotondottrans6mLanni.py	/^def insert(array, val):$/;"	kind:function	line:39
+insert	calcnextphotondottrans6mLcts.py	/^def insert(array, val):$/;"	kind:function	line:36
+insert	calcnextphotondottransSEQ.py	/^def insert(array, val):$/;"	kind:function	line:36
+insert	write.py	/^def insert(array, val):$/;"	kind:function	line:10
+insert	write2.py	/^def insert(array, val):$/;"	kind:function	line:14
+integration_time	photon_correlation/Picoquant.py	/^    def integration_time(self):$/;"	kind:member	line:114
+intensity	photon_correlation/TD.py	/^    def intensity(self):$/;"	kind:member	line:62
+intensity	photon_correlation/calculate.py	/^def intensity(data_filename, dst_filename=None, bin_width=50000,$/;"	kind:function	line:53
+intensity_range	photon_correlation/IDGN.py	/^    def intensity_range(self, min_val, max_val, cast_to_gn=None):$/;"	kind:member	line:82
+io	photon_correlation/Picoquant.py	/^    import StringIO as io$/;"	kind:namespace	line:5
+io	photon_correlation/Picoquant.py	/^    import io$/;"	kind:namespace	line:3
+is_cross_correlation	photon_correlation/G3.py	/^from .util import is_cross_correlation$/;"	kind:namespace	line:8
+is_cross_correlation	photon_correlation/G4.py	/^from .util import is_cross_correlation$/;"	kind:namespace	line:8
+is_cross_correlation	photon_correlation/GN.py	/^from .util import is_cross_correlation$/;"	kind:namespace	line:5
+is_cross_correlation	photon_correlation/util.py	/^def is_cross_correlation(correlation):$/;"	kind:function	line:118
+isbf	analyze2.py	/^def isbf(file):$/;"	kind:function	line:8
+isbf	makefig2.py	/^def isbf(file):$/;"	kind:function	line:60
+isbf	sim.py	/^def isbf(file):$/;"	kind:function	line:35
+itertools	photon_correlation/G1.py	/^import itertools$/;"	kind:namespace	line:3
+itertools	photon_correlation/TD.py	/^import itertools$/;"	kind:namespace	line:5
+itertools	photon_correlation/util.py	/^import itertools$/;"	kind:namespace	line:5
+k_demission	main.py	/^k_demission = 1400000 #emission lifetime in ps$/;"	kind:variable	line:25
+k_demission	main100L.py	/^            k_demission = k_demissioni*10**(k-1)$/;"	kind:variable	line:79
+k_demissioni	main100L.py	/^k_demissioni = 1400000 #emission lifetime in ps$/;"	kind:variable	line:24
+k_fiss	main.py	/^k_fiss = 1 #made up from marks paper on pentacene fission$/;"	kind:variable	line:28
+k_fiss	main100L.py	/^k_fiss = 1 #made up from marks paper on pentacene fission$/;"	kind:variable	line:27
+k_sem	main.py	/^k_sem = 10000 #short lived singlets$/;"	kind:variable	line:26
+k_sem	main100L.py	/^k_sem = 10000 #short lived singlets$/;"	kind:variable	line:25
+k_tem	main.py	/^k_tem = 100000000 #long lived triplets$/;"	kind:variable	line:27
+k_tem	main100L.py	/^k_tem = 100000000 #long lived triplets$/;"	kind:variable	line:26
+k_trans	main.py	/^k_trans = 200000 #based on Rao paper 2018$/;"	kind:variable	line:29
+k_trans	main100L.py	/^k_trans = 200000 #based on Rao paper 2018$/;"	kind:variable	line:28
+labsXsec	main.py	/^labsXsec = dabsXsec*2$/;"	kind:variable	line:40
+labsXsec	main100L.py	/^labsXsec = dabsXsec*10$/;"	kind:variable	line:39
+laserpwr	main.py	/^laserpwr = 0.5 # mW (0.52 mWinto back of objective 23 #mW)$/;"	kind:variable	line:47
+laserpwr	main100L.py	/^    laserpwr = laserpwri*10**(i-1)$/;"	kind:variable	line:75
+laserpwri	main100L.py	/^laserpwri = 0.5 # mW (0.52 mWinto back of objective 23 #mW)$/;"	kind:variable	line:46
+last_index	photon_correlation/util.py	/^def last_index(L, value):$/;"	kind:function	line:106
+lifetime	photon_correlation/Lifetime.py	/^    def lifetime(self, min_val=min_val_default, max_val=max_val_default,$/;"	kind:member	line:220
+logging	photon_correlation/TD.py	/^import logging$/;"	kind:namespace	line:3
+logging	photon_correlation/calculate.py	/^import logging$/;"	kind:namespace	line:7
+m	pulsefigtest.py	/^import newmakefigpulse as m $/;"	kind:namespace	line:1
+m	sim.py	/^import makefig2 as m$/;"	kind:namespace	line:28
+mLcalc	write.py	/^import calcnextphotondottrans6mL as mLcalc$/;"	kind:namespace	line:4
+mLcalc	write2.py	/^import calcnextphotondottrans6mL as mLcalc$/;"	kind:namespace	line:4
+mLcalca	write2.py	/^import calcnextphotondottrans6mLanni as mLcalca$/;"	kind:namespace	line:7
+main.py	main.py	1;"	kind:file	line:1
+main100L.py	main100L.py	1;"	kind:file	line:1
+make_figure	photon_correlation/Blinking.py	/^    def make_figure(self, threshold, n_bins=50):$/;"	kind:member	line:50
+make_figure	photon_correlation/FLID.py	/^    def make_figure(self):$/;"	kind:member	line:55
+make_figure	photon_correlation/G1.py	/^    def make_figure(self, resolution=None):$/;"	kind:member	line:97
+make_figure	photon_correlation/G2.py	/^    def make_figure(self, xscale=0, xzoom = [-1,-1], yzoom = [-1,-1], fontsize = 12, figsize = [-1,-1], normalize = 1, scale = 0, color = 'b', linewidth = 0.5):$/;"	kind:member	line:395
+make_figure	photon_correlation/G2.py	/^    def make_figure(self, xscale=0, xzoom = [-1,-1], yzoom = [-1,-1],fontsize = 12, normalize = 1, scale = 0, color = 'b'):$/;"	kind:member	line:149
+make_figure	photon_correlation/G3.py	/^    def make_figure(self):$/;"	kind:member	line:74
+make_figure	photon_correlation/G4.py	/^    def make_figure(self):$/;"	kind:member	line:95
+make_figure	photon_correlation/Intensity.py	/^    def make_figure(self):$/;"	kind:member	line:155
+make_figure2	photon_correlation/G2.py	/^    def make_figure2(self, xscale=0, xzoom = [-1,-1], yzoom = [-1,-1], fontsize = 12, normalize = 1, scale = 0, color = 'b'):$/;"	kind:member	line:202
+make_gn_stream	photon_correlation/util.py	/^def make_gn_stream(bins, counts):$/;"	kind:function	line:179
+make_histogram_figure	photon_correlation/Intensity.py	/^    def make_histogram_figure(self, bins=30):$/;"	kind:member	line:206
+make_transtime_temtime	calcnextphotondottrans6mL.py	/^def make_transtime_temtime(k_lexcitation, problex, nextem, taurep, nligands, k_fiss, k_sem, k_trans, k_tem, excite, probfiss):$/;"	kind:function	line:128
+make_transtime_temtime	calcnextphotondottrans6mLanni.py	/^def make_transtime_temtime(k_lexcitation, problex, nextem, taurep, nligands, k_fiss, k_sem, k_trans, k_tem, excite, probfiss):$/;"	kind:function	line:95
+make_transtime_temtime_f	calcnextphotondottrans6mL.py	/^def make_transtime_temtime_f(k_lexcitation, problex, nextem, taurep, nligands, k_fiss, k_sem, k_trans, k_tem, excite, probfiss):$/;"	kind:function	line:175
+make_transtime_temtime_f	calcnextphotondottrans6mLanni.py	/^def make_transtime_temtime_f(k_lexcitation, problex, nextem, taurep, nligands, k_fiss, k_sem, k_trans, k_tem, excite, probfiss):$/;"	kind:function	line:142
+makeafig	makefig2.py	/^def makeafig(g2file,filename, xzoom, yzoom, log, pulsed, fontsize = 12, filepath = "",filedir = "",fileoutdir = "", normalize = 1, scale = 0, color = 'r'):$/;"	kind:function	line:42
+makefig	main.py	/^makefig = 1$/;"	kind:variable	line:6
+makefig	main100L.py	/^makefig = 1$/;"	kind:variable	line:6
+makefig2.py	makefig2.py	1;"	kind:file	line:1
+makepulsedfig	newmakefigpulse.py	/^def makepulsedfig(filepath, file, sfilepath, savename, reprate = 1, npulses=1, time=float('inf'), fontsize=12, figsize = [-1,-1], linewidth = 0.5, timespace = -1, xzoom = -1, yzoom =[-1,-1]):$/;"	kind:function	line:60
+math	photon_correlation/Exponential.py	/^import math$/;"	kind:namespace	line:1
+math	photon_correlation/GaussianExponential.py	/^import math$/;"	kind:namespace	line:2
+math	photon_correlation/IDGN.py	/^import math$/;"	kind:namespace	line:4
+math	photon_correlation/Lifetime.py	/^import math$/;"	kind:namespace	line:2
+math	photon_correlation/calculate.py	/^import math$/;"	kind:namespace	line:6
+math	sim.py	/^import math$/;"	kind:namespace	line:3
+math	write.py	/^import math$/;"	kind:namespace	line:6
+math	write2.py	/^import math$/;"	kind:namespace	line:10
+matplotlib	PLdecay.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:2
+matplotlib	PLdecay2.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:2
+matplotlib	analyze2.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:3
+matplotlib	makefig2.py	/^import matplotlib$/;"	kind:namespace	line:5
+matplotlib	makefig2.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:26
+matplotlib	newfig.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:2
+matplotlib	newmakefigpulse.py	/^import matplotlib$/;"	kind:namespace	line:3
+matplotlib	newmakefigpulse.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:24
+matplotlib	photon_correlation/Blinking.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:1
+matplotlib	photon_correlation/FLID.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:7
+matplotlib	photon_correlation/G1.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:5
+matplotlib	photon_correlation/G2.py	/^import matplotlib$/;"	kind:namespace	line:4
+matplotlib	photon_correlation/G2.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:26
+matplotlib	photon_correlation/G3.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:4
+matplotlib	photon_correlation/G4.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:4
+matplotlib	photon_correlation/Intensity.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:9
+matplotlib	photon_correlation/util.py	/^import matplotlib.cm as cm$/;"	kind:namespace	line:11
+matplotlib	photon_correlation/util.py	/^import matplotlib.colors$/;"	kind:namespace	line:10
+matplotlib	sim.py	/^import matplotlib$/;"	kind:namespace	line:4
+matplotlib	sim.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:25
+max	photon_correlation/Intensity.py	/^    def max(self):$/;"	kind:member	line:50
+max_counts	photon_correlation/calculate.py	/^def max_counts(data_filename, window_width,$/;"	kind:function	line:360
+max_intensity	photon_correlation/IDGN.py	/^    def max_intensity(self, threshold=0.7, cast_to_gn=None):$/;"	kind:member	line:75
+max_intensity	photon_correlation/TD.py	/^    def max_intensity(self):$/;"	kind:member	line:69
+max_val_default	photon_correlation/Lifetime.py	/^max_val_default = 0.95$/;"	kind:variable	line:11
+maximum_intensity_gn	photon_correlation/TD.py	/^    def maximum_intensity_gn(self, threshold=0.7):$/;"	kind:member	line:184
+maxlines	main.py	/^maxlines = 10**9$/;"	kind:variable	line:20
+maxlines	main100L.py	/^maxlines = 5*10**9$/;"	kind:variable	line:19
+mean	photon_correlation/Intensity.py	/^    def mean(self):$/;"	kind:member	line:166
+mean_arrival_time	photon_correlation/Lifetime.py	/^    def mean_arrival_time(self):$/;"	kind:member	line:241
+min_val_default	photon_correlation/Lifetime.py	/^min_val_default = 0.1$/;"	kind:variable	line:12
+mode	main.py	/^mode = "t2"$/;"	kind:variable	line:65
+mode	main100L.py	/^mode = "t2"$/;"	kind:variable	line:64
+mode	photon_correlation/Picoquant.py	/^    def mode(self):$/;"	kind:member	line:104
+mode_error	photon_correlation/Intensity.py	/^def mode_error(mode):$/;"	kind:function	line:14
+mpl	photon_correlation/util.py	/^import matplotlib as mpl$/;"	kind:namespace	line:9
+n	main.py	/^n = 1.3 # index of refraction - sample in water$/;"	kind:variable	line:34
+n	main100L.py	/^n = 1.3 # index of refraction - sample in water$/;"	kind:variable	line:33
+n_channels	photon_correlation/Intensity.py	/^    def n_channels(self):$/;"	kind:member	line:160
+neighbor_normalize	photon_correlation/util.py	/^def neighbor_normalize(times, counts):$/;"	kind:function	line:188
+neighbor_normalized	photon_correlation/Lifetime.py	/^    def neighbor_normalized(self):$/;"	kind:member	line:254
+newNumEms	diffuse.py	/^def newNumEms(numEms, AvgEms, nextIn, nextOut, diffouttime, sigma): #Not used in sim but here for testing purposes$/;"	kind:function	line:19
+newcphoton	calcnextphotondottrans-v1notesplusv2stuff.py	/^def newcphoton(antibunch, k_emission):$/;"	kind:function	line:6
+newcphoton	calcnextphotondottrans.py	/^def newcphoton(antibunch, k_emission):$/;"	kind:function	line:6
+newcphoton	calcnextphotondottrans2.py	/^def newcphoton(antibunch, k_emission):$/;"	kind:function	line:6
+newcphoton	calcnextphotondottrans3.py	/^def newcphoton(antibunch, k_emission):$/;"	kind:function	line:6
+newcphoton	calcnextphotondottrans3mL.py	/^def newcphoton(antibunch, k_emission):$/;"	kind:function	line:6
+newcphoton	calcnextphotondottrans4.py	/^def newcphoton(antibunch, k_emission):$/;"	kind:function	line:6
+newcphoton	calcnextphotondottrans4SEQ.py	/^def newcphoton(antibunch, k_emission):$/;"	kind:function	line:6
+newcphoton	calcnextphotondottrans4SEQmL.py	/^def newcphoton(antibunch, k_emission):$/;"	kind:function	line:6
+newcphoton	calcnextphotondottrans4mL.py	/^def newcphoton(antibunch, k_emission):$/;"	kind:function	line:6
+newcphoton	calcnextphotondottrans4v2mL.py	/^def newcphoton(antibunch, k_emission):$/;"	kind:function	line:6
+newcphoton	calcnextphotondottrans4v3mL.py	/^def newcphoton(antibunch, k_emission):$/;"	kind:function	line:6
+newcphoton	calcnextphotondottrans5SEQmL.py	/^def newcphoton(antibunch, k_emission):$/;"	kind:function	line:6
+newcphoton	calcnextphotondottrans5mL.py	/^def newcphoton(antibunch, k_emission):$/;"	kind:function	line:6
+newcphoton	calcnextphotondottrans6.py	/^def newcphoton(antibunch, k_emission):$/;"	kind:function	line:6
+newcphoton	calcnextphotondottrans6NF.py	/^def newcphoton(antibunch, k_emission):$/;"	kind:function	line:6
+newcphoton	calcnextphotondottrans6NFanni.py	/^def newcphoton(antibunch, k_emission):$/;"	kind:function	line:6
+newcphoton	calcnextphotondottrans6anni.py	/^def newcphoton(antibunch, k_emission):$/;"	kind:function	line:6
+newcphoton	calcnextphotondottrans6mL.py	/^def newcphoton(antibunch, k_emission):$/;"	kind:function	line:9
+newcphoton	calcnextphotondottrans6mLanni.py	/^def newcphoton(antibunch, k_emission):$/;"	kind:function	line:9
+newcphoton	calcnextphotondottrans6mLcts.py	/^def newcphoton(antibunch, k_emission):$/;"	kind:function	line:6
+newcphoton	calcnextphotondottransSEQ.py	/^def newcphoton(antibunch, k_emission):$/;"	kind:function	line:6
+newfig.py	newfig.py	1;"	kind:file	line:1
+newmakefigpulse.py	newmakefigpulse.py	1;"	kind:file	line:1
+nextphotonss	calcnextphotondottrans-v1notesplusv2stuff.py	/^def nextphotonss(lastphoton, sensitivity,$/;"	kind:function	line:66
+nextphotonss	calcnextphotondottrans.py	/^def nextphotonss(lastphoton, sensitivity,$/;"	kind:function	line:66
+nextphotonss	calcnextphotondottrans2.py	/^def nextphotonss(lastphoton, sensitivity,$/;"	kind:function	line:106
+nextphotonss	calcnextphotondottrans3.py	/^def nextphotonss(lastphoton, sensitivity, nligands,$/;"	kind:function	line:66
+nextphotonss	calcnextphotondottrans3mL.py	/^def nextphotonss(lastphoton, sensitivity, nligands,$/;"	kind:function	line:124
+nextphotonss	calcnextphotondottrans4.py	/^def nextphotonss(lastphoton, sensitivity, nligands,$/;"	kind:function	line:68
+nextphotonss	calcnextphotondottrans4SEQ.py	/^def nextphotonss(lastphoton, sensitivity, nligands,$/;"	kind:function	line:75
+nextphotonss	calcnextphotondottrans4SEQmL.py	/^def nextphotonss(lastphoton, sensitivity, nligands,$/;"	kind:function	line:127
+nextphotonss	calcnextphotondottrans4mL.py	/^def nextphotonss(lastphoton, sensitivity, nligands,$/;"	kind:function	line:126
+nextphotonss	calcnextphotondottrans4v2mL.py	/^def nextphotonss(lastphoton, sensitivity, nligands,$/;"	kind:function	line:124
+nextphotonss	calcnextphotondottrans4v3mL.py	/^def nextphotonss(lastphoton, sensitivity, nligands,$/;"	kind:function	line:125
+nextphotonss	calcnextphotondottrans5SEQmL.py	/^def nextphotonss(lastphoton, sensitivity, nligands,$/;"	kind:function	line:125
+nextphotonss	calcnextphotondottrans5mL.py	/^def nextphotonss(lastphoton, sensitivity, nligands,$/;"	kind:function	line:120
+nextphotonss	calcnextphotondottrans6.py	/^def nextphotonss(lastphoton, sensitivity, nligands,$/;"	kind:function	line:78
+nextphotonss	calcnextphotondottrans6NF.py	/^def nextphotonss(lastphoton, sensitivity, nligands,$/;"	kind:function	line:79
+nextphotonss	calcnextphotondottrans6NFanni.py	/^def nextphotonss(lastphoton, sensitivity, nligands,$/;"	kind:function	line:60
+nextphotonss	calcnextphotondottrans6anni.py	/^def nextphotonss(lastphoton, sensitivity, nligands,$/;"	kind:function	line:61
+nextphotonss	calcnextphotondottrans6mL.py	/^def nextphotonss(lastphoton, sensitivity, nligands,$/;"	kind:function	line:246
+nextphotonss	calcnextphotondottrans6mLanni.py	/^def nextphotonss(lastphoton, sensitivity, nligands,$/;"	kind:function	line:213
+nextphotonss	calcnextphotondottrans6mLcts.py	/^def nextphotonss(lastphoton, sensitivity, nligands,$/;"	kind:function	line:125
+nextphotonss	calcnextphotondottransSEQ.py	/^def nextphotonss(lastphoton, sensitivity, nligands,$/;"	kind:function	line:66
+nligands	main.py	/^nligands = 100$/;"	kind:variable	line:37
+nligands	main100L.py	/^nligands = 100$/;"	kind:variable	line:36
+nm	sim.py	/^import newfig as nm $/;"	kind:namespace	line:29
+normalize	photon_correlation/util.py	/^def normalize(L, key=max):$/;"	kind:function	line:87
+normalized	photon_correlation/IDGN.py	/^    def normalized(self):$/;"	kind:member	line:18
+normalized	photon_correlation/Intensity.py	/^    def normalized(self):$/;"	kind:member	line:114
+normalized	photon_correlation/Lifetime.py	/^    def normalized(self, key=max):$/;"	kind:member	line:57
+np	calcnextphotondottrans6mL.py	/^import numpy as np$/;"	kind:namespace	line:3
+np	calcnextphotondottrans6mLanni.py	/^import numpy as np$/;"	kind:namespace	line:3
+npf	analyze2.py	/^import newmakefigpulse as npf$/;"	kind:namespace	line:6
+npf	sim.py	/^import newmakefigpulse as npf$/;"	kind:namespace	line:30
+number_to_channels	photon_correlation/calculate.py	/^def number_to_channels(photons, correlate=False):$/;"	kind:function	line:90
+numbins	main.py	/^numbins = 8192 # 2**23\/8192 = 1024 => 1 bin is 1 ns (ish)$/;"	kind:variable	line:67
+numbins	main100L.py	/^numbins = 4096$/;"	kind:variable	line:66
+numlines	main.py	/^numlines = 10**8$/;"	kind:variable	line:19
+numlines	main100L.py	/^numlines = 10**8$/;"	kind:variable	line:18
+numpy	PLdecay.py	/^import numpy$/;"	kind:namespace	line:1
+numpy	PLdecay2.py	/^import numpy$/;"	kind:namespace	line:1
+numpy	analyze2.py	/^import numpy$/;"	kind:namespace	line:5
+numpy	calcnextphotondottrans-v1notesplusv2stuff.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	calcnextphotondottrans.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	calcnextphotondottrans2.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	calcnextphotondottrans3.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	calcnextphotondottrans3mL.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	calcnextphotondottrans4.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	calcnextphotondottrans4SEQ.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	calcnextphotondottrans4SEQmL.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	calcnextphotondottrans4mL.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	calcnextphotondottrans4v2mL.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	calcnextphotondottrans4v3mL.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	calcnextphotondottrans5SEQmL.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	calcnextphotondottrans5mL.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	calcnextphotondottrans6.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	calcnextphotondottrans6NF.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	calcnextphotondottrans6NFanni.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	calcnextphotondottrans6anni.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	calcnextphotondottrans6mL.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	calcnextphotondottrans6mLanni.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	calcnextphotondottrans6mLcts.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	calcnextphotondottransSEQ.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	diffuse.py	/^import numpy$/;"	kind:namespace	line:1
+numpy	newfig.py	/^import numpy$/;"	kind:namespace	line:1
+numpy	newmakefigpulse.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	photon_correlation/Blinking.py	/^import numpy$/;"	kind:namespace	line:2
+numpy	photon_correlation/Exponential.py	/^import numpy$/;"	kind:namespace	line:3
+numpy	photon_correlation/FLID.py	/^import numpy$/;"	kind:namespace	line:8
+numpy	photon_correlation/G3.py	/^import numpy$/;"	kind:namespace	line:5
+numpy	photon_correlation/G4.py	/^import numpy$/;"	kind:namespace	line:5
+numpy	photon_correlation/Gaussian.py	/^import numpy$/;"	kind:namespace	line:1
+numpy	photon_correlation/GaussianExponential.py	/^import numpy$/;"	kind:namespace	line:4
+numpy	photon_correlation/IDGN.py	/^import numpy$/;"	kind:namespace	line:7
+numpy	photon_correlation/Intensity.py	/^import numpy$/;"	kind:namespace	line:8
+numpy	photon_correlation/Lifetime.py	/^import numpy$/;"	kind:namespace	line:5
+numpy	photon_correlation/util.py	/^import numpy$/;"	kind:namespace	line:12
+numpy	write.py	/^import numpy$/;"	kind:namespace	line:7
+numpy	write2.py	/^import numpy$/;"	kind:namespace	line:11
+on_off_times	photon_correlation/Blinking.py	/^    def on_off_times(self, threshold):$/;"	kind:member	line:15
+optimize	photon_correlation/Lifetime.py	/^import scipy.optimize$/;"	kind:namespace	line:6
+order	main.py	/^order = 2 #g2$/;"	kind:variable	line:64
+order	main100L.py	/^order = 2 #g2$/;"	kind:variable	line:63
+origin	photon_correlation/Lifetime.py	/^    def origin(self):$/;"	kind:member	line:100
+os	PLdecay.py	/^import os$/;"	kind:namespace	line:4
+os	PLdecay2.py	/^import os$/;"	kind:namespace	line:4
+os	analyze2.py	/^import os$/;"	kind:namespace	line:1
+os	makefig2.py	/^import os$/;"	kind:namespace	line:1
+os	newfig.py	/^import os$/;"	kind:namespace	line:3
+os	photon_correlation/G1.py	/^import os$/;"	kind:namespace	line:2
+os	photon_correlation/GN.py	/^import os$/;"	kind:namespace	line:3
+os	photon_correlation/IDGN.py	/^import os$/;"	kind:namespace	line:5
+os	photon_correlation/Intensity.py	/^import os$/;"	kind:namespace	line:1
+os	photon_correlation/TD.py	/^import os$/;"	kind:namespace	line:2
+os	photon_correlation/calculate.py	/^import os$/;"	kind:namespace	line:3
+os	photon_correlation/util.py	/^import os$/;"	kind:namespace	line:2
+os	sim.py	/^import os$/;"	kind:namespace	line:1
+p	write.py	/^import progbar as p$/;"	kind:namespace	line:8
+p	write2.py	/^import progbar as p$/;"	kind:namespace	line:12
+packages	rust_fastforward/setup.py	/^      packages=['rust_fastforward'],$/;"	kind:variable	line:10
+pc	analyze2.py	/^import photon_correlation as pc$/;"	kind:namespace	line:4
+pc	makefig2.py	/^import photon_correlation as pc $/;"	kind:namespace	line:3
+pc	photon_correlation/util.py	/^import photon_correlation as pc$/;"	kind:namespace	line:14
+pc	sim.py	/^import photon_correlation as pc$/;"	kind:namespace	line:26
+photon_threshold	photon_correlation/calculate.py	/^def photon_threshold(photons, window_width=None, mode=None, threshold=None):$/;"	kind:function	line:107
+photon_time_threshold	photon_correlation/calculate.py	/^def photon_time_threshold(photons, correlate=False, time_threshold=10000):$/;"	kind:function	line:98
+picoquant	photon_correlation/calculate.py	/^def picoquant(filename, print_every=1000000, time_offsets=None, number=None):$/;"	kind:function	line:23
+picyzoom	main.py	/^picyzoom = [-1,-1]$/;"	kind:variable	line:72
+picyzoom	main100L.py	/^picyzoom = [-1,-1]$/;"	kind:variable	line:71
+plt	PLdecay.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:2
+plt	PLdecay2.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:2
+plt	analyze2.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:3
+plt	makefig2.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:26
+plt	newfig.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:2
+plt	newmakefigpulse.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:24
+plt	photon_correlation/Blinking.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:1
+plt	photon_correlation/FLID.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:7
+plt	photon_correlation/G1.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:5
+plt	photon_correlation/G2.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:26
+plt	photon_correlation/G3.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:4
+plt	photon_correlation/G4.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:4
+plt	photon_correlation/Intensity.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:9
+plt	sim.py	/^import matplotlib.pyplot as plt$/;"	kind:namespace	line:25
+power_float	photon_correlation/util.py	/^def power_float(power):$/;"	kind:function	line:62
+power_pformat	photon_correlation/util.py	/^def power_pformat(power):$/;"	kind:function	line:51
+printProgressBar	progbar.py	/^def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 50, fill = '█'):$/;"	kind:function	line:1
+printProgressBar	testprogbar.py	/^def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█'):$/;"	kind:function	line:1
+progbar.py	progbar.py	1;"	kind:file	line:1
+ps_to_ns	photon_correlation/util.py	/^def ps_to_ns(L):$/;"	kind:function	line:176
+pulse_bin_counts	photon_correlation/G2.py	/^    def pulse_bin_counts(self, correlation, pulse_bin):$/;"	kind:member	line:77
+pulsebins	main.py	/^pulsebins = (4)-1#should always be an odd number$/;"	kind:variable	line:68
+pulsebins	main100L.py	/^pulsebins = (10**2)-1#should always be an odd number$/;"	kind:variable	line:67
+pulsed	main.py	/^pulsed = 1$/;"	kind:variable	line:10
+pulsed	main100L.py	/^pulsed = 1$/;"	kind:variable	line:10
+pulsefigtest.py	pulsefigtest.py	1;"	kind:file	line:1
+pulselength	main.py	/^pulselength = 80 #ps - not used$/;"	kind:variable	line:50
+pulselength	main100L.py	/^pulselength = 80 #ps - not used$/;"	kind:variable	line:49
+pulses_to_seconds	photon_correlation/Intensity.py	/^    def pulses_to_seconds(self, repetition_rate):$/;"	kind:member	line:227
+quicksort	calcnextphotondottrans-v1notesplusv2stuff.py	/^def quicksort(array):$/;"	kind:function	line:16
+quicksort	calcnextphotondottrans.py	/^def quicksort(array):$/;"	kind:function	line:16
+quicksort	calcnextphotondottrans2.py	/^def quicksort(array):$/;"	kind:function	line:16
+quicksort	calcnextphotondottrans3.py	/^def quicksort(array):$/;"	kind:function	line:16
+quicksort	calcnextphotondottrans3mL.py	/^def quicksort(array):$/;"	kind:function	line:16
+quicksort	calcnextphotondottrans4.py	/^def quicksort(array):$/;"	kind:function	line:16
+quicksort	calcnextphotondottrans4SEQ.py	/^def quicksort(array):$/;"	kind:function	line:16
+quicksort	calcnextphotondottrans4SEQmL.py	/^def quicksort(array):$/;"	kind:function	line:16
+quicksort	calcnextphotondottrans4mL.py	/^def quicksort(array):$/;"	kind:function	line:16
+quicksort	calcnextphotondottrans4v2mL.py	/^def quicksort(array):$/;"	kind:function	line:16
+quicksort	calcnextphotondottrans4v3mL.py	/^def quicksort(array):$/;"	kind:function	line:16
+quicksort	calcnextphotondottrans5SEQmL.py	/^def quicksort(array):$/;"	kind:function	line:16
+quicksort	calcnextphotondottrans5mL.py	/^def quicksort(array):$/;"	kind:function	line:16
+quicksort	calcnextphotondottrans6.py	/^def quicksort(array):$/;"	kind:function	line:16
+quicksort	calcnextphotondottrans6NF.py	/^def quicksort(array):$/;"	kind:function	line:16
+quicksort	calcnextphotondottrans6NFanni.py	/^def quicksort(array):$/;"	kind:function	line:16
+quicksort	calcnextphotondottrans6anni.py	/^def quicksort(array):$/;"	kind:function	line:16
+quicksort	calcnextphotondottrans6mL.py	/^def quicksort(array):$/;"	kind:function	line:19
+quicksort	calcnextphotondottrans6mLanni.py	/^def quicksort(array):$/;"	kind:function	line:19
+quicksort	calcnextphotondottrans6mLcts.py	/^def quicksort(array):$/;"	kind:function	line:16
+quicksort	calcnextphotondottransSEQ.py	/^def quicksort(array):$/;"	kind:function	line:16
+r	main.py	/^r = 20 #nm - hydrodynamic radius of particles$/;"	kind:variable	line:31
+r	main100L.py	/^r = 10 #nm - hydrodynamic radius of particles$/;"	kind:variable	line:30
+range	photon_correlation/Intensity.py	/^    def range(self, start_time, stop_time):$/;"	kind:member	line:247
+range	photon_correlation/Lifetime.py	/^    def range(self, lower, upper):$/;"	kind:member	line:90
+rates	photon_correlation/Exponential.py	/^    def rates(self):$/;"	kind:member	line:61
+re	photon_correlation/TD.py	/^import re$/;"	kind:namespace	line:6
+re	photon_correlation/calculate.py	/^import re$/;"	kind:namespace	line:5
+re	photon_correlation/util.py	/^import re$/;"	kind:namespace	line:1
+read_td	photon_correlation/TD.py	/^def read_td(filename):$/;"	kind:function	line:12
+readline	photon_correlation/Picoquant.py	/^    def readline(self):$/;"	kind:member	line:19
+rebin	photon_correlation/Lifetime.py	/^    def rebin(self, n=2):$/;"	kind:member	line:79
+rebin	photon_correlation/util.py	/^def rebin(L, n=2):$/;"	kind:function	line:141
+rebin_time	photon_correlation/G2.py	/^    def rebin_time(self, n=2):$/;"	kind:member	line:302
+relative_areas	photon_correlation/Exponential.py	/^    def relative_areas(self, origin=None):$/;"	kind:member	line:64
+repetition_rate	photon_correlation/Picoquant.py	/^    def repetition_rate(self):$/;"	kind:member	line:65
+repetition_rate_pformat	photon_correlation/util.py	/^def repetition_rate_pformat(repetition_rate):$/;"	kind:function	line:34
+reprate	main.py	/^reprate = 0.05 #MHz$/;"	kind:variable	line:43
+reprate	main100L.py	/^reprate = 0.05 #MHz$/;"	kind:variable	line:42
+resolution	photon_correlation/Picoquant.py	/^    def resolution(self):$/;"	kind:member	line:82
+rt	write.py	/^import time as rt$/;"	kind:namespace	line:5
+rt	write2.py	/^import time as rt$/;"	kind:namespace	line:9
+rust_extensions	rust_fastforward/setup.py	/^      rust_extensions=[$/;"	kind:variable	line:7
+savename	pulsefigtest.py	/^savename = "test"$/;"	kind:variable	line:5
+scipy	calcnextphotondottrans-v1notesplusv2stuff.py	/^import scipy$/;"	kind:namespace	line:1
+scipy	calcnextphotondottrans.py	/^import scipy$/;"	kind:namespace	line:1
+scipy	calcnextphotondottrans2.py	/^import scipy$/;"	kind:namespace	line:1
+scipy	calcnextphotondottrans3.py	/^import scipy$/;"	kind:namespace	line:1
+scipy	calcnextphotondottrans3mL.py	/^import scipy$/;"	kind:namespace	line:1
+scipy	calcnextphotondottrans4.py	/^import scipy$/;"	kind:namespace	line:1
+scipy	calcnextphotondottrans4SEQ.py	/^import scipy$/;"	kind:namespace	line:1
+scipy	calcnextphotondottrans4SEQmL.py	/^import scipy$/;"	kind:namespace	line:1
+scipy	calcnextphotondottrans4mL.py	/^import scipy$/;"	kind:namespace	line:1
+scipy	calcnextphotondottrans4v2mL.py	/^import scipy$/;"	kind:namespace	line:1
+scipy	calcnextphotondottrans4v3mL.py	/^import scipy$/;"	kind:namespace	line:1
+scipy	calcnextphotondottrans5SEQmL.py	/^import scipy$/;"	kind:namespace	line:1
+scipy	calcnextphotondottrans5mL.py	/^import scipy$/;"	kind:namespace	line:1
+scipy	calcnextphotondottrans6.py	/^import scipy$/;"	kind:namespace	line:1
+scipy	calcnextphotondottrans6NF.py	/^import scipy$/;"	kind:namespace	line:1
+scipy	calcnextphotondottrans6NFanni.py	/^import scipy$/;"	kind:namespace	line:1
+scipy	calcnextphotondottrans6anni.py	/^import scipy$/;"	kind:namespace	line:1
+scipy	calcnextphotondottrans6mL.py	/^import scipy$/;"	kind:namespace	line:1
+scipy	calcnextphotondottrans6mLanni.py	/^import scipy$/;"	kind:namespace	line:1
+scipy	calcnextphotondottrans6mLcts.py	/^import scipy$/;"	kind:namespace	line:1
+scipy	calcnextphotondottransSEQ.py	/^import scipy$/;"	kind:namespace	line:1
+scipy	photon_correlation/Lifetime.py	/^import scipy.optimize$/;"	kind:namespace	line:6
+sensitivity	main.py	/^sensitivity = 0.1$/;"	kind:variable	line:59
+sensitivity	main100L.py	/^        sensitivity = sensitivity*8$/;"	kind:variable	line:77
+sensitivity	main100L.py	/^    sensitivity = 0.01\/8$/;"	kind:variable	line:74
+sensitivity	main100L.py	/^sensitivity = 0.01 $/;"	kind:variable	line:58
+seq	main.py	/^seq = 1$/;"	kind:variable	line:75
+setup	rust_fastforward/setup.py	/^from setuptools import setup$/;"	kind:namespace	line:2
+setup.py	rust_fastforward/setup.py	1;"	kind:file	line:1
+shelve	photon_correlation/calculate.py	/^import shelve$/;"	kind:namespace	line:2
+si_magnitude	photon_correlation/util.py	/^si_magnitude = {"n": 1e-9,$/;"	kind:variable	line:25
+si_prefixes	photon_correlation/util.py	/^si_prefixes = {-9: r"\\nano",$/;"	kind:variable	line:16
+sim	main.py	/^import sim as sim$/;"	kind:namespace	line:1
+sim	main100L.py	/^import sim as sim$/;"	kind:namespace	line:1
+sim.py	sim.py	1;"	kind:file	line:1
+simulate	sim.py	/^def simulate(filepath, filedir, fullfilename, write = 1, analyze = 1, makefig = 1, diffuse = 1, antibunch = 1,$/;"	kind:function	line:44
+simulquicksort	calcnextphotondottrans2.py	/^def simulquicksort(array, b = [], c = [], d = [], e = []):$/;"	kind:function	line:36
+smooth	photon_correlation/util.py	/^def smooth(L, n=2):$/;"	kind:function	line:153
+sort_by_area	photon_correlation/Exponential.py	/^    def sort_by_area(self):$/;"	kind:member	line:49
+sort_by_rate	photon_correlation/Exponential.py	/^    def sort_by_rate(self):$/;"	kind:member	line:55
+sorted_by_area	photon_correlation/Exponential.py	/^    def sorted_by_area(self):$/;"	kind:member	line:46
+sorted_by_rate	photon_correlation/Exponential.py	/^    def sorted_by_rate(self):$/;"	kind:member	line:52
+statistics	photon_correlation/G2.py	/^import statistics$/;"	kind:namespace	line:3
+statistics	photon_correlation/G3.py	/^import statistics$/;"	kind:namespace	line:2
+statistics	photon_correlation/G4.py	/^import statistics$/;"	kind:namespace	line:2
+statistics	photon_correlation/Intensity.py	/^import statistics$/;"	kind:namespace	line:6
+statistics	photon_correlation/Lifetime.py	/^import statistics$/;"	kind:namespace	line:3
+statistics	photon_correlation/util.py	/^import statistics$/;"	kind:namespace	line:7
+stream	photon_correlation/Intensity.py	/^    def stream(self):$/;"	kind:member	line:99
+subprocess	PLdecay.py	/^import subprocess$/;"	kind:namespace	line:5
+subprocess	PLdecay2.py	/^import subprocess$/;"	kind:namespace	line:5
+subprocess	analyze2.py	/^import subprocess$/;"	kind:namespace	line:2
+subprocess	makefig2.py	/^import subprocess$/;"	kind:namespace	line:2
+subprocess	photon_correlation/Picoquant.py	/^import subprocess$/;"	kind:namespace	line:8
+subprocess	photon_correlation/calculate.py	/^import subprocess$/;"	kind:namespace	line:4
+subprocess	sim.py	/^import subprocess$/;"	kind:namespace	line:2
+subtract_background	photon_correlation/Lifetime.py	/^    def subtract_background(self, threshold=0.1):$/;"	kind:member	line:262
+sum_magnitude	photon_correlation/TD.py	/^    def sum_magnitude(self, min_magnitude, max_magnitude):$/;"	kind:member	line:156
+summed	photon_correlation/Intensity.py	/^    def summed(self):$/;"	kind:member	line:172
+sys	photon_correlation/FLID.py	/^import sys$/;"	kind:namespace	line:3
+sys	photon_correlation/util.py	/^import sys$/;"	kind:namespace	line:3
+t3_center	photon_correlation/G2.py	/^t3_center = (-0.5, 0.5)$/;"	kind:variable	line:31
+t3_side	photon_correlation/G2.py	/^t3_side = (0.5, 1.5)$/;"	kind:variable	line:32
+td	photon_correlation/TD.py	/^    td = TD(filename="\/home\/tsbischof\/Documents\/papers\/inas_exciton_lifecycle_paper\/data\/td\/20130117\/qdv1295_633nm_1mhz_dot09.ht3.50000.g1.run\/g1.td.bz2")$/;"	kind:variable	line:210
+temp	main.py	/^temp = 298 #K$/;"	kind:variable	line:24
+temp	main100L.py	/^temp = 298 #K$/;"	kind:variable	line:23
+testprogbar.py	testprogbar.py	1;"	kind:file	line:1
+threshold	photon_correlation/Intensity.py	/^    def threshold(self, threshold=0.7):$/;"	kind:member	line:279
+tickfunction	newmakefigpulse.py	/^def tickfunction(trep, npulses, divby):$/;"	kind:function	line:52
+time_bins	photon_correlation/Intensity.py	/^    def time_bins(self):$/;"	kind:member	line:47
+time_bins	photon_correlation/Lifetime.py	/^    def time_bins(self):$/;"	kind:member	line:54
+time_resolution	photon_correlation/G2.py	/^    def time_resolution(self):$/;"	kind:member	line:36
+time_unit	photon_correlation/Intensity.py	/^    def time_unit(self):$/;"	kind:member	line:106
+timestep	main.py	/^timestep = 1000000 #average number of photons per "round" of calculations$/;"	kind:variable	line:73
+timestep	main100L.py	/^timestep = 1000000 #average number of photons per "round" of calculations$/;"	kind:variable	line:72
+to_file	photon_correlation/GN.py	/^    def to_file(self, filename):$/;"	kind:member	line:52
+to_resolution	photon_correlation/G1.py	/^    def to_resolution(self, resolution):$/;"	kind:member	line:20
+to_resolution	photon_correlation/G2.py	/^    def to_resolution(self, resolution):$/;"	kind:member	line:368
+to_resolution	photon_correlation/Lifetime.py	/^    def to_resolution(self, resolution=1024):$/;"	kind:member	line:64
+to_stream	photon_correlation/G1.py	/^    def to_stream(self):$/;"	kind:member	line:54
+to_stream	photon_correlation/G2.py	/^    def to_stream(self):$/;"	kind:member	line:65
+to_stream	photon_correlation/G3.py	/^    def to_stream(self):$/;"	kind:member	line:40
+to_stream	photon_correlation/G4.py	/^    def to_stream(self):$/;"	kind:member	line:53
+to_time_resolution	photon_correlation/G2.py	/^    def to_time_resolution(self, resolution=None):$/;"	kind:member	line:292
+total_counts	photon_correlation/G2.py	/^    def total_counts(self, pulse_bin):$/;"	kind:member	line:260
+transpose	photon_correlation/util.py	/^def transpose(L):$/;"	kind:function	line:170
+unique_dot_keys	photon_correlation/util.py	/^def unique_dot_keys(experiment_keys):$/;"	kind:function	line:236
+unique_dots	photon_correlation/util.py	/^def unique_dots(dots):$/;"	kind:function	line:227
+unique_peaks	photon_correlation/G2.py	/^    def unique_peaks(self):$/;"	kind:member	line:279
+unique_peaks	photon_correlation/G3.py	/^    def unique_peaks(self):$/;"	kind:member	line:56
+unique_peaks	photon_correlation/G4.py	/^    def unique_peaks(self):$/;"	kind:member	line:73
+unique_peaks	photon_correlation/GN.py	/^    def unique_peaks(self):$/;"	kind:member	line:67
+util	photon_correlation/Exponential.py	/^from photon_correlation import util$/;"	kind:namespace	line:5
+util.py	photon_correlation/util.py	1;"	kind:file	line:1
+version	rust_fastforward/setup.py	/^      version='0.0.1',$/;"	kind:variable	line:6
+w	sim.py	/^import write2 as w$/;"	kind:namespace	line:32
+wavelength	main.py	/^wavelength = 532 #nm$/;"	kind:variable	line:45
+wavelength	main100L.py	/^wavelength = 532 #nm$/;"	kind:variable	line:44
+window_dimension	photon_correlation/Photon.py	/^    def window_dimension(self):$/;"	kind:member	line:3
+window_dimension	photon_correlation/T2.py	/^    def window_dimension(self):$/;"	kind:member	line:28
+window_dimension	photon_correlation/T3.py	/^    def window_dimension(self):$/;"	kind:member	line:46
+write	main.py	/^write = 1$/;"	kind:variable	line:4
+write	main100L.py	/^write = 1$/;"	kind:variable	line:4
+write	write.py	/^def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts, numlines, maxlines, endtime,$/;"	kind:function	line:44
+write	write2.py	/^def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts, numlines, maxlines, endtime,$/;"	kind:function	line:48
+write.py	write.py	1;"	kind:file	line:1
+write2.py	write2.py	1;"	kind:file	line:1
+zero_origin	photon_correlation/Intensity.py	/^    def zero_origin(self):$/;"	kind:member	line:264
+zip_safe	rust_fastforward/setup.py	/^      zip_safe=False)$/;"	kind:variable	line:11

@@ -49,7 +49,7 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts
             temp, concentration, dabsXsec, labsXsec,k_demission,
             k_fiss, k_trans, k_sem, k_tem, emwavelength, r,
             eta, n, reprate,wavelength, laserpwr, pulselength, foclen,
-            NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, timestep, channels, seq, mL1, probfiss, anni):
+            NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, timeres, timestep, channels, seq, mL1, probfiss, anni):
     
     allparams = [filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts, numlines, maxlines, endtime,
                     temp, concentration, dabsXsec, labsXsec,k_demission,
@@ -442,7 +442,7 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts
     file.write("Transfer lifetime = " + str(k_trans)+"  \n")
     file.write("Focal length = " + str(foclen)+"  \n")
     file.write("NA = " + str(NA)+"  \n")
-    file.write("Laser power = " + str(laserpwr) + " \n")
+    file.write("Laser power = " + str(laserpwr) + " mW \n")
     file.write("Time per round: " + str(timestep) + " ps  \n")
 ##    file.write("Time limits for photon_gn = " + str(2**gnpwr) + "ps  \n")
 ##    file.write("Pulse bins = " +str(pulsebins) + " \n")
