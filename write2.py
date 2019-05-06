@@ -49,7 +49,7 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts
             temp, concentration, dabsXsec, labsXsec,k_demission,
             k_fiss, k_trans, k_sem, k_tem, emwavelength, r,
             eta, n, reprate,wavelength, laserpwr, pulselength, foclen,
-            NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, timeres, timestep, channels, seq, mL1, probfiss, anni):
+            NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, timeres, timestep, channels, seq, mL1, probfiss, anni, ac, printall):
     
     allparams = [filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts, numlines, maxlines, endtime,
                     temp, concentration, dabsXsec, labsXsec,k_demission,
@@ -89,12 +89,19 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts
 
     energyperphoton = h*c/(wavelength/(10**9)) #J
 
+    if ac > -1:
+        exsperpulse = reprate*(10**6)/ac
+        experemperpulse = exsperpulse/AvgEms
+        phperpulse = experemperpulse/(dabsXsec + labsXsec*nligands)
+        energyperpulse = phperpulse*energyperphoton
+        laserpwr = energyperpulse*reprate*1000000000
 
     energyperpulse = laserpwr/(reprate * 1000000000) #J
     phperpulse = energyperpulse/energyperphoton
     phpers = laserpwr/(energyperphoton*1000)
     probdex = 1- (1-dabsXsec)**phperpulse #1-probability of not being excited each pulse
     problex = 1- (1-labsXsec)**phperpulse #1-probability of not being excited each pulse
+
 
     #make rounds average timestep emissions per round:
     if pulsed == 1:
@@ -110,6 +117,7 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts
         if timestep < taurep:
             timestep = taurep
         
+        
 
     #CW version:
     else:
@@ -118,6 +126,9 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts
         AvgEmEvs = AvgEms/(k_demission + k_dexcitation) # average sample emissions per second (in pHz)
         AvgExEvs = AvgEms*phpers*(dabsXsec+labsXsec*nligands)
         timestep = timestep/AvgEmEvs # in ps
+    
+    
+
     print("kdex = " + str(k_dexcitation))
     print("klex = " + str(k_lexcitation))
     endround = timestep
@@ -213,6 +224,11 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts
     starttime = rt.time()
     wrotediff = [0,0]
     sigcts = 0
+    if printall == 1:
+        lvars = locals()
+        for i in lvars:
+            print(i + " : " + str(lvars[i]))
+        crash = please
     while sigcts<endsigcts and line < maxlines:
         if line > maxlines:
             break
@@ -244,7 +260,7 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts
             if numEms -1 == 0:
                 difffile.write(str(nextIn) + ",1\n")
             wrotediff = [nextIn, nextOut]
-        #print("New Round")
+        #print(calc)
         #print("sensitivity is " + str(sensitivity))
         dataphotons, lastphoton, numEms, nextIn, nextOut, diffsIn, diffsOut, ndiffsOut, nextdex = calc.nextphotonss(lastphoton, sensitivity, nligands,
                                                                         k_demission, k_fiss, k_trans, k_sem, k_tem, k_dexcitation, k_lexcitation,

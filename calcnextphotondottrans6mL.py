@@ -225,6 +225,7 @@ def make_transtime_temtime_f(k_lexcitation, problex, nextem, taurep, nligands, k
             idx = np.where(problems)[0]
 
             if len(idx) == 0:
+                print(broke)
                 break
 
             for i in idx:
@@ -367,12 +368,20 @@ def nextphotonss(lastphoton, sensitivity, nligands,
         #print(3)
         while nextem < endround: #continue adding photons until end of round, on average 10 emissions
             transtime, temtime = make(k_lexcitation, problex, nextem, taurep, nligands, k_fiss, k_sem, k_trans, k_tem, excite, probfiss)
-
+            prevfindmin = ((0,0),0)
             while transtime.shape[0] != 0:
                 #print("10")
                 #print("transtime isn't empty")
                 #print(transtime)
                 index, minval = findmin(transtime)
+                newfindmin = findmin(transtime)
+                if prevfindmin == newfindmin:
+                    print(newfindmin)
+                    print(nextem)
+                    print(nextdex)
+                    print(temtime)
+                    crash = please
+                prevfindmin = newfindmin
                 while nextdex < nextem:
                     #re-excite the dot and find it's emission time
                     nextdex = excite(k_dexcitation, probdex, nextem, taurep)
@@ -399,7 +408,8 @@ def nextphotonss(lastphoton, sensitivity, nligands,
                         nextphoton = insert(nextphoton, nextem)
 
                     transtime[index] = float("inf")
-
+                elif minval == nextem:
+                    nextem = nextem + 1
                 fastforward(transtime, nextem, temtime, k_trans, 5, f)
                 transtime, temtime = deltransgttem(transtime,temtime)
             #print(nextem)#nextem is shrinking?

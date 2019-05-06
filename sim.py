@@ -29,7 +29,7 @@ import makefig2 as m
 import newfig as nm 
 import newmakefigpulse as npf
 
-import write2 as w
+import write2 as w #write3oct2018 as w
 import analyze2 as a
 
 def isbf(file):
@@ -49,7 +49,7 @@ def simulate(filepath, filedir, fullfilename, write = 1, analyze = 1, makefig = 
              reprate = 1, wavelength = 532, laserpwr = 0.5, pulselength = 80, foclen = 310000,
              NA = 1.4, darkcounts = 1, sensitivity = 0.1, nligands = 1, deadtime = 70000, afterpulse = 0, timeres = 1, order = 2,
              mode = "t2", gnpwr = 20, numbins = 4096, pulsebins = 99, channels = 3, seq = 0, mL1 = 0,
-             picyzoom = 100, timestep = 200, probfiss = 1, anni = 0):
+             picyzoom = 100, timestep = 200, probfiss = 1, anni = 0, ac = -1, AvgEms = -1, printall = 0):
     
     os.chdir("/mnt/c/Users/Karen/Dropbox (WilsonLab)/WilsonLab Team Folder/Data/Karen/DotTransferSimUpdated2/")
     suffix = ".txt"
@@ -78,8 +78,7 @@ def simulate(filepath, filedir, fullfilename, write = 1, analyze = 1, makefig = 
                     temp, concentration, dabsXsec, labsXsec,k_demission, 
                     k_fiss, k_trans, k_sem, k_tem, emwavelength,  r,
                     eta, n, reprate,wavelength, laserpwr, pulselength, foclen,
-                    NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, timeres, timestep, channels, seq, mL1, probfiss, anni)
-
+                    NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, timeres, timestep, channels, seq, mL1, probfiss, anni, ac, printall)
     if analyze == 1:
         a.analyze(filepath, filedir, fullfilename, numlines, order, mode, gnpwr, numbins, pulsebins, channels, makefig, m.makeafig, pulsed, picyzoom, reprate, deadtime = deadtime)
 
@@ -104,11 +103,13 @@ def simulate(filepath, filedir, fullfilename, write = 1, analyze = 1, makefig = 
         else:
             dfilepath = filepath + "RawData/" + filedir + file + "/" + file + "gnpwr" + str(gnpwr) + ".g2.run/"
             sfilepath = filepath + "Figures/" + filedir + file + "/"
-            npf.makepulsedfig(dfilepath, "g2", sfilepath, fileoutname, deadtime = deadtime, reprate = reprate, timespace = 1000)
-            npf.makepulsedfig(dfilepath, "g2", sfilepath, fileoutname+"250nszoom", deadtime = deadtime, reprate = reprate, timespace = 1000, xzoom = 100)
-            npf.makepulsedfig(dfilepath, "g2", sfilepath, fileoutname+"sq", deadtime = deadtime, reprate = reprate, timespace = 1000, yzoom = [0,80], figsize = [6,4])
+            npf.multimakepulsedfig(dfilepath, "g2", sfilepath, [fileoutname+"---", fileoutname+"2500nszoom",fileoutname+"sq",fileoutname+"2500nszoomsq"], 
+                                            deadtime = deadtime, reprate = reprate, timespace = 1000, 
+                                            xzooms = [0,2500,0,2500], yzooms = [[-1,-1],[-1,-1],[0,20],[0,20]], 
+                                            figsizes = [[-1,-1], [-1,-1],[6,4],[6,4]], bbg = 0, fontsize = 20)
+        '''    npf.makepulsedfig(dfilepath, "g2", sfilepath, fileoutname+"sq", deadtime = deadtime, reprate = reprate, timespace = 1000, yzoom = [0,80], figsize = [6,4])
             npf.makepulsedfig(dfilepath, "g2", sfilepath, fileoutname+"250nszoomsq", deadtime = deadtime, reprate = reprate, timespace = 1000, xzoom = 100,yzoom = [0,80], figsize = [6,4])
-'''
+
         print(filepath+"/"+file)
         fileout = file + "-PIC"
         filename = "PIC"
