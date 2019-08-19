@@ -1,53 +1,57 @@
 import sim as sim
 
+#Run in Ubuntu not cygwin because rust not installed on cygwin
+
 #control parameters - 1 means on, 0 means off
-write = 0
-analyze = 0
+write = 1
+analyze = 1
 makefig = 1
 
-diffuse = 0
+diffuse = 1
 antibunch = 1
 pulsed = 1
 
 #General saving folder parameters
 filepath = "/mnt/c/Users/Karen/Dropbox (WilsonLab)/WilsonLab Team Folder/Data/Karen/DotTransferSim/"
-filedir = "May18LongfixedDotem/"
-filenames = ["LowLPno10kligsPbS1ligs"]
+filedir = "2019-07-26-numems/"
+filenames = ["Stationary fewem-low-diffusing"]
 filename = filenames[0]
 
 #file length - goes to the max of these two
 endsigcts = 100000000
-numlines = 10**4#5
-maxlines = 10**6
-endtime = 10**12 #ps #10**15 = 16.6 min
+numlines = 10**8#5
+maxlines = 10**9
+endtime = 2*(10**5)*10**12 #ps #10**15 = 16.6 min
 
 #Sample parameters
 temp = 298 #K
 k_demission = 1400000 #emission lifetime in ps
-k_sem = 1000000000000 # never singlet emit from Yb #10000 #short lived singlets
-k_tem = 1000000000000 # pretend Yb has unity qy, never 'triplet emits' #100000000 #long lived triplets
+k_sem = 10000 #short lived singlets #1000000000000 # never singlet emit from Yb #
+k_tem = 100000000 #long lived triplets #1000000000000 # pretend Yb has unity qy, never 'triplet emits' #
 k_fiss = 1 #made up from marks paper on pentacene fission
-k_trans = 1#5000000# [50000, 200000, 5000000]  #based on Rao paper 2018
+k_trans = 200000# [50000, 200000, 5000000]  #based on Rao paper 2018 1#
 emwavelength = 815
 r = 20 #nm - hydrodynamic radius of particles
 
 eta = 8.9 * 10**(-13) # kg/nm s - dynamic viscosity of solvent (water)
 n = 1.3 # index of refraction - sample in water
 
-concentration = 2*10**(-7)#2*10**(-8) #I think there aren't many Yb so I left this at 'low concentration'
-nligands = 10 #i.e. absorbtion centres which transfer to Yb
+concentration = 2*10**(-8)#2*10**(-8) #I think there aren't many Yb so I left this at 'low concentration'
+concs = [1,2,10,3]
+nligands = [1] #i.e. absorbtion centres which transfer to Yb
 
 dabsXsec = 7.180616773321853*10**(-9)# per emitter numabs'd = phperpulse*absXsec*numEms - this is reasonable based on absXsec for CdSe is 550000*r^3/cm (from Bawendi paper Ruvim sent me)
-labsXsec = dabsXsec*2#/nligands
+labsXsec = dabsXsec*10
 
 #Laser parameters
-reprate = 0.0312 #MHz
+reprate = 0.05#312 #MHz
 
-wavelength = 470 #532 #nm
+wavelength = 532 #nm 470 #
 beamdiam = 5000000 #5 mm in nm
 laserpwr = 5*10**(-4) # mW (0.52 mWinto back of objective 23 #mW)
-#laserpwr = [0.05,0.1,0.2,0.3,0.5,0.75,1,10]#[0.001,0.01,0.025,
-
+laserpwr = [0.001, 0.01, 0.05,0.1,0.2,0.3,0.5,0.75,1,10]#[0.001,0.01,0.025,
+laserpwr = [10**(-4), 10**(-5), 10**(-6), 10**(-7), 10**(-8), 10**(-9)]#, 0.001, 0.01, 0.05,0.1,0.2,0.3,0.5,0.75,1,10]
+laserpwr = 5*10**(-5)
 pulselength = 80 #ps - not used
 
 
@@ -57,7 +61,7 @@ NA = 1.4
 
 #Detector parameters
 darkcounts = 100 #s^-1
-sensitivity = 1
+sensitivity = 0.01
 deadtime = 10000000#70000 #70 ns in ps
 deadtime = 70000
 afterpulse = 0.0001 #percent of time a photon is emitted a deadtime after one is detected
@@ -87,14 +91,19 @@ def simulate(filepath, filedir, fullfilename, write = 1, analyze = 1, makefig = 
              NA = 1.4, darkcounts = 1, sensitivity = 0.1, nligands = 1, deadtime = 70000, afterpulse = 0, timeres = 1, order = 2,
              mode = "t2", gnpwr = 20, numbins = 4096, pulsebins = 99, channels = 3, seq = 0, mL1 = 0,
              picyzoom = 100, timestep = 200, probfiss = 1, anni = 0):
-''' 
-sim.simulate(filepath, filedir, filename, write, analyze, makefig, diffuse, antibunch,
-                        pulsed, endsigcts, numlines, maxlines, endtime,temp, concentration,
-                        dabsXsec, labsXsec, k_demission, k_sem,
-                        emwavelength, r,eta, n, k_tem, k_fiss, k_trans,
-                        reprate, wavelength, laserpwr, pulselength, foclen,
-                        NA, darkcounts, sensitivity, nligands, deadtime, afterpulse, timeres, order,
-                        mode, gnpwr, numbins, pulsebins, channels, timestep=timestep,  printall = 0)
+'''
+
+for nems in concs:
+    f = filename + str(nems) + "ems"
+    print(f)
+    sim.simulate(filepath, filedir, f, write, analyze, makefig, diffuse, antibunch,
+                    pulsed, endsigcts, numlines, maxlines, endtime,temp, concentration*nems,
+                    dabsXsec, labsXsec, k_demission, k_sem,
+                    emwavelength, r,eta, n, k_tem, k_fiss, k_trans,
+                    reprate, wavelength, laserpwr, pulselength, foclen,
+                    NA, darkcounts, sensitivity, 1, deadtime, afterpulse, timeres, order,
+                    mode, gnpwr, numbins, pulsebins, channels, timestep=timestep,  printall = 0)
+
 
 '''
 for k_trans in [k_sem]:#k_transs:

@@ -391,11 +391,15 @@ def multimakepulsedfig(filepath, file, sfilepath, savenames, reprate = 1, npulse
             plt.close()
         
 def makepulsedfig(filepath, file, sfilepath, savename, reprate = 1, npulses=1, time=float('inf'), fontsize=12, figsize = [-1,-1], linewidth = 0.5, 
-                    grayafterglow = 1, deadtime = 70000, timespace = -1, xzoom = -1, yzoom =[-1,-1]):
-    
-    agcolor = "darkslategray"
-    spcolor = 'white'
-    cpcolor = 'red'
+                    grayafterglow = 1, deadtime = 70000, timespace = -1, xzoom = -1, yzoom =[-1,-1], bbg = 1):
+    if bbg == 1:
+        agcolor = "darkslategray"
+        spcolor = 'white'
+        cpcolor = 'red'
+    elif bbg == 0:
+        agcolor = "gray"
+        spcolor = 'black'
+        cpcolor = 'red'
 
     trep = (10**6)/reprate # in ps
     data, xdata, bindata, cdata, cxdata, endbin = effload(filepath,file,10000,npulses,time,trep)
@@ -431,7 +435,9 @@ def makepulsedfig(filepath, file, sfilepath, savename, reprate = 1, npulses=1, t
         else: grayafterglow = 0
 
     fig = plt.figure()
-    fig.patch.set_facecolor('black')
+    if bbg == 1:
+        fig.patch.set_facecolor('black')
+
     ax = fig.add_subplot(1, 1, 1)
     ax2 = ax.twiny()
 
@@ -455,23 +461,24 @@ def makepulsedfig(filepath, file, sfilepath, savename, reprate = 1, npulses=1, t
     ax2.set_xlim(ax.get_xlim())
     ax2.set_xticks(ticks)
     ax2.set_xticklabels(labels)
-    ax.set_facecolor('black')
-    ax.spines['top'].set_color('white')
-    ax.spines['bottom'].set_color('white')
-    ax.spines['left'].set_color('white')
-    ax.spines['right'].set_color('white')
+    if bbg == 1:
+        ax.set_facecolor('black')
+        ax.spines['top'].set_color('white')
+        ax.spines['bottom'].set_color('white')
+        ax.spines['left'].set_color('white')
+        ax.spines['right'].set_color('white')
 
-    ax.xaxis.label.set_color('white')
-    ax.yaxis.label.set_color('white')
+        ax.xaxis.label.set_color('white')
+        ax.yaxis.label.set_color('white')
 
-    ax2.set_facecolor('black')
-    ax2.spines['top'].set_color('white')
-    ax2.spines['bottom'].set_color('white')
-    ax2.spines['left'].set_color('white')
-    ax2.spines['right'].set_color('white')
+        ax2.set_facecolor('black')
+        ax2.spines['top'].set_color('white')
+        ax2.spines['bottom'].set_color('white')
+        ax2.spines['left'].set_color('white')
+        ax2.spines['right'].set_color('white')
 
-    ax2.xaxis.label.set_color('white')
-    ax2.yaxis.label.set_color('white')
+        ax2.xaxis.label.set_color('white')
+        ax2.yaxis.label.set_color('white')
 
     plt.ylabel("$g^{(2)}($" + u'\u03C4' + "$)$")
     plt.xlabel("$" + u'\u03C4' + "$ (" + timetag + ")" )
@@ -487,10 +494,11 @@ def makepulsedfig(filepath, file, sfilepath, savename, reprate = 1, npulses=1, t
         fig.set_size_inches(figsize[0], figsize[1])
     else:
         fig.set_size_inches(3*(2*npulses + 1), 4)
-    ax.tick_params(axis = 'x', colors = 'white')
-    ax.tick_params(axis = 'y', colors = 'white')
-    ax2.tick_params(axis = 'x', colors = 'white')
-    ax2.tick_params(axis = 'y', colors = 'white')
+    if bbg == 1:
+        ax.tick_params(axis = 'x', colors = 'white')
+        ax.tick_params(axis = 'y', colors = 'white')
+        ax2.tick_params(axis = 'x', colors = 'white')
+        ax2.tick_params(axis = 'y', colors = 'white')
 
 
     fig.tight_layout()
@@ -501,7 +509,8 @@ def makepulsedfig(filepath, file, sfilepath, savename, reprate = 1, npulses=1, t
     #symmetric
 
     fig = plt.figure()
-    fig.patch.set_facecolor('black')
+    if bbg == 1:
+        fig.patch.set_facecolor('black')
     ax = fig.add_subplot(1, 1, 1)
     ax2 = ax.twiny()
 
@@ -532,23 +541,24 @@ def makepulsedfig(filepath, file, sfilepath, savename, reprate = 1, npulses=1, t
     ax2.set_xlim(ax.get_xlim())
     ax2.set_xticks(ticks)
     ax2.set_xticklabels(labels)
-    ax.set_facecolor('black')
-    ax.spines['top'].set_color('white')
-    ax.spines['bottom'].set_color('white')
-    ax.spines['left'].set_color('white')
-    ax.spines['right'].set_color('white')
+    if bbg == 1:
+        ax.set_facecolor('black')
+        ax.spines['top'].set_color('white')
+        ax.spines['bottom'].set_color('white')
+        ax.spines['left'].set_color('white')
+        ax.spines['right'].set_color('white')
 
-    ax.xaxis.label.set_color('white')
-    ax.yaxis.label.set_color('white')
+        ax.xaxis.label.set_color('white')
+        ax.yaxis.label.set_color('white')
 
-    ax2.set_facecolor('black')
-    ax2.spines['top'].set_color('white')
-    ax2.spines['bottom'].set_color('white')
-    ax2.spines['left'].set_color('white')
-    ax2.spines['right'].set_color('white')
+        ax2.set_facecolor('black')
+        ax2.spines['top'].set_color('white')
+        ax2.spines['bottom'].set_color('white')
+        ax2.spines['left'].set_color('white')
+        ax2.spines['right'].set_color('white')
 
-    ax2.xaxis.label.set_color('white')
-    ax2.yaxis.label.set_color('white')
+        ax2.xaxis.label.set_color('white')
+        ax2.yaxis.label.set_color('white')
 
     plt.ylabel("$g^{(2)}($" + u'\u03C4' + "$)$")
     plt.xlabel("$" + u'\u03C4' + "$ ("+timetag+")",size=fontsize)
@@ -564,10 +574,12 @@ def makepulsedfig(filepath, file, sfilepath, savename, reprate = 1, npulses=1, t
         fig.set_size_inches(figsize[0], figsize[1])
     else:
         fig.set_size_inches(3*(2*npulses + 1), 4)
-    ax.tick_params(axis = 'x', colors = 'white')
-    ax.tick_params(axis = 'y', colors = 'white')
-    ax2.tick_params(axis = 'x', colors = 'white')
-    ax2.tick_params(axis = 'y', colors = 'white')
+    
+    if bbg == 1:
+        ax.tick_params(axis = 'x', colors = 'white')
+        ax.tick_params(axis = 'y', colors = 'white')
+        ax2.tick_params(axis = 'x', colors = 'white')
+        ax2.tick_params(axis = 'y', colors = 'white')
 
 
     fig.tight_layout()
@@ -602,7 +614,8 @@ def makepulsedfig(filepath, file, sfilepath, savename, reprate = 1, npulses=1, t
     #symmetric
     linewidth = linewidth/2
     fig = plt.figure()
-    fig.patch.set_facecolor('black')
+    if bbg == 1:
+        fig.patch.set_facecolor('black')
     ax = fig.add_subplot(1, 1, 1)
     
     matplotlib.rcParams.update({'font.size': fontsize})
@@ -626,15 +639,15 @@ def makepulsedfig(filepath, file, sfilepath, savename, reprate = 1, npulses=1, t
     ax.plot(cxdata,cdata, color = cpcolor, linewidth = linewidth)
     
 
-    
-    ax.set_facecolor('black')
-    ax.spines['top'].set_color('white')
-    ax.spines['bottom'].set_color('white')
-    ax.spines['left'].set_color('white')
-    ax.spines['right'].set_color('white')
+    if bbg == 1:
+        ax.set_facecolor('black')
+        ax.spines['top'].set_color('white')
+        ax.spines['bottom'].set_color('white')
+        ax.spines['left'].set_color('white')
+        ax.spines['right'].set_color('white')
 
-    ax.xaxis.label.set_color('white')
-    ax.yaxis.label.set_color('white')
+        ax.xaxis.label.set_color('white')
+        ax.yaxis.label.set_color('white')
 
     
 
@@ -650,8 +663,10 @@ def makepulsedfig(filepath, file, sfilepath, savename, reprate = 1, npulses=1, t
         fig.set_size_inches(figsize[0], figsize[1])
     else:
         fig.set_size_inches(6, 4)
-    ax.tick_params(axis = 'x', colors = 'white')
-    ax.tick_params(axis = 'y', colors = 'white')
+    
+    if bbg == 1:
+        ax.tick_params(axis = 'x', colors = 'white')
+        ax.tick_params(axis = 'y', colors = 'white')
 
 
     fig.tight_layout()
@@ -676,7 +691,7 @@ def makepulsedfig(filepath, file, sfilepath, savename, reprate = 1, npulses=1, t
         ax.set_ylim((yzoom[0],yzoom[1]))
         fig.savefig(sfilepath + savename + "OVERLAPSYMMyzoom" + str(yzoom[0])+"to"+str(yzoom[1]) +  ".png",facecolor=fig.get_facecolor(), edgecolor = 'none')
         plt.close()
-    
+'''    
 filepath = "/mnt/c/Users/Karen/Dropbox (WilsonLab)/WilsonLab Team Folder/Data/Karen/DotTransferSim/"
 filedir = "May18LongfixedDotem/"
 file = "LowLPno10kligsPbS1ligs"
@@ -690,4 +705,4 @@ reprate = 0.0312
 multimakepulsedfig(dfilepath, "g2", sfilepath, [fileoutname+"---", fileoutname+"2500nszoom",fileoutname+"sq",fileoutname+"2500nszoomsq"], 
                                 deadtime = deadtime, reprate = reprate, timespace = 1000000, g2norm = 100,
                                 xzooms = [0,2500,0,2500], yzooms = [[-1,-1],[-1,-1],[0,20],[0,20]], 
-                                figsizes = [[-1,-1], [-1,-1],[6,4],[6,4]], bbg = 1, fontsize = 20)
+                                figsizes = [[-1,-1], [-1,-1],[6,4],[6,4]], bbg = 1, fontsize = 20)'''

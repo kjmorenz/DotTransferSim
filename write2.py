@@ -113,6 +113,9 @@ def write(filepath, filedir, fullfilename, antibunch, diffuse, pulsed, endsigcts
         if experemperpulse > 1 + nligands:
             experemperpulse = 1 + nligands
         experps = experemperpulse*AvgEms/taurep # comment *avgems out to make per em
+        print(experps)
+        print(AvgEms)
+        print(concentration)
         timestep = timestep/experps #ps per round
         if timestep < taurep:
             timestep = taurep
